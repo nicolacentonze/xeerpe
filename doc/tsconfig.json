@@ -1,0 +1,33 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "xerpe": [
+        "../lib/src/index.ts"
+      ]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "src",
+    ".next/types/**/*.ts",
+    "../lib/src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
