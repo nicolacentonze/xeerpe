@@ -1,9 +1,21 @@
-import { test } from "xerpe";
+import { Builder } from "xerpe"
 
 export default function Page() {
-  return (
-    <main>
-      <h1>{test("xerpe workspace")}</h1>
-    </main>
-  );
+    const style = new Builder()
+        .gradient('#667eea', '#764ba2')
+        .blur('8px')
+        .toStyle()
+
+    return (
+        <main>
+            xerpe
+            <div
+                style={{
+                    ...style,
+                    width: '200px',
+                    height: '100px'
+            }}
+            />
+        </main>
+    )
 }
