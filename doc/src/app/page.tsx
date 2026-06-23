@@ -1,4 +1,4 @@
-import { Builder } from "xerpe"
+import { Builder } from "xeerpe"
 
 export default function Page() {
     const style = new Builder()
@@ -8,7 +8,7 @@ export default function Page() {
 
     return (
         <main>
-            xerpe
+            xeerpe
             <div
                 style={{
                     ...style,

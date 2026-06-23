@@ -1,5 +1,5 @@
 {
-  "name": "xerpe-doc",
+  "name": "xeerpe-doc",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -7,7 +7,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "xerpe": "*",
+    "xeerpe": "*",
     "next": "^15",
     "react": "^19",
     "react-dom": "^19"

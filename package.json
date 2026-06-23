@@ -1,5 +1,5 @@
 {
-  "name": "xerpe-workspace",
+  "name": "xeerpe-workspace",
   "private": true,
   "workspaces": ["lib", "doc"],
   "scripts": {
