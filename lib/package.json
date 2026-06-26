@@ -1,6 +1,6 @@
 {
   "name": "xeerpe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -13,7 +13,11 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist/*",
+    "media",
+    "README.md"
+  ],
   "scripts": {
     "build": "rm -rf dist && rspack build && tsc --emitDeclarationOnly --outDir dist"
   },
