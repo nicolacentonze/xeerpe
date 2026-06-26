@@ -1,6 +1,6 @@
 {
   "name": "xeerpe",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -14,10 +14,18 @@
     }
   },
   "files": [
-    "dist/*",
-    "media",
-    "README.md"
+    "dist/*"
   ],
+  "keywords": [
+    "xeerpe"
+  ],
+  "description": "xeerpe",
+  "author": "Nicola Centonze",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nicolacentonze/xeerpe.git"
+  },
   "scripts": {
     "build": "rm -rf dist && rspack build && tsc --emitDeclarationOnly --outDir dist"
   },
