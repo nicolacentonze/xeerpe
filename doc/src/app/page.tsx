@@ -1,20 +1,31 @@
-import { Builder } from "xeerpe"
+import { Builder, colors } from "xeerpe"
 
 export default function Page() {
-    const style = new Builder()
-        .gradient('#667eea', '#764ba2')
+    const linearStyle = new Builder()
+        .gradient('linear', {from: colors.tiffany, to: colors.absinthe})
         .blur('8px')
+        .toStyle()
+
+    const radialStyle = new Builder()
+        .gradient('radial', {from: colors.absinthe, to: colors.amethyst, size: 'closest-side' })
         .toStyle()
 
     return (
         <main>
-            xeerpe
             <div
                 style={{
-                    ...style,
+                    ...linearStyle,
                     width: '200px',
                     height: '100px'
             }}
+            />
+
+            <div
+                style={{
+                    ...radialStyle,
+                    width: '200px',
+                    height: '100px'
+                }}
             />
         </main>
     )

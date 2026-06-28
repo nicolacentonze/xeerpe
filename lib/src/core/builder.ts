@@ -1,12 +1,13 @@
 import {BuilderLayer} from "../models/builder";
 import {buildGradientLayer} from "../generators/gradients";
 import {buildBlur} from "../generators/blur";
+import {GradientOptions, GradientType} from "../models/gradient";
 
 export class Builder {
     private _layers: BuilderLayer[] = [];
 
-    gradient(from: string, to: string): this {
-        const layer = buildGradientLayer(from, to)
+    gradient(type: GradientType, options: GradientOptions): this {
+        const layer = buildGradientLayer(type, options)
         this._layers.push(layer)
         return this
     }
