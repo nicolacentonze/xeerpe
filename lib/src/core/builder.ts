@@ -1,7 +1,7 @@
 import {BuilderLayer} from "../models/builder";
 import {buildGradientLayer} from "../generators/gradients";
 import {buildBlur} from "../generators/blur";
-import {GradientOptions, GradientType} from "../models/gradient";
+import {GradientOptions, GradientType, LinearGradientOptions, RadialGradientOptions} from "../models/gradient";
 
 export class Builder {
     private _layers: BuilderLayer[] = [];
@@ -10,6 +10,14 @@ export class Builder {
         const layer = buildGradientLayer(type, options)
         this._layers.push(layer)
         return this
+    }
+
+    linearGradient(options: LinearGradientOptions): this {
+        return this.gradient('linear', options)
+    }
+
+    radialGradient(options: RadialGradientOptions): this {
+        return this.gradient('radial', options)
     }
 
     blur(value: string): this {
