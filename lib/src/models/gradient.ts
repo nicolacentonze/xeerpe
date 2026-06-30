@@ -9,6 +9,8 @@ export interface LinearGradientOptions {
     to?: string
     angle?: string
     direction?: LinearGradientDirection
+    size?: string
+    backgroundSize?: string
 }
 
 export interface RadialGradientOptions {

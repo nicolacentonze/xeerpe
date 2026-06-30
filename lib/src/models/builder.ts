@@ -1,4 +1,4 @@
-export type LayerType = 'gradient' | 'blur'
+export type LayerType = 'gradient' | 'filter'
 
 export interface BuilderLayer {
     type: LayerType

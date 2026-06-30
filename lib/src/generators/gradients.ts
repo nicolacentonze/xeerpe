@@ -13,7 +13,8 @@ export const buildGradientLayer = (type: GradientType, options: GradientOptions)
 export const lineaGradientBuilder = (options: LinearGradientOptions): string => {
     const direction = options.direction ?? '135deg'
     const colors = `${options.from}, ${options.to}`
-    return `background: linear-gradient(${direction}, ${colors})`
+    const size = options.size ?? ''
+    return `linear-gradient(${direction}, ${colors} ${size})`
 }
 
 export const radialGradientBuilder = (options: RadialGradientOptions): string => {
@@ -21,7 +22,7 @@ export const radialGradientBuilder = (options: RadialGradientOptions): string =>
     const size = options.size ?? 'closest-side'
     const position = options.position ?? 'center'
     const colors = `${options.from}, ${options.to}`
-    return`background: radial-gradient(${shape} ${size} at ${position}, ${colors})`
+    return`radial-gradient(${shape} ${size} at ${position}, ${colors})`
 }
 
 export const buildByType = (type: GradientType, options: GradientOptions):string => {

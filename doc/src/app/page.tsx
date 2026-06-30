@@ -2,7 +2,9 @@ import { Builder, colors } from "xeerpe"
 
 export default function Page() {
     const linearStyle = new Builder()
-        .linearGradient({from: colors.tiffany, to: colors.absinthe})
+        .linearGradient({from: '#f2ebd8', to: 'transparent', direction: 'to right', size: '1px'})
+        .linearGradient({from: '#f2ebd8', to: 'transparent', direction: 'to bottom', size: '1px'})
+        .linearGradient({from: 'red', to: 'blue'})
         .blur('8px')
         .toStyle()
 
