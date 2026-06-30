@@ -1,4 +1,4 @@
-import {BuilderLayer} from "../models/builder";
+import {BuilderLayer, CSSProperties} from "../models/builder";
 import {
     GradientOptions,
     GradientType,
@@ -6,9 +6,6 @@ import {
     RadialGradientOptions,
 } from "../models/gradient";
 
-export const buildGradientLayer = (type: GradientType, options: GradientOptions): BuilderLayer => {
-    return {type: 'gradient', css: buildByType(type, options)}
-}
 
 export const lineaGradientBuilder = (options: LinearGradientOptions): string => {
     const direction = options.direction ?? '135deg'
@@ -31,4 +28,18 @@ export const buildByType = (type: GradientType, options: GradientOptions):string
         case 'radial': return radialGradientBuilder(options as RadialGradientOptions)
         default: throw new Error(`Unknown gradient type: ${type}`)
     }
+}
+
+
+export const buildGradientLayer = (type: GradientType, options: GradientOptions): BuilderLayer => {
+    const properties: CSSProperties = {
+        background: buildByType(type, options),
+    }
+
+    if (type === 'linear') {
+        const linearOptions = options as LinearGradientOptions
+            properties.backgroundSize = linearOptions.backgroundSize ?? 'auto'
+    }
+
+    return { type: 'gradient', properties }
 }

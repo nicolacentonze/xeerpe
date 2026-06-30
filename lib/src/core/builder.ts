@@ -1,4 +1,4 @@
-import {BuilderLayer, LayerType} from "../models/builder";
+import {BuilderLayer, CSSProperties, LayerType} from "../models/builder";
 import {buildGradientLayer} from "../generators/gradients";
 import {buildBlur} from "../generators/blur";
 import {GradientOptions, GradientType, LinearGradientOptions, RadialGradientOptions} from "../models/gradient";
@@ -27,22 +27,31 @@ export class Builder {
     }
 
     toStyle(): Record<string, string> {
-        const grouped: Record<LayerType, string[]> = {
+        const grouped: Record<LayerType, CSSProperties[]> = {
             gradient: [],
             filter: [],
-        };
+        }
 
         this._layers.forEach((layer: BuilderLayer) => {
-            grouped[layer.type].push(layer.css)
+            grouped[layer.type].push(layer.properties)
         })
 
         const style: Record<string, string> = {}
 
         if (grouped.gradient.length) {
-            style.background = grouped.gradient.join(', ')
+            style.background = grouped.gradient.map(p => p.background).join(', ')
+
+            const sizes = grouped.gradient
+                .map(p => p.backgroundSize)
+                .join(', ')
+
+            if (sizes.length) {
+                style.backgroundSize = sizes
+            }
         }
+
         if (grouped.filter.length) {
-            style.backdropFilter = grouped.filter.join(', ')
+            style.filter = grouped.filter.map(p => p.filter).join(', ')
         }
 
         return style
