@@ -57,4 +57,15 @@ export class Builder {
         return style
     }
 
+    toTextStyle(): any {
+        const background = this.toStyle()
+        return {
+            backgroundImage: background.background,
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            WebkitTextFillColor: 'transparent',
+        }
+    }
+
 }

@@ -13,3 +13,7 @@
 A fluent, chainable API for building CSS backgrounds programmatically.
 
 Write less. Style more. Chain everything.
+
+---
+
+Copyright (c) 2026 **Nicola Centonze**

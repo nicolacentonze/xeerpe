@@ -1,15 +1,35 @@
 import {BuilderLayer, CSSProperties} from "../models/builder";
 import {
+    GradientColorStop,
     GradientOptions,
     GradientType,
     LinearGradientOptions,
     RadialGradientOptions,
 } from "../models/gradient";
+import {isValidAngle, isValidDirection, isValidPosition} from "../validations";
 
+const formatColorStop = (stop: GradientColorStop): string => {
+    if (typeof stop === 'string') return stop
+
+    const { color, position } = stop
+    if (!position) return color
+    if (!isValidPosition(position)) return color
+
+    return `${color} ${position}`
+}
 
 export const lineaGradientBuilder = (options: LinearGradientOptions): string => {
-    const direction = options.direction ?? '135deg'
-    const colors = `${options.from}, ${options.to}`
+    const direction =
+        options.angle && isValidAngle(options.angle)
+            ? options.angle
+            : options.direction && isValidDirection(options.direction)
+                ? options.direction
+                : '135deg'
+
+    const colors = options.colors?.length
+        ? options.colors.map(formatColorStop).join(', ')
+        : `${options.from}, ${options.to}`
+
     const size = options.size ?? ''
     return `linear-gradient(${direction}, ${colors} ${size})`
 }
@@ -36,10 +56,8 @@ export const buildGradientLayer = (type: GradientType, options: GradientOptions)
         background: buildByType(type, options),
     }
 
-    if (type === 'linear') {
         const linearOptions = options as LinearGradientOptions
             properties.backgroundSize = linearOptions.backgroundSize ?? 'auto'
-    }
 
     return { type: 'gradient', properties }
 }

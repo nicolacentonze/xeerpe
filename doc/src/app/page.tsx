@@ -1,30 +1,37 @@
 import { Builder, colors } from "xeerpe"
 
 export default function Page() {
-    const linearStyle = new Builder()
-        .linearGradient({from: '#f2ebd8', to: 'transparent', direction: 'to right', size: '1px', backgroundSize: '25% 25%'})
-        .linearGradient({from: '#f2ebd8', to: 'transparent', direction: 'to bottom', size: '1px', backgroundSize: '25% 25%'})
-        .linearGradient({from: colors.mulberry, to: colors.delft})
+
+    const xeerpeTitle = new Builder()
+        .linearGradient({ from: '#39ff9c', to: '#0a5c33', angle: '135deg' })
+        .toTextStyle()
+
+    const xeerpeLinear = new Builder()
+        .linearGradient({ from: '#39ff9c', to: '#0a5c33', angle: '135deg' })
         .toStyle()
 
-    const radialStyle = new Builder()
-        .radialGradient({from: colors.mulberry, to: colors.delft, size: 'closest-side' })
-        .blur('8px')
+    const xeerpeRadial = new Builder()
+        .radialGradient({ from: '#39ff9c', to: '#0a0f0a', size: 'closest-side' })
         .toStyle()
 
     return (
         <main>
-            <div
-                style={{
-                    ...linearStyle,
-                    width: '200px',
-                    height: '100px'
-            }}
-            />
+
+            <h1 style={{...xeerpeTitle, fontSize: '60px'}}>THIS IS XEERPE... ENJOY!</h1>
+
+            <br/>
 
             <div
                 style={{
-                    ...radialStyle,
+                    ...xeerpeLinear,
+                    width: '200px',
+                    height: '100px'
+                }}
+            />     <br/>
+
+            <div
+                style={{
+                    ...xeerpeRadial,
                     width: '200px',
                     height: '100px'
                 }}
