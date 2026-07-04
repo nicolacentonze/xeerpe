@@ -1,4 +1,4 @@
-import {BuilderLayer, CSSProperties} from "../models/builder";
+import { BuilderLayer, CSSProperties } from "../models/builder";
 import {
     GradientColorStop,
     GradientOptions,
@@ -6,7 +6,7 @@ import {
     LinearGradientOptions,
     RadialGradientOptions,
 } from "../models/gradient";
-import {isValidAngle, isValidDirection, isValidPosition} from "../validations";
+import { isValidAngle, isValidDirection, isValidPosition } from "../validations";
 
 const formatColorStop = (stop: GradientColorStop): string => {
     if (typeof stop === 'string') return stop
@@ -18,7 +18,7 @@ const formatColorStop = (stop: GradientColorStop): string => {
     return `${color} ${position}`
 }
 
-export const lineaGradientBuilder = (options: LinearGradientOptions): string => {
+export const linearGradientBuilder = (options: LinearGradientOptions): string => {
     const direction =
         options.angle && isValidAngle(options.angle)
             ? options.angle
@@ -30,8 +30,8 @@ export const lineaGradientBuilder = (options: LinearGradientOptions): string => 
         ? options.colors.map(formatColorStop).join(', ')
         : `${options.from}, ${options.to}`
 
-    const size = options.size ?? ''
-    return `linear-gradient(${direction}, ${colors} ${size})`
+    const size = options.size ? ` ${options.size}` : ''
+    return `linear-gradient(${direction}, ${colors}${size})`
 }
 
 export const radialGradientBuilder = (options: RadialGradientOptions): string => {
@@ -39,25 +39,22 @@ export const radialGradientBuilder = (options: RadialGradientOptions): string =>
     const size = options.size ?? 'closest-side'
     const position = options.position ?? 'center'
     const colors = `${options.from}, ${options.to}`
-    return`radial-gradient(${shape} ${size} at ${position}, ${colors})`
+    return `radial-gradient(${shape} ${size} at ${position}, ${colors})`
 }
 
-export const buildByType = (type: GradientType, options: GradientOptions):string => {
+export const buildByType = (type: GradientType, options: GradientOptions): string => {
     switch (type) {
-        case 'linear': return lineaGradientBuilder(options as LinearGradientOptions)
+        case 'linear': return linearGradientBuilder(options as LinearGradientOptions)
         case 'radial': return radialGradientBuilder(options as RadialGradientOptions)
         default: throw new Error(`Unknown gradient type: ${type}`)
     }
 }
 
-
 export const buildGradientLayer = (type: GradientType, options: GradientOptions): BuilderLayer => {
     const properties: CSSProperties = {
         background: buildByType(type, options),
+        backgroundSize: options.backgroundSize ?? 'auto',
     }
-
-        const linearOptions = options as LinearGradientOptions
-            properties.backgroundSize = linearOptions.backgroundSize ?? 'auto'
 
     return { type: 'gradient', properties }
 }

@@ -17,7 +17,7 @@ export default function Page() {
     return (
         <main>
 
-            <h1 style={{...xeerpeTitle, fontSize: '60px'}}>THIS IS XEERPE... ENJOY!</h1>
+            <h1 style={{...xeerpeTitle, fontSize: '60px'}}>XEERPE</h1>
 
             <br/>
 
