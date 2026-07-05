@@ -14,6 +14,10 @@ export default function Page() {
         .radialGradient({ from: '#39ff9c', to: '#0a0f0a', size: 'closest-side' })
         .toStyle()
 
+    const xeerpeConic = new Builder()
+        .conicGradient({position: 'top left', colors: [{color: 'red', position: '0%'}, {color: 'orange', position: '20%'}, {color: 'green', position: '40%'}, {color: 'blue', position: '60%'}], angle: '45deg' })
+        .toStyle()
+
     return (
         <main>
 
@@ -32,6 +36,14 @@ export default function Page() {
             <div
                 style={{
                     ...xeerpeRadial,
+                    width: '200px',
+                    height: '100px'
+                }}
+            />
+
+            <div
+                style={{
+                    ...xeerpeConic,
                     width: '200px',
                     height: '100px'
                 }}

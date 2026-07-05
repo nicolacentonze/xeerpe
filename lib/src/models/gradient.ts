@@ -43,3 +43,9 @@ export interface RadialGradientOptions extends GradientBase {
     position?: string
     size?: RadialGradientSize,
 }
+
+export interface ConicGradientOptions extends GradientBase {
+    colors?: (string | GradientColorStop)[]
+    angle?: string
+    position?: string
+}

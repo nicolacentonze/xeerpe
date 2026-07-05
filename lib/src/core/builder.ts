@@ -1,7 +1,13 @@
 import {BuilderLayer, CSSProperties, LayerType} from "../models/builder";
 import {buildGradientLayer} from "../generators/gradients";
 import {buildBlur} from "../generators/blur";
-import {GradientOptions, GradientType, LinearGradientOptions, RadialGradientOptions} from "../models/gradient";
+import {
+    ConicGradientOptions,
+    GradientOptions,
+    GradientType,
+    LinearGradientOptions,
+    RadialGradientOptions
+} from "../models/gradient";
 
 export class Builder {
     private _layers: BuilderLayer[] = [];
@@ -18,6 +24,10 @@ export class Builder {
 
     radialGradient(options: RadialGradientOptions): this {
         return this.gradient('radial', options)
+    }
+
+    conicGradient(options: ConicGradientOptions): this {
+        return this.gradient('conic', options)
     }
 
     blur(value: string): this {
