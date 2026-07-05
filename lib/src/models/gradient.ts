@@ -6,9 +6,9 @@ export type LinearGradientAngle =
     | `${number}rad`
     | `${number}grad`
     | `${number}turn`
-export type RadialGradientShape = 'circle' | 'ellipse'
-export type RadialGradientSize = 'closest-side' | 'closest-corner' | 'farthest-side' | 'farthest-corner'
-export type GradientOptions = LinearGradientOptions | RadialGradientOptions
+export type RadialGradientShape = 'circle' | 'ellipse' | null
+export type RadialGradientSize = 'closest-side' | 'closest-corner' | 'farthest-side' | 'farthest-corner' | string
+export type GradientOptions = LinearGradientOptions | RadialGradientOptions | ConicGradientOptions | MeshGradientOptions
 export type LinearGradientPositionUnit =
     | `${number}%`
     | `${number}px`
@@ -42,10 +42,17 @@ export interface RadialGradientOptions extends GradientBase {
     shape?: RadialGradientShape
     position?: string
     size?: RadialGradientSize,
+    colorFromPosition?: string
+    colorToPosition?: string
 }
 
 export interface ConicGradientOptions extends GradientBase {
     colors?: (string | GradientColorStop)[]
     angle?: string
     position?: string
+}
+
+export interface MeshGradientOptions extends GradientBase {
+    background: string,
+    layers: RadialGradientOptions[]
 }

@@ -6,8 +6,9 @@ import {
     GradientOptions,
     GradientType,
     LinearGradientOptions,
+    MeshGradientOptions,
     RadialGradientOptions
-} from "../models/gradient";
+} from "../models";
 
 export class Builder {
     private _layers: BuilderLayer[] = [];
@@ -30,6 +31,10 @@ export class Builder {
         return this.gradient('conic', options)
     }
 
+    meshGradient(options: MeshGradientOptions): this {
+        return this.gradient('mesh', options)
+    }
+
     blur(value: string): this {
         const blur = buildBlur(value)
         this._layers.push(blur)
@@ -49,15 +54,18 @@ export class Builder {
         const style: Record<string, string> = {}
 
         if (grouped.gradient.length) {
-            style.background = grouped.gradient.map(p => p.background).join(', ')
+            const backgroundImages = grouped.gradient
+                .flatMap(p => [p.backgroundImage, p.background].filter(Boolean))
 
-            const sizes = grouped.gradient
+            const backgroundSizes = grouped.gradient
                 .map(p => p.backgroundSize)
-                .join(', ')
+                .filter(Boolean)
 
-            if (sizes.length) {
-                style.backgroundSize = sizes
-            }
+            const backgroundColor = grouped.gradient.find(p => p.backgroundColor)?.backgroundColor
+
+            if (backgroundImages.length) style.backgroundImage = backgroundImages.join(', ')
+            if (backgroundSizes.length) style.backgroundSize = backgroundSizes.join(', ')
+            if (backgroundColor) style.backgroundColor = backgroundColor
         }
 
         if (grouped.filter.length) {
@@ -70,7 +78,7 @@ export class Builder {
     toTextStyle(): any {
         const background = this.toStyle()
         return {
-            backgroundImage: background.background,
+            backgroundImage: background.backgroundImage ?? background.background,
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             color: 'transparent',
