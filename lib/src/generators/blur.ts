@@ -1,4 +1,4 @@
-import {BuilderLayer} from "../models/builder";
+import {BuilderLayer} from "../models";
 
 export const buildBlur = (blurRadius: string): BuilderLayer => {
     const blurFilter = `blur(${blurRadius})`

@@ -1,4 +1,4 @@
-import { BuilderLayer, CSSProperties } from "../models/builder";
+import { BuilderLayer, CSSProperties } from "../models";
 import {
     ConicGradientOptions,
     GradientColorStop,

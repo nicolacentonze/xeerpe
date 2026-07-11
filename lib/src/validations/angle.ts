@@ -1,4 +1,4 @@
-import {LinearGradientAngle} from "../models/gradient";
+import {LinearGradientAngle} from "../models";
 
 const ANGLE_UNIT_REGEX = /^-?\d*\.?\d+(deg|rad|grad|turn)$/
 

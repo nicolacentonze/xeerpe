@@ -1,4 +1,4 @@
-import {LinearGradientPosition} from "../models/gradient";
+import {LinearGradientPosition} from "../models";
 
 const POSITION_REGEX = /^-?\d*\.?\d+(%|px|rem|em|vh|vw|vmin|vmax)$/
 const CALC_REGEX = /^calc\(.+\)$/
