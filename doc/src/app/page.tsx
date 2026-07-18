@@ -41,6 +41,7 @@ export default function Page() {
 
     const xeerpeMesh = new Builder()
         .meshGradient({ background: colors.chalk, layers: meshLayers })
+        .noise({})
         .toStyle()
 
     return (

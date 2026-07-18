@@ -1,6 +1,5 @@
-import {BuilderLayer, CSSProperties, LayerType} from "../models/builder";
-import {buildGradientLayer} from "../generators/gradients";
-import {buildBlur} from "../generators/blur";
+import {BuilderLayer, CSSProperties, LayerType, EffectOptions, EffectType, NoiseOptions} from "../models";
+import {buildGradientLayer, buildBlur, buildEffectLayer} from "../generators";
 import {
     ConicGradientOptions,
     GradientOptions,
@@ -35,6 +34,17 @@ export class Builder {
         return this.gradient('mesh', options)
     }
 
+    effect(type: EffectType, options: EffectOptions): this {
+        const layer = buildEffectLayer(type, options)
+        this._layers.push(layer)
+        return this
+    }
+
+    noise(options: NoiseOptions): this {
+        return this.effect('noise', options)
+    }
+
+
     blur(value: string): this {
         const blur = buildBlur(value)
         this._layers.push(blur)
@@ -45,6 +55,7 @@ export class Builder {
         const grouped: Record<LayerType, CSSProperties[]> = {
             gradient: [],
             filter: [],
+            effect: []
         }
 
         this._layers.forEach((layer: BuilderLayer) => {
@@ -53,11 +64,11 @@ export class Builder {
 
         const style: Record<string, string> = {}
 
-        if (grouped.gradient.length) {
-            const backgroundImages = grouped.gradient
+        if (grouped.gradient.length || grouped.effect.length) {
+            const backgroundImages = [...grouped.gradient, ...grouped.effect]
                 .flatMap(p => [p.backgroundImage, p.background].filter(Boolean))
 
-            const backgroundSizes = grouped.gradient
+            const backgroundSizes = [...grouped.gradient, ...grouped.effect]
                 .map(p => p.backgroundSize)
                 .filter(Boolean)
 

@@ -73,7 +73,7 @@ export const meshGradient = (options: MeshGradientOptions): string => {
 
 
 
-export const buildByType = (type: GradientType, options: GradientOptions): string => {
+export const buildGradientByType = (type: GradientType, options: GradientOptions): string => {
     switch (type) {
         case 'linear': return linearGradientBuilder(options as LinearGradientOptions)
         case 'radial': return radialGradientBuilder(options as RadialGradientOptions)
@@ -88,11 +88,11 @@ export const buildGradientLayer = (type: GradientType, options: GradientOptions)
 
     const properties: CSSProperties = {
         ...(isMesh && {
-            backgroundImage: buildByType(type, options),
+            backgroundImage: buildGradientByType(type, options),
             backgroundColor: (options as MeshGradientOptions).background,
         }),
         ...(!isMesh && {
-            background: buildByType(type, options),
+            background: buildGradientByType(type, options),
         }),
         backgroundSize: options.backgroundSize ?? 'auto',
     }
