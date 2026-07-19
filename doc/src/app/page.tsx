@@ -29,23 +29,22 @@ export default function Page() {
 
     const xeerpeLinear = new Builder()
         .linearGradient({ ...gradientColors.primary, angle: '135deg' })
-        .noise({})
-        .vignette({color: 'red'})
+        .grain({})
         .toStyle()
 
     const xeerpeRadial = new Builder()
         .radialGradient({ ...gradientColors.radial, size: 'closest-side' })
+        .grain({})
         .toStyle()
 
     const xeerpeConic = new Builder()
         .conicGradient({ position: 'center', colors: gradientColors.conic as GradientColorStop[], angle: '45deg' })
-        .noise({})
-        .vignette({color: 'green'})
+        .grain({})
         .toStyle()
 
     const xeerpeMesh = new Builder()
         .meshGradient({ background: colors.chalk, layers: meshLayers })
-        .noise({})
+        .grain({intensity: 10})
         .vignette({color: 'red'})
         .toStyle()
 

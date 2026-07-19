@@ -1,6 +1,6 @@
 
-export type EffectType = 'noise' | 'vignette'
-export type EffectOptions = NoiseOptions | VignetteOptions
+export type EffectType = 'noise' | 'vignette' | 'grain'
+export type EffectOptions = NoiseOptions | VignetteOptions | GrainOptions
 export type NoiseType = 'turbulence' | 'fractalNoise'
 
 export interface EffectOptionsBase {
@@ -18,4 +18,10 @@ export interface VignetteOptions extends EffectOptionsBase {
     color?: string,
     intensity?: number,
     spread?: number,
+}
+
+export interface GrainOptions extends EffectOptionsBase {
+    intensity?: number
+    size?: string
+    animated?: boolean
 }

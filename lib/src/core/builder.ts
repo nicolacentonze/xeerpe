@@ -5,7 +5,8 @@ import {
     EffectOptions,
     EffectType,
     NoiseOptions,
-    VignetteOptions
+    VignetteOptions,
+    GrainOptions
 } from "../models";
 import {buildGradientLayer, buildBlur, buildEffectLayer} from "../generators";
 import {
@@ -54,6 +55,10 @@ export class Builder {
 
     vignette(options: VignetteOptions): this {
         return this.effect('vignette', options)
+    }
+
+    grain(options: GrainOptions): this {
+        return this.effect('grain', options)
     }
 
 
