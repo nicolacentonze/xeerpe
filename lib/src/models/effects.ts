@@ -1,12 +1,21 @@
 
-export type EffectType = 'noise'
-export type EffectOptions = NoiseOptions
+export type EffectType = 'noise' | 'vignette'
+export type EffectOptions = NoiseOptions | VignetteOptions
 export type NoiseType = 'turbulence' | 'fractalNoise'
 
-export interface NoiseOptions {
+export interface EffectOptionsBase {
+    backgroundSize?: string
+}
+
+export interface NoiseOptions extends EffectOptionsBase {
     opacity?: number
     scale?: number
     type?: NoiseType
     octaves?: number
-    backgroundSize?: string
+}
+
+export interface VignetteOptions extends EffectOptionsBase {
+    color?: string,
+    intensity?: number,
+    spread?: number,
 }

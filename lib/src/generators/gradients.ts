@@ -34,6 +34,7 @@ export const linearGradientBuilder = (options: LinearGradientOptions): string =>
     const size = options.size ? ` ${options.size}` : ''
     return `linear-gradient(${direction}, ${colors}${size})`
 }
+
 export const radialGradientBuilder = (options: RadialGradientOptions): string => {
     const shape = options.shape === null ? '' : `${options.shape ?? 'circle'} `
     const size = options.size ? ` ${options.size}` : ''
@@ -70,8 +71,6 @@ export const meshGradient = (options: MeshGradientOptions): string => {
         })
         .join(', ')
 }
-
-
 
 export const buildGradientByType = (type: GradientType, options: GradientOptions): string => {
     switch (type) {

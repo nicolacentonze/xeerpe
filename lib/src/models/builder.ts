@@ -8,6 +8,7 @@ export interface CSSProperties {
     filter?: string
 }
 
+
 export interface BuilderLayer {
     type: LayerType
     properties: CSSProperties

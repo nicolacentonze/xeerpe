@@ -1,4 +1,12 @@
-import {BuilderLayer, CSSProperties, LayerType, EffectOptions, EffectType, NoiseOptions} from "../models";
+import {
+    BuilderLayer,
+    CSSProperties,
+    LayerType,
+    EffectOptions,
+    EffectType,
+    NoiseOptions,
+    VignetteOptions
+} from "../models";
 import {buildGradientLayer, buildBlur, buildEffectLayer} from "../generators";
 import {
     ConicGradientOptions,
@@ -44,6 +52,10 @@ export class Builder {
         return this.effect('noise', options)
     }
 
+    vignette(options: VignetteOptions): this {
+        return this.effect('vignette', options)
+    }
+
 
     blur(value: string): this {
         const blur = buildBlur(value)
@@ -65,12 +77,13 @@ export class Builder {
         const style: Record<string, string> = {}
 
         if (grouped.gradient.length || grouped.effect.length) {
-            const backgroundImages = [...grouped.gradient, ...grouped.effect]
+            const backgroundImages = [...grouped.effect, ...grouped.gradient]
                 .flatMap(p => [p.backgroundImage, p.background].filter(Boolean))
 
-            const backgroundSizes = [...grouped.gradient, ...grouped.effect]
+            const backgroundSizes = [...grouped.effect, ...grouped.gradient]
                 .map(p => p.backgroundSize)
                 .filter(Boolean)
+
 
             const backgroundColor = grouped.gradient.find(p => p.backgroundColor)?.backgroundColor
 
