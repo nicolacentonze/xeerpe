@@ -44,7 +44,7 @@ export const generateVignetteEffect = (options: VignetteOptions): string => {
     return `radial-gradient(ellipse at center, transparent ${100 - spreadPercentage}%, ${vignetteColor} 100%)`
 }
 
-const generateGrainEffect = (options: GrainOptions): string => {
+export const generateGrainEffect = (options: GrainOptions): string => {
     const {intensity = 1, size = '100%', animated = false} = options
     const opacity = clamp(intensity * 0.08, 0.01, 0.12)
 
@@ -79,7 +79,10 @@ export const buildEffectByType = (type: EffectType, options: EffectOptions): str
     }
 }
 
-export const buildEffectLayer = (type: EffectType, options: EffectOptions): BuilderLayer => {
+export const buildEffectLayer = (
+    type: EffectType,
+    options: EffectOptions
+): BuilderLayer => {
     const properties: CSSProperties = {
         backgroundImage: buildEffectByType(type, options),
         backgroundSize: options.backgroundSize ?? 'auto',

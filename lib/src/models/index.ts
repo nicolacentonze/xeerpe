@@ -1,4 +1,5 @@
 export * from './gradient'
 export * from './builder'
 export * from './effects'
+export * from './filters'
 export * from './utils'

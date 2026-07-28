@@ -6,6 +6,7 @@ export interface CSSProperties {
     backgroundColor?: string,
     backgroundSize?: string
     filter?: string
+    backdropFilter?: string
 }
 
 

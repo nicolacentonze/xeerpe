@@ -6,9 +6,9 @@ import {
     EffectType,
     NoiseOptions,
     VignetteOptions,
-    GrainOptions
+    GrainOptions, BlurOptions, FilterType, FilterOptions
 } from "../models";
-import {buildGradientLayer, buildBlur, buildEffectLayer} from "../generators";
+import {buildGradientLayer, buildEffectLayer, buildFilterLayer} from "../generators";
 import {
     ConicGradientOptions,
     GradientOptions,
@@ -49,6 +49,12 @@ export class Builder {
         return this
     }
 
+    filter(type: FilterType, options: FilterOptions): this {
+        const layer = buildFilterLayer(type, options)
+        this._layers.push(layer)
+        return this
+    }
+
     noise(options: NoiseOptions): this {
         return this.effect('noise', options)
     }
@@ -61,11 +67,8 @@ export class Builder {
         return this.effect('grain', options)
     }
 
-
-    blur(value: string): this {
-        const blur = buildBlur(value)
-        this._layers.push(blur)
-        return this
+    blur(options: BlurOptions): this {
+        return this.filter('blur', options)
     }
 
     toStyle(): Record<string, string> {
@@ -98,7 +101,9 @@ export class Builder {
         }
 
         if (grouped.filter.length) {
-            style.filter = grouped.filter.map(p => p.filter).join(', ')
+            console.log(grouped.filter)
+            style.filter = grouped.filter[0].filter ?? ''
+            style.backdropFilter = grouped.filter[0]?.backdropFilter ?? ''
         }
 
         return style
