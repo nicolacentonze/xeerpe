@@ -5,7 +5,8 @@ import {
     EffectType,
     GrainOptions,
     NoiseOptions,
-    VignetteOptions
+    VignetteOptions,
+    GlowOptions
 } from "../models";
 import {clamp, withAlpha} from "../utils";
 
@@ -66,6 +67,13 @@ export const generateGrainEffect = (options: GrainOptions): string => {
     return `url("data:image/svg+xml,${encoded}")`;
 }
 
+export const generateGlowEffect = (options: GlowOptions): string => {
+    const { amount = '20px', spread = '', x = '0px', y = '0px', color = '#ffffff', type = 'outer' } = options
+    const inset = type === 'inner' ? 'inset ' : ''
+    const spreadPart = spread ? ` ${spread}` : ''
+    return `${inset}${x} ${y} ${amount}${spreadPart} ${color}`
+}
+
 export const buildEffectByType = (type: EffectType, options: EffectOptions): string => {
     switch (type) {
         case 'noise':
@@ -74,6 +82,8 @@ export const buildEffectByType = (type: EffectType, options: EffectOptions): str
             return generateVignetteEffect(options as VignetteOptions)
         case 'grain':
             return generateGrainEffect(options as GrainOptions)
+        case 'glow':
+            return generateGlowEffect(options as GlowOptions)
         default:
             throw new Error(`Unknown gradient type: ${type}`)
     }
@@ -83,9 +93,20 @@ export const buildEffectLayer = (
     type: EffectType,
     options: EffectOptions
 ): BuilderLayer => {
-    const properties: CSSProperties = {
-        backgroundImage: buildEffectByType(type, options),
-        backgroundSize: options.backgroundSize ?? 'auto',
+    if (type === 'glow') {
+        return {
+            type: 'effect',
+            properties: {
+                boxShadow: buildEffectByType(type, options)
+            } as CSSProperties
+        }
     }
-    return {type: 'effect', properties}
+
+    return {
+        type: 'effect',
+        properties: {
+            backgroundImage: buildEffectByType(type, options),
+            backgroundSize: (options as Exclude<EffectOptions, GlowOptions>).backgroundSize ?? 'auto'
+        } as CSSProperties
+    }
 }

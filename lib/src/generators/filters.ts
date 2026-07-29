@@ -5,20 +5,20 @@ import {
     FilterType
 } from "../models";
 
-export const generateBlurEffect = (opts: BlurOptions) => {
-    const {amount = 20, type = 'backdrop'} = opts
+export const generateBlurEffect = (options: BlurOptions) => {
+    const {amount = '20px', type = 'backdrop'} = options
 
     if (type === 'backdrop') {
         return {
             properties: {
-                backdropFilter: `blur(${type})`,
-                ['-webkit-backdrop-filter']: `blur(${amount}px)`,
+                backdropFilter: `blur(${amount})`,
+                ['-webkit-backdrop-filter']: `blur(${amount})`,
             }
         }
     }
     return {
         properties: {
-            filter: `blur(${amount}px)`,
+            filter: `blur(${amount})`,
         }
     }
 }

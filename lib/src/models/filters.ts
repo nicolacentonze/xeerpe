@@ -4,6 +4,6 @@ export type BlurType = 'backdrop' | 'blur'
 export type FilterOptions = BlurOptions
 
 export interface BlurOptions {
-    amount?: number
+    amount?: string
     type?: BlurType
 }

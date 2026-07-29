@@ -6,7 +6,7 @@ import {
     EffectType,
     NoiseOptions,
     VignetteOptions,
-    GrainOptions, BlurOptions, FilterType, FilterOptions
+    GrainOptions, BlurOptions, FilterType, FilterOptions, GlowOptions
 } from "../models";
 import {buildGradientLayer, buildEffectLayer, buildFilterLayer} from "../generators";
 import {
@@ -67,6 +67,10 @@ export class Builder {
         return this.effect('grain', options)
     }
 
+    glow(options: GlowOptions): this {
+        return this.effect('glow', options)
+    }
+
     blur(options: BlurOptions): this {
         return this.filter('blur', options)
     }
@@ -92,12 +96,14 @@ export class Builder {
                 .map(p => p.backgroundSize)
                 .filter(Boolean)
 
+            const boxShadows = grouped.effect.map(p => p.boxShadow).filter(Boolean)
 
             const backgroundColor = grouped.gradient.find(p => p.backgroundColor)?.backgroundColor
 
             if (backgroundImages.length) style.backgroundImage = backgroundImages.join(', ')
             if (backgroundSizes.length) style.backgroundSize = backgroundSizes.join(', ')
             if (backgroundColor) style.backgroundColor = backgroundColor
+            if (boxShadows) style.boxShadow = boxShadows.join(', ')
         }
 
         if (grouped.filter.length) {

@@ -7,6 +7,7 @@ export interface CSSProperties {
     backgroundSize?: string
     filter?: string
     backdropFilter?: string
+    boxShadow?: string
 }
 
 
