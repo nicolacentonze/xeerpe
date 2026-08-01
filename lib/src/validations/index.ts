@@ -1,3 +1,3 @@
-export * from './angle'
-export * from './directions'
-export * from './position'
+export * from './angle.ts'
+export * from './directions.ts'
+export * from './position.ts'

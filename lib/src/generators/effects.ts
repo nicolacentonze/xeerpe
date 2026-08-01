@@ -7,8 +7,8 @@ import {
     NoiseOptions,
     VignetteOptions,
     GlowOptions
-} from "../models";
-import {clamp, withAlpha} from "../utils";
+} from "../models/index.ts";
+import {clamp, withAlpha} from "../utils/index.ts";
 
 export const generateNoiseEffect = (options: NoiseOptions): string => {
 

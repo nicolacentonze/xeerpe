@@ -7,8 +7,8 @@ import {
     NoiseOptions,
     VignetteOptions,
     GrainOptions, BlurOptions, FilterType, FilterOptions, GlowOptions
-} from "../models";
-import {buildGradientLayer, buildEffectLayer, buildFilterLayer} from "../generators";
+} from "../models/index.ts";
+import {buildGradientLayer, buildEffectLayer, buildFilterLayer} from "../generators/index.ts";
 import {
     ConicGradientOptions,
     GradientOptions,
@@ -16,7 +16,7 @@ import {
     LinearGradientOptions,
     MeshGradientOptions,
     RadialGradientOptions
-} from "../models";
+} from "../models/index.ts";
 
 export class Builder {
     private _layers: BuilderLayer[] = [];

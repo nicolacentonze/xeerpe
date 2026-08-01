@@ -1,4 +1,4 @@
-import {RgbColor} from "../models";
+import {RgbColor} from "../models/index.ts";
 
 export const hexToRgb = (hex: string): RgbColor => {
     const hexDigits = hex.replace('#', '')

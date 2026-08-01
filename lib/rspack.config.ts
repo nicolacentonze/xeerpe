@@ -1,5 +1,5 @@
 import { defineConfig } from "@rspack/cli";
-import path from "path";
+import * as path from "path";
 
 export default defineConfig([
   {
@@ -11,7 +11,12 @@ export default defineConfig([
       clean: true,
     },
     experiments: { outputModule: true },
-    resolve: { extensions: [".ts", ".tsx", ".js"] },
+    resolve: {
+      extensions: [".ts", ".tsx", ".js"],
+      extensionAlias: {
+        ".js": [".ts", ".tsx", ".js"],
+      },
+    },
     module: {
       rules: [
         {
@@ -26,10 +31,15 @@ export default defineConfig([
     entry: "./src/index.ts",
     output: {
       path: path.resolve(__dirname, "dist"),
-      filename: "index.js",
+      filename: "index.cjs",
       library: { type: "commonjs2" },
     },
-    resolve: { extensions: [".ts", ".tsx", ".js"] },
+    resolve: {
+      extensions: [".ts", ".tsx", ".js"],
+      extensionAlias: {
+        ".js": [".ts", ".tsx", ".js"],
+      },
+    },
     module: {
       rules: [
         {

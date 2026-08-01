@@ -1,4 +1,4 @@
-import {LinearGradientDirection} from "../models";
+import {LinearGradientDirection} from "../models/index.ts";
 
 const VALID_DIRECTIONS: readonly LinearGradientDirection[] = [
     'to top', 'to bottom', 'to left', 'to right',

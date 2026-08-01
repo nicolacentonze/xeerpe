@@ -3,7 +3,7 @@ import {
     BuilderLayer,
     FilterOptions,
     FilterType
-} from "../models";
+} from "../models/index.ts";
 
 export const generateBlurEffect = (options: BlurOptions) => {
     const {amount = '20px', type = 'backdrop'} = options

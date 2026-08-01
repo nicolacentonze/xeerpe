@@ -1,4 +1,4 @@
-import { BuilderLayer, CSSProperties } from "../models";
+import { BuilderLayer, CSSProperties } from "../models/index.ts";
 import {
     ConicGradientOptions,
     GradientColorStop,
@@ -6,8 +6,8 @@ import {
     GradientType,
     LinearGradientOptions, MeshGradientOptions,
     RadialGradientOptions,
-} from "../models";
-import { isValidAngle, isValidDirection, isValidPosition } from "../validations";
+} from "../models/index.ts";
+import { isValidAngle, isValidDirection, isValidPosition } from "../validations/index.ts";
 
 const formatColorStop = (stop: GradientColorStop): string => {
     if (typeof stop === 'string') return stop

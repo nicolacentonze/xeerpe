@@ -1,4 +1,4 @@
-import {LinearGradientPosition} from "../models";
+import {LinearGradientPosition} from "../models/index.ts";
 
 const POSITION_REGEX = /^-?\d*\.?\d+(%|px|rem|em|vh|vw|vmin|vmax)$/
 const CALC_REGEX = /^calc\(.+\)$/
