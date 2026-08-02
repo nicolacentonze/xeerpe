@@ -8,7 +8,6 @@ export type LinearGradientAngle =
     | `${number}turn`
 export type RadialGradientShape = 'circle' | 'ellipse' | null
 export type RadialGradientSize = 'closest-side' | 'closest-corner' | 'farthest-side' | 'farthest-corner' | string
-export type GradientOptions = LinearGradientOptions | RadialGradientOptions | ConicGradientOptions | MeshGradientOptions
 export type LinearGradientPositionUnit =
     | `${number}%`
     | `${number}px`
@@ -22,6 +21,8 @@ export type LinearGradientPositionUnit =
 export type LinearGradientPosition =
     | LinearGradientPositionUnit
     | `calc(${string})`
+
+export type GradientOptions = LinearGradientOptions | RadialGradientOptions | ConicGradientOptions | MeshGradientOptions
 
 export type GradientColorStop = string | { color: string; position?: LinearGradientPosition }
 

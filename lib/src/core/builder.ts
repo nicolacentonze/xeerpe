@@ -6,7 +6,8 @@ import {
     EffectType,
     NoiseOptions,
     VignetteOptions,
-    GrainOptions, BlurOptions, FilterType, FilterOptions, GlowOptions
+    GrainOptions, BlurOptions, FilterType, FilterOptions, GlowOptions, PatternOptions, PatternType, DotsOptions,
+    GridOptions
 } from "../models/index.ts";
 import {buildGradientLayer, buildEffectLayer, buildFilterLayer} from "../generators/index.ts";
 import {
@@ -17,6 +18,7 @@ import {
     MeshGradientOptions,
     RadialGradientOptions
 } from "../models/index.ts";
+import {buildPatternLayer} from "../generators/pattern.ts";
 
 export class Builder {
     private _layers: BuilderLayer[] = [];
@@ -55,6 +57,12 @@ export class Builder {
         return this
     }
 
+    pattern(type: PatternType, options: PatternOptions): this {
+        const layer = buildPatternLayer(type, options)
+        this._layers.push(layer)
+        return this
+    }
+
     noise(options: NoiseOptions): this {
         return this.effect('noise', options)
     }
@@ -75,11 +83,20 @@ export class Builder {
         return this.filter('blur', options)
     }
 
+    dots(options: DotsOptions): this {
+        return this.pattern('dots', options)
+    }
+
+    grid(options: GridOptions): this {
+        return this.pattern('grid', options)
+    }
+
     toStyle(): Record<string, string> {
         const grouped: Record<LayerType, CSSProperties[]> = {
             gradient: [],
             filter: [],
-            effect: []
+            effect: [],
+            pattern: []
         }
 
         this._layers.forEach((layer: BuilderLayer) => {
@@ -88,11 +105,11 @@ export class Builder {
 
         const style: Record<string, string> = {}
 
-        if (grouped.gradient.length || grouped.effect.length) {
-            const backgroundImages = [...grouped.effect, ...grouped.gradient]
+        if (grouped.gradient.length || grouped.effect.length || grouped.pattern)  {
+            const backgroundImages = [...grouped.effect, ...grouped.pattern, ...grouped.gradient]
                 .flatMap(p => [p.backgroundImage, p.background].filter(Boolean))
 
-            const backgroundSizes = [...grouped.effect, ...grouped.gradient]
+            const backgroundSizes = [...grouped.effect, ...grouped.pattern, ...grouped.gradient]
                 .map(p => p.backgroundSize)
                 .filter(Boolean)
 
@@ -107,7 +124,6 @@ export class Builder {
         }
 
         if (grouped.filter.length) {
-            console.log(grouped.filter)
             style.filter = grouped.filter[0].filter ?? ''
             style.backdropFilter = grouped.filter[0]?.backdropFilter ?? ''
         }

@@ -1,4 +1,4 @@
-export type LayerType = 'gradient' | 'filter' | 'effect'
+export type LayerType = 'gradient' | 'filter' | 'effect' | 'pattern'
 
 export interface CSSProperties {
     background?: string

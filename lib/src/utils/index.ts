@@ -1,4 +1,4 @@
-import {RgbColor} from "../models/index.ts";
+import {CSSLength, RgbColor} from "../models/index.ts";
 
 export const hexToRgb = (hex: string): RgbColor => {
     const hexDigits = hex.replace('#', '')
@@ -29,3 +29,11 @@ export const withAlpha = (color: string, alpha: number): string => {
 
 export const clamp = (value: number, min: number, max: number): number =>
     Math.min(max, Math.max(min, value))
+
+
+export const parseLength = (input: string): CSSLength => {
+    const match = input.trim().match(/^(-?\d*\.?\d+)([a-z%]*)$/i)
+    if (!match) throw new Error(`Invalid CSS length: "${input}"`)
+    const [, value, unit] = match
+    return { value: parseFloat(value), unit: unit || 'px' }
+}
