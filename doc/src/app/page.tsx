@@ -32,21 +32,22 @@ export default function Page() {
         .glow({ amount: '4px', color: '#ccffcc', type: 'outer' })
         .glow({ amount: '12px', color: '#39ff14', type: 'outer' })
         .glow({ amount: '30px', color: '#00b300', type: 'outer' })
+        .grid({strokeWidth: '2px', opacity: .05, size: '20px'})
         .toStyle()
 
     const xeerpeRadial = new Builder()
         .radialGradient({ ...gradientColors.radial, size: 'closest-side' })
-        .blur({type: "blur"})
+        .dots({size: '2em', color: '#00b300'})
         .toStyle()
 
     const xeerpeConic = new Builder()
         .conicGradient({ position: 'center', colors: gradientColors.conic as GradientColorStop[], angle: '45deg' })
-        .grain({})
+        .blur({type: 'blur', amount: '1rem'})
         .toStyle()
 
     const xeerpeMesh = new Builder()
         .meshGradient({ background: colors.chalk, layers: meshLayers })
-        .noise({})
+        .grain({})
         .toStyle()
 
     return (
