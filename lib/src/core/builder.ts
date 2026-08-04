@@ -152,7 +152,6 @@ export class Builder {
             style.backdropFilter = grouped.filter[0]?.backdropFilter ?? ''
         }
 
-        console.log(grouped)
         if (grouped.animation.length) {
             style.animation = grouped.animation[0].animation ?? ''
         }

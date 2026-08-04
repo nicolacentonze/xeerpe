@@ -5,7 +5,6 @@
     "outDir": "./dist",
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "allowImportingTsExtensions": true
   },
   "include": ["src"]
 }
