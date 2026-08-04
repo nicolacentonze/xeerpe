@@ -1,4 +1,5 @@
 import { Builder } from "xeerpe"
+import '../../../lib/src/css/animations.css'
 
 export default function RootLayout({
   children,

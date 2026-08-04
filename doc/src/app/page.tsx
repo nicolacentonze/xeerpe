@@ -1,53 +1,85 @@
-import { Builder, colors, GradientColorStop } from "xeerpe"
+import {Builder, colors, GradientColorStop} from "xeerpe"
 
 export default function Page() {
 
     const gradientColors = {
-        primary: { from: colors.celadon, to: colors.malachite },
-        radial: { from: colors.amethyst, to: colors.indigoInk },
+        primary: {from: colors.celadon, to: colors.malachite},
+        radial: {from: colors.amethyst, to: colors.indigoInk},
         conic: [
-            { color: colors.cinnabar, position: '0%' },
-            { color: colors.amber, position: '25%' },
-            { color: colors.malachite, position: '50%' },
-            { color: colors.cobalt, position: '75%' }
+            {color: colors.cinnabar, position: '0%'},
+            {color: colors.amber, position: '25%'},
+            {color: colors.malachite, position: '50%'},
+            {color: colors.cobalt, position: '75%'}
         ]
     }
 
     const meshLayers = [
-        { position: '11% 28%', from: colors.celadon, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-        { position: '29% 3%', from: colors.malachite, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-        { position: '97% 56%', from: colors.amethyst, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-        { position: '9% 33%', from: colors.verdigris, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-        { position: '65% 60%', from: colors.maya, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-        { position: '56% 60%', from: colors.wisteria, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-        { position: '29% 74%', from: colors.glacier, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' }
+        {
+            position: '11% 28%',
+            from: colors.celadon,
+            to: 'transparent',
+            colorFromPosition: '0px',
+            colorToPosition: '50%'
+        },
+        {
+            position: '29% 3%',
+            from: colors.malachite,
+            to: 'transparent',
+            colorFromPosition: '0px',
+            colorToPosition: '50%'
+        },
+        {
+            position: '97% 56%',
+            from: colors.amethyst,
+            to: 'transparent',
+            colorFromPosition: '0px',
+            colorToPosition: '50%'
+        },
+        {
+            position: '9% 33%',
+            from: colors.verdigris,
+            to: 'transparent',
+            colorFromPosition: '0px',
+            colorToPosition: '50%'
+        },
+        {position: '65% 60%', from: colors.maya, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%'},
+        {
+            position: '56% 60%',
+            from: colors.wisteria,
+            to: 'transparent',
+            colorFromPosition: '0px',
+            colorToPosition: '50%'
+        },
+        {position: '29% 74%', from: colors.glacier, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%'}
     ]
 
     const xeerpeTitle = new Builder()
-        .linearGradient({ ...gradientColors.primary, angle: '135deg' })
+        .linearGradient({...gradientColors.primary, angle: '135deg'})
         .toTextStyle()
 
     const xeerpeLinear = new Builder()
-        .linearGradient({ ...gradientColors.primary, angle: '135deg' })
-        .glow({ amount: '4px', color: '#ccffcc', type: 'outer' })
-        .glow({ amount: '12px', color: '#39ff14', type: 'outer' })
-        .glow({ amount: '30px', color: '#00b300', type: 'outer' })
+        .linearGradient({...gradientColors.primary, angle: '135deg'})
+        .glow({amount: '4px', color: '#ccffcc', type: 'outer'})
+        .glow({amount: '12px', color: '#39ff14', type: 'outer'})
+        .glow({amount: '30px', color: '#00b300', type: 'outer'})
         .grid({strokeWidth: '2px', opacity: .05, size: '20px'})
+        .pulse({})
+        .vignette({})
         .toStyle()
 
     const xeerpeRadial = new Builder()
-        .radialGradient({ ...gradientColors.radial, size: 'closest-side' })
-        .dots({size: '2em', color: '#00b300'})
+        .radialGradient({...gradientColors.radial, size: 'closest-side'})
+        .breathe({})
         .toStyle()
 
     const xeerpeConic = new Builder()
-        .conicGradient({ position: 'center', colors: gradientColors.conic as GradientColorStop[], angle: '45deg' })
-        .blur({type: 'blur', amount: '1rem'})
+        .conicGradient({position: 'center', colors: gradientColors.conic as GradientColorStop[], angle: '45deg'})
+        .pulse({})
         .toStyle()
 
     const xeerpeMesh = new Builder()
-        .meshGradient({ background: colors.chalk, layers: meshLayers })
-        .grain({})
+        .meshGradient({background: colors.chalk, layers: meshLayers})
+        .breathe({duration: '1s'})
         .toStyle()
 
     return (
@@ -93,7 +125,6 @@ export default function Page() {
             <div
                 style={{
                     ...xeerpeMesh,
-                    borderRadius: '16px',
                     width: '100%',
                     height: '200px'
                 }}

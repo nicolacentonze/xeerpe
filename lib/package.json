@@ -1,6 +1,6 @@
 {
   "name": "xeerpe",
-  "version": "0.0.6",
+  "version": "0.0.12",
   "private": false,
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
@@ -15,9 +15,12 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
-    }
+    },
+    "./animations.css": "./dist/animations.css",
+    "./package.json": "./package.json"
   },
   "files": ["dist/*"],
+  "sideEffects": ["*.css"],
   "keywords": ["xeerpe"],
   "description": "xeerpe",
   "author": "Nicola Centonze",
@@ -27,7 +30,7 @@
     "url": "git@github.com:nicolacentonze/xeerpe.git"
   },
   "scripts": {
-    "build": "rm -rf dist && rspack build && tsc --emitDeclarationOnly --outDir dist && cp dist/index.d.ts dist/index.d.cts"
+    "build": "rm -rf dist && rspack build && tsc --emitDeclarationOnly --outDir dist && cp dist/index.d.ts dist/index.d.cts && cp src/css/animations.css dist/animations.css"
   },
   "devDependencies": {
     "@rspack/cli": "latest",

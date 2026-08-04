@@ -1,3 +1,5 @@
 export * from './gradients.ts'
 export * from './effects.ts'
 export * from './filters.ts'
+export * from './pattern.ts'
+export * from './animations.ts'

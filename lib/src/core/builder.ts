@@ -7,9 +7,15 @@ import {
     NoiseOptions,
     VignetteOptions,
     GrainOptions, BlurOptions, FilterType, FilterOptions, GlowOptions, PatternOptions, PatternType, DotsOptions,
-    GridOptions
+    GridOptions, AnimationOptions, AnimationType
 } from "../models/index.ts";
-import {buildGradientLayer, buildEffectLayer, buildFilterLayer} from "../generators/index.ts";
+import {
+    buildGradientLayer,
+    buildEffectLayer,
+    buildFilterLayer,
+    buildPatternLayer,
+    buildAnimationLayer
+} from "../generators/index.ts";
 import {
     ConicGradientOptions,
     GradientOptions,
@@ -18,7 +24,6 @@ import {
     MeshGradientOptions,
     RadialGradientOptions
 } from "../models/index.ts";
-import {buildPatternLayer} from "../generators/pattern.ts";
 
 export class Builder {
     private _layers: BuilderLayer[] = [];
@@ -63,6 +68,12 @@ export class Builder {
         return this
     }
 
+    animation(type: AnimationType, options: AnimationOptions): this {
+        const layer = buildAnimationLayer(type, options)
+        this._layers.push(layer)
+        return this
+    }
+
     noise(options: NoiseOptions): this {
         return this.effect('noise', options)
     }
@@ -91,12 +102,25 @@ export class Builder {
         return this.pattern('grid', options)
     }
 
+    pulse(options: AnimationOptions): this {
+        return this.animation('pulse', options)
+    }
+
+    rotate(options: AnimationOptions): this {
+        return this.animation('rotate', options)
+    }
+
+    breathe(options: AnimationOptions): this {
+        return this.animation('breathe', options)
+    }
+
     toStyle(): Record<string, string> {
         const grouped: Record<LayerType, CSSProperties[]> = {
             gradient: [],
             filter: [],
             effect: [],
-            pattern: []
+            pattern: [],
+            animation: []
         }
 
         this._layers.forEach((layer: BuilderLayer) => {
@@ -126,6 +150,11 @@ export class Builder {
         if (grouped.filter.length) {
             style.filter = grouped.filter[0].filter ?? ''
             style.backdropFilter = grouped.filter[0]?.backdropFilter ?? ''
+        }
+
+        console.log(grouped)
+        if (grouped.animation.length) {
+            style.animation = grouped.animation[0].animation ?? ''
         }
 
         return style
