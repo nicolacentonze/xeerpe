@@ -1,5 +1,6 @@
 import {Metadata} from "next";
 import {Builder} from "xeerpe"
+import { Roboto } from 'next/font/google'
 import '../../../lib/src/css/animations.css'
 import Navbar from "@cmp/core/navbar/navbar.tsx";
 import "./index.css"
@@ -8,6 +9,12 @@ export const metadata: Metadata = {
     title: 'xeerpe',
     description: 'xeerpe - Doc',
 }
+
+const roboto = Roboto({
+    subsets: ['latin'],
+    weight: ['100', '300', '400', '500', '700', '900'],
+    style: ['normal', 'italic'],
+})
 
 
 export default function RootLayout({children}: {
@@ -24,8 +31,8 @@ export default function RootLayout({children}: {
     return (
         <html lang="en" style={{
             height: '100%', width: '100%', ...xeerpeBackground
-        }}>
-        <body>
+        }} className={roboto.className}>
+        <body >
         <Navbar></Navbar>
         <div>
             {children}

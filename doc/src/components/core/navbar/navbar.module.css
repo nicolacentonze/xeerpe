@@ -16,14 +16,9 @@
         color: #c3c3c3 !important;
         text-decoration: none;
 
-        .textLogo {
-            font-size: 1.5rem;
-            margin-bottom: .4rem;
-        }
-
         img {
             height: 2rem;
-            width: 2rem;
+            width: auto;
         }
     }
 
