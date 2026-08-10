@@ -6,7 +6,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
+      "@/*": ["./*"],
+      "@cmp/*": ["./src/components/*"],
+      "@assets/*": ["./src/assets/*"],
       "xeerpe": [
         "../lib/src/index.ts"
       ]
@@ -24,6 +28,7 @@
   },
   "include": [
     "src",
+    "next-env.d.ts",
     ".next/types/**/*.ts",
     "../lib/src"
   ],
