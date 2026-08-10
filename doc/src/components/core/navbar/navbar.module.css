@@ -1,12 +1,15 @@
 .header {
-    width: 100%;
+    width:  calc(100% - 32px);
     height: 4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(23 78 51);
+    margin: 16px;
     padding: 1rem;
     box-sizing: border-box;
+    border-radius: 0.5rem;
+    position: sticky;
+    top: 16px;
 
     .headerLogo{
         display: flex;
