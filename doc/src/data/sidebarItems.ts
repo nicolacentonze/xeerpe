@@ -22,12 +22,12 @@ export const sidebarElements: SidebarGroup[] = [
         ],
     },
     {
-        title: 'Example',
-        slug: 'example',
+        title: 'Examples',
+        slug: 'examples',
         items: [
-            { title: 'Simple', slug: 'simple' },
-            { title: 'Elaborate', slug: 'elaborate' },
-            { title: 'Presets', slug: 'presets' },
+            { title: 'Simple', slug: 'simple-examples' },
+            { title: 'Elaborate', slug: 'elaborate-examples' },
+            { title: 'Presets', slug: 'presets-examples' },
         ],
     },
 ]

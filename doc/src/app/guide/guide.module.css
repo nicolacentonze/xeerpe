@@ -1,0 +1,38 @@
+.guideContainer {
+    display: flex;
+
+    .guideContents {
+        color: white;
+        backdrop-filter: blur(10px);
+        width: 100%;
+
+        .article h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 0.75rem;
+        }
+
+        .article h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .article p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: grey;
+        }
+
+        .article pre {
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .article code {
+            font-size: 0.9em;
+        }
+
+    }
+}

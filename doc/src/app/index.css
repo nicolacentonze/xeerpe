@@ -3,3 +3,13 @@ html, body {
     height: 100dvh;
     width: 100%;
 }
+
+html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    max-width: 1049px;
+}

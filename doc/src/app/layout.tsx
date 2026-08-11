@@ -32,7 +32,7 @@ export default function RootLayout({children}: {
         <html lang="en" style={{
             height: '100%', width: '100%', ...xeerpeBackground
         }} className={roboto.className}>
-        <body >
+        <body>
         <Navbar></Navbar>
             {children}
         </body>

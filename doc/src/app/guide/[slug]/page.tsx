@@ -1,6 +1,40 @@
-export default function GuidePage() {
+// app/guide/[slug]/page.tsx
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { notFound } from 'next/navigation'
+import { compileMDX } from 'next-mdx-remote/rsc'
+import rehypeSlug from 'rehype-slug'
+import { XeerpeDemo } from '@cmp/xeerpe/demos.tsx'
+import rehypePrettyCode from "rehype-pretty-code";
+import classes from '../guide.module.css'
+import {CodeBlock} from "@cmp/codeBlock/codeBlock.tsx";
+
+const mdxComponents = { XeerpeDemo, pre: CodeBlock }
+
+export default async function GuidePage({params,}: {
+    params: Promise<{ slug: string }>
+}) {
+    const { slug } = await params
+    const filePath = path.join(process.cwd(), 'src/app/guide/mdx', `${slug}.mdx`)
+
+    let source: string
+    try {
+        source = await fs.readFile(filePath, 'utf-8')
+    } catch {
+        notFound()
+    }
+
+    const { content } = await compileMDX({
+        source,
+        components: mdxComponents,
+        options: { parseFrontmatter: true, mdxOptions: {rehypePlugins: [
+                    rehypeSlug,
+                    [rehypePrettyCode, { theme: 'github-dark', keepBackground: true }],
+                ], } },
+    })
+
 
     return (
-        <></>
+            <article className={classes.article}>{content}</article>
     )
 }

@@ -7,10 +7,18 @@
     "start": "next start"
   },
   "dependencies": {
-    "xeerpe": "*",
+    "github-slugger": "^2.0.0",
     "next": "^15",
+    "next-mdx-remote": "^6.0.0",
     "react": "^19",
-    "react-dom": "^19"
+    "react-dom": "^19",
+    "rehype-pretty-code": "^0.14.5",
+    "rehype-slug": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "shiki": "^4.4.3",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.1.0",
+    "xeerpe": "*"
   },
   "devDependencies": {
     "@types/node": "^22",
