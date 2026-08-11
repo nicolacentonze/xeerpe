@@ -1,0 +1,13 @@
+.sidebar {
+    width: 200px;
+    margin: 16px;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    color: white;
+
+    a {
+        text-decoration: none;
+        color: #c3c3c3 !important;
+    }
+}

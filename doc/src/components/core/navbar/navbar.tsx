@@ -17,7 +17,7 @@ const Navbar = () => {
                 <Image className={classes.headerLogo} src={xeerpeLogo} alt="xeerpe logo"/>
             </Link>
             <nav aria-label="xeerpe main navigation" className={classes.navbar}>
-                <Link href="/doc">Doc</Link>
+                <Link href="/guide">Guide</Link>
                 <Link href="/changelog">Changelog</Link>
                 <Link href="/about">About</Link>
                 <a
