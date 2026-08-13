@@ -1,0 +1,14 @@
+.tocContainer {
+    width: 300px;
+
+    .toc a {
+        display: block;
+        padding: 4px 0 4px 12px;
+        border-left: 2px solid transparent;
+    }
+
+    .toc a.active {
+        border-left-color: #34d399;
+        font-weight: 600;
+    }
+}

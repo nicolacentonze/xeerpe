@@ -11,5 +11,18 @@ html {
 }
 
 body {
-    max-width: 1049px;
+    max-width: 1200px;
+}
+
+
+a,
+a * {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }

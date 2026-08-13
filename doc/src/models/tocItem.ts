@@ -1,0 +1,1 @@
+export type TocItem = { id: string; text: string; depth: number }

@@ -7,7 +7,10 @@
     color: white;
 
     a {
-        text-decoration: none;
         color: #c3c3c3 !important;
+    }
+
+    .active {
+        color: #34d399 !important;
     }
 }

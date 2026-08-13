@@ -1,4 +1,3 @@
-// app/guide/[slug]/page.tsx
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { notFound } from 'next/navigation'
@@ -8,6 +7,8 @@ import { XeerpeDemo } from '@cmp/xeerpe/demos.tsx'
 import rehypePrettyCode from "rehype-pretty-code";
 import classes from '../guide.module.css'
 import {CodeBlock} from "@cmp/codeBlock/codeBlock.tsx";
+import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
+import {getToc} from "@/src/utils/getToc.ts";
 
 const mdxComponents = { XeerpeDemo, pre: CodeBlock }
 
@@ -33,8 +34,13 @@ export default async function GuidePage({params,}: {
                 ], } },
     })
 
+    const toc = getToc(source)
+
 
     return (
-            <article className={classes.article}>{content}</article>
+        <div className={classes.guideLayout}>
+            <article>{content}</article>
+            <TableOfContents items={toc} />
+        </div>
     )
 }
