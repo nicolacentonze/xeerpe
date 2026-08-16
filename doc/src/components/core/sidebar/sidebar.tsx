@@ -13,7 +13,7 @@ export default function Sidebar() {
         .toStyle()
 
     return (
-        <aside className={classes.sidebar} style={sidebarBackground}>
+        <aside className={classes.sidebar} style={sidebarBackground} data-sidebar>
             <nav aria-label="Doc sidebar">
                 {sidebarElements.map((group: SidebarGroup) => (
                     <div key={group.slug} className={classes.group}>

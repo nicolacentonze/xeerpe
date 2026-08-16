@@ -1,5 +1,5 @@
 .header {
-    width:  calc(100% - 32px);
+    width: calc(100% - 32px);
     height: 4rem;
     display: flex;
     align-items: center;
@@ -10,18 +10,24 @@
     border-radius: 0.5rem;
     position: sticky;
     top: 16px;
+    z-index: 9999;
 
-    .headerLogo{
+    .left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .headerLogo {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
         color: #c3c3c3 !important;
+    }
 
-        img {
-            height: 2rem;
-            width: auto;
-        }
+    .headerLogoImage {
+        height: 2rem;
+        width: auto;
     }
 
     .navbar {
@@ -37,5 +43,11 @@
     }
 }
 
+@media (max-width: 768px) {
+    .header {
+        .navbar {
+         display: none;
+        }
+    }
 
-
+}

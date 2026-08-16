@@ -1,21 +1,21 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { notFound } from 'next/navigation'
-import { compileMDX } from 'next-mdx-remote/rsc'
+import {notFound} from 'next/navigation'
+import {compileMDX} from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
-import { XeerpeDemo } from '@cmp/xeerpe/demos.tsx'
+import {XeerpeDemo} from '@cmp/xeerpe/demos.tsx'
 import rehypePrettyCode from "rehype-pretty-code";
 import classes from '../guide.module.css'
 import {CodeBlock} from "@cmp/codeBlock/codeBlock.tsx";
 import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
 import {getToc} from "@/src/utils/getToc.ts";
 
-const mdxComponents = { XeerpeDemo, pre: CodeBlock }
+const mdxComponents = {XeerpeDemo, pre: CodeBlock}
 
 export default async function GuidePage({params,}: {
     params: Promise<{ slug: string }>
 }) {
-    const { slug } = await params
+    const {slug} = await params
     const filePath = path.join(process.cwd(), 'src/app/guide/mdx', `${slug}.mdx`)
 
     let source: string
@@ -25,13 +25,17 @@ export default async function GuidePage({params,}: {
         notFound()
     }
 
-    const { content } = await compileMDX({
+    const {content} = await compileMDX({
         source,
         components: mdxComponents,
-        options: { parseFrontmatter: true, mdxOptions: {rehypePlugins: [
+        options: {
+            parseFrontmatter: true, mdxOptions: {
+                rehypePlugins: [
                     rehypeSlug,
-                    [rehypePrettyCode, { theme: 'github-dark', keepBackground: true }],
-                ], } },
+                    [rehypePrettyCode, {theme: 'github-dark', keepBackground: true}],
+                ],
+            }
+        },
     })
 
     const toc = getToc(source)
@@ -39,8 +43,10 @@ export default async function GuidePage({params,}: {
 
     return (
         <div className={classes.guideLayout}>
-            <article>{content}</article>
-            <TableOfContents items={toc} />
+            <div className={classes.guideArticle}>
+                <article>{content}</article>
+            </div>
+            <TableOfContents items={toc}/>
         </div>
     )
 }

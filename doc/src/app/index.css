@@ -8,12 +8,12 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: black;
 }
 
 body {
     max-width: 1200px;
 }
-
 
 a,
 a * {

@@ -1,10 +1,21 @@
 .sidebar {
+    position: absolute;
     width: 300px;
-    margin: 16px;
+    margin: 0 16px;
     padding: 1rem;
     box-sizing: border-box;
     border-radius: 0.5rem;
     color: white;
+    top: 6rem;
+    bottom: 1rem;
+    transform: translateX(0);
+    transition: transform .3s ease-in-out;
+    will-change: transform;
+    z-index: 9;
+
+    &:global(.collapsed) {
+        transform: translateX(calc(-100% - 16px));
+    }
 
     a {
         color: #c3c3c3 !important;
@@ -12,5 +23,21 @@
 
     .active {
         color: #34d399 !important;
+    }
+}
+
+.sidebarToggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #c3c3c3;
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .sidebarToggle {
+        display: block;
     }
 }
