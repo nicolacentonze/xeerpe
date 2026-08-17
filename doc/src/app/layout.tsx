@@ -1,6 +1,7 @@
 import {Metadata} from "next";
 import Sidebar from "@cmp/core/sidebar/sidebar.tsx";
 import Navbar from "@cmp/core/navbar/navbar.tsx";
+import {SidebarProvider} from "@/src/context/sidebarContext.tsx";
 import {Builder} from "xeerpe"
 import { Roboto } from 'next/font/google'
 import '../../../lib/src/css/animations.css'
@@ -34,9 +35,11 @@ export default function RootLayout({children}: {
             height: '100%', width: '100%', ...xeerpeBackground
         }} className={roboto.className}>
         <body>
-        <Navbar/>
-        <Sidebar/>
+        <SidebarProvider>
+            <Navbar/>
+            <Sidebar/>
             {children}
+        </SidebarProvider>
         </body>
         </html>
     );

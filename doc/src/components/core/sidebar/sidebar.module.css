@@ -8,14 +8,10 @@
     color: white;
     top: 6rem;
     bottom: 1rem;
-    transform: translateX(0);
     transition: transform .3s ease-in-out;
     will-change: transform;
     z-index: 9;
-
-    &:global(.collapsed) {
-        transform: translateX(calc(-100% - 16px));
-    }
+    transform: translateX(calc(-100% - 16px));
 
     a {
         color: #c3c3c3 !important;
