@@ -5,13 +5,14 @@ import {usePathname} from 'next/navigation'
 import styles from './sidebar.module.css'
 import {useSidebar} from "@/src/context/sidebarContext.tsx";
 
-export default function SidebarLink({href, children}: {
+const SidebarLink = ({href, children, external}: {
     href: string
     children: React.ReactNode
-}) {
+    external?: boolean
+}) => {
     const { close } = useSidebar();
     const pathname = usePathname()
-    const isActive = pathname === href
+    const isActive = !external && pathname === href
 
     return (
         <Link
@@ -19,8 +20,11 @@ export default function SidebarLink({href, children}: {
             className={isActive ? styles.active : undefined}
             aria-current={isActive ? 'page' : undefined}
             onClick={close}
+            {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
             {children}
         </Link>
     )
 }
+
+export default SidebarLink

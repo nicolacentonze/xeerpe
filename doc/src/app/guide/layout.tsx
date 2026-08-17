@@ -6,9 +6,7 @@ export const metadata: Metadata = {
     description: 'xeerpe - Doc',
 }
 
-export default function DocLayout({children}: {
-    children: React.ReactNode;
-}) {
+const DocLayout = ({children}: { children: React.ReactNode }) => {
 
     return (
         <div className={classes.guideContainer}>
@@ -18,3 +16,5 @@ export default function DocLayout({children}: {
         </div>
     )
 }
+
+export default DocLayout

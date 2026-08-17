@@ -6,15 +6,15 @@ import rehypeSlug from 'rehype-slug'
 import {XeerpeDemo} from '@cmp/xeerpe/demos.tsx'
 import rehypePrettyCode from "rehype-pretty-code";
 import classes from '../guide.module.css'
-import {CodeBlock} from "@cmp/codeBlock/codeBlock.tsx";
+import CodeBlock from "@cmp/codeBlock/codeBlock.tsx";
 import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
-import {getToc} from "@/src/utils/getToc.ts";
+import getToc from "@/src/utils/getToc.ts";
 
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
 
-export default async function GuidePage({params,}: {
+const GuidePage = async ({params,}: {
     params: Promise<{ slug: string }>
-}) {
+}) => {
     const {slug} = await params
     const filePath = path.join(process.cwd(), 'src/app/guide/mdx', `${slug}.mdx`)
 
@@ -50,3 +50,5 @@ export default async function GuidePage({params,}: {
         </div>
     )
 }
+
+export default GuidePage

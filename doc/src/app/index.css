@@ -11,10 +11,6 @@ html {
     background-color: black;
 }
 
-body {
-    max-width: 1200px;
-}
-
 a,
 a * {
     text-decoration: none !important;

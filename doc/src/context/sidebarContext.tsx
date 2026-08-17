@@ -4,7 +4,7 @@ import {SidebarContextValue} from "@/src/models/sidebar.ts";
 
 const SidebarContext = createContext<SidebarContextValue | null>(null);
 
-export function SidebarProvider({ children }: { children: React.ReactNode }) {
+export const SidebarProvider = ({ children }: { children: React.ReactNode }) => {
     const [open, setOpen] = useState(false);
     return (
         <SidebarContext.Provider value={{ open, toggle: () => setOpen((o) => !o), close: () => setOpen(false) }}>

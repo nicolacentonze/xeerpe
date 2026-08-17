@@ -3,7 +3,7 @@
 import {useRef, useState} from 'react'
 import classes from './codeBlock.module.css'
 
-export function CodeBlock(props: React.ComponentProps<'pre'>) {
+const CodeBlock = (props: React.ComponentProps<'pre'>) => {
     const preRef = useRef<HTMLPreElement>(null)
     const [copied, setCopied] = useState(false)
 
@@ -28,3 +28,5 @@ export function CodeBlock(props: React.ComponentProps<'pre'>) {
         </div>
     )
 }
+
+export default CodeBlock

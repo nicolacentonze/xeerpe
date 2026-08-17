@@ -13,4 +13,4 @@ export interface SidebarContextValue {
     open: boolean;
     toggle: () => void;
     close: () => void;
-};
+}

@@ -1,3 +1,4 @@
+/* Stile base: card fluttuante, di default fuori schermo su qualunque breakpoint */
 .sidebar {
     position: absolute;
     width: 300px;
@@ -12,6 +13,7 @@
     will-change: transform;
     z-index: 9;
     transform: translateX(calc(-100% - 16px));
+    overflow-y: auto;
 
     a {
         color: #c3c3c3 !important;
@@ -19,6 +21,22 @@
 
     .active {
         color: #34d399 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar[data-open="true"] {
+        transform: translateX(0);
+    }
+}
+
+@media (min-width: 769px) {
+    .sidebar[data-guide-route="true"] {
+        transform: translateX(0);
+    }
+
+    .navbarLinksGroup {
+        display: none;
     }
 }
 

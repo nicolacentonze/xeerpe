@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import {sidebarElements} from "@/src/data/sidebarItems.ts";
 import {SidebarGroup, SidebarItem} from "@/src/models/sidebar.ts";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+const sitemap = (): MetadataRoute.Sitemap => {
     return sidebarElements.flatMap((group: SidebarGroup) =>
         group.items.map((item: SidebarItem) => ({
             url: `https://tuosito.com/guide/${item.slug}`,
@@ -12,3 +12,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }))
     )
 }
+
+export default sitemap

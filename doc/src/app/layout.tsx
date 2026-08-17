@@ -3,7 +3,7 @@ import Sidebar from "@cmp/core/sidebar/sidebar.tsx";
 import Navbar from "@cmp/core/navbar/navbar.tsx";
 import {SidebarProvider} from "@/src/context/sidebarContext.tsx";
 import {Builder} from "xeerpe"
-import { Roboto } from 'next/font/google'
+import {Roboto} from 'next/font/google'
 import '../../../lib/src/css/animations.css'
 import "./index.css"
 
@@ -18,11 +18,7 @@ const roboto = Roboto({
     style: ['normal', 'italic'],
 })
 
-
-export default function RootLayout({children}: {
-    children: React.ReactNode;
-}) {
-
+const RootLayout = ({children}: { children: React.ReactNode }) => {
 
     const xeerpeBackground = new Builder()
         .radialGradient({from: 'rgba(0,255,140,0.12)', to: 'transparent', size: 'closest-side'})
@@ -44,3 +40,5 @@ export default function RootLayout({children}: {
         </html>
     );
 }
+
+export default RootLayout

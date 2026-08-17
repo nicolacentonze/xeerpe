@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react'
 import classes from './tableOfContent.module.css'
 import {TocItem} from "@/src/models/tocItem.ts";
 
-export default function TableOfContents({items}: { items: TocItem[] }) {
+const TableOfContents = ({items}: { items: TocItem[] }) => {
     const [activeId, setActiveId] = useState<string>('')
 
     useEffect(() => {
@@ -45,3 +45,5 @@ export default function TableOfContents({items}: { items: TocItem[] }) {
         </div>
     )
 }
+
+export default TableOfContents
