@@ -74,43 +74,43 @@ export class Builder {
         return this
     }
 
-    noise(options: NoiseOptions): this {
+    noise(options: NoiseOptions = {}): this {
         return this.effect('noise', options)
     }
 
-    vignette(options: VignetteOptions): this {
+    vignette(options: VignetteOptions = {}): this {
         return this.effect('vignette', options)
     }
 
-    grain(options: GrainOptions): this {
+    grain(options: GrainOptions = {}): this {
         return this.effect('grain', options)
     }
 
-    glow(options: GlowOptions): this {
+    glow(options: GlowOptions = {}): this {
         return this.effect('glow', options)
     }
 
-    blur(options: BlurOptions): this {
+    blur(options: BlurOptions = {}): this {
         return this.filter('blur', options)
     }
 
-    dots(options: DotsOptions): this {
+    dots(options: DotsOptions = {}): this {
         return this.pattern('dots', options)
     }
 
-    grid(options: GridOptions): this {
+    grid(options: GridOptions = {}): this {
         return this.pattern('grid', options)
     }
 
-    pulse(options: AnimationOptions): this {
+    pulse(options: AnimationOptions = {}): this {
         return this.animation('pulse', options)
     }
 
-    rotate(options: AnimationOptions): this {
+    rotate(options: AnimationOptions = {}): this {
         return this.animation('rotate', options)
     }
 
-    breathe(options: AnimationOptions): this {
+    breathe(options: AnimationOptions = {}): this {
         return this.animation('breathe', options)
     }
 
