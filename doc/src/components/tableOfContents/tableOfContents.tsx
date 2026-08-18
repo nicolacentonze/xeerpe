@@ -42,6 +42,42 @@ const TableOfContents = ({ items }: { items: TocItem[] }) => {
         }
     }, [items])
 
+    useEffect(() => {
+        const hash = window.location.hash
+        if (!hash) return
+
+        const id = decodeURIComponent(hash.slice(1))
+        if (!id) return
+
+        const timeout = setTimeout(() => {
+            const element = document.getElementById(id)
+            if (!element) return
+
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            })
+
+            setActiveId(id)
+        }, 100)
+
+        return () => clearTimeout(timeout)
+    }, [])
+
+    useEffect(() => {
+        if (!activeId) return
+
+        const currentHash = window.location.hash.slice(1)
+        if (currentHash === activeId) return
+
+        const url =
+            `${window.location.pathname}` +
+            `${window.location.search}` +
+            `#${activeId}`
+
+        window.history.replaceState(null, '', url)
+    }, [activeId])
+
     const handleClick = (id: string) => {
         setActiveId(id)
     }
