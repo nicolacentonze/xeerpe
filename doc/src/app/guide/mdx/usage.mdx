@@ -1,3 +1,128 @@
 ## Usage
 
+Import `Builder` from the package:
+
+```ts
+import { Builder } from 'xeerpe'
+```
+
+### CSS
+
+The `box` class is only used to give the demo a visible size:
+
+```css
+.box {
+  width: 300px;
+  height: 100px;
+  border-radius: 16px;
+}
+```
+
+## Result
+The following example create a linear gradient that starts with `#34d399` and fades into `#172554`
 <XeerpeDemo example="linear-basic"/>
+
+## React
+
+```tsx
+import { Builder } from 'xeerpe'
+
+const DemoComponent = () => {
+
+  const xeerpeBackground =
+        new Builder()
+        .linearGradient({
+          from: '#34d399',
+          to: '#172554'
+        })
+        .toStyle()
+
+  return (
+
+    <div
+      className="box"
+      style={xeerpeBackground}
+    />
+
+  )
+}
+
+export default DemoComponent
+```
+
+## Angular
+
+```ts
+import { Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { Builder } from 'xeerpe'
+
+@Component({
+  selector: 'app-demo',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <div
+      class="box"
+      [style]="xeerpeBackground"
+    ></div>
+  `,
+})
+
+export class DemoComponent {
+
+  xeerpeBackground = new Builder()
+    .linearGradient({
+      from: '#34d399',
+      to: '#172554'
+    })
+    .toStyle()
+
+}
+```
+
+## Vue
+
+```vue
+<script setup lang="ts">
+
+import { Builder } from 'xeerpe'
+
+const xeerpeBackground = new Builder()
+  .linearGradient({
+    from: '#34d399',
+    to: '#172554'
+  })
+  .toStyle()
+
+</script>
+
+<template>
+
+  <div
+    class="box"
+    :style="xeerpeBackground"
+  ></div>
+
+</template>
+```
+
+## Vanilla JavaScript
+
+```js
+import { Builder } from 'xeerpe'
+
+const xeerpeBackground = new Builder()
+  .linearGradient({
+    from: '#34d399',
+    to: '#172554'
+  })
+  .toStyle()
+
+const demoComponent = document.createElement('div')
+
+demoComponent.className = 'box'
+demoComponent.style.cssText = xeerpeBackground
+
+document.body.appendChild(demoComponent)
+```

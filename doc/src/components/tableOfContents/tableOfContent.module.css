@@ -1,5 +1,10 @@
 .tocContainer {
-    width: 300px;
+    width: 250px;
+    padding: 1rem;
+
+    .tocTitle {
+        padding-bottom: 1rem;
+    }
 
     .toc a {
         display: block;

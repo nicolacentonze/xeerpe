@@ -6,13 +6,12 @@ import {TocItem} from "@/src/models/tocItem.ts";
 
 
 const getToc = (source: string): TocItem[] => {
-    console.log(source)
     const tree = unified().use(remarkParse).parse(source)
     const slugger = new GithubSlugger()
 
     const toc: TocItem[] = []
     visit(tree, 'heading', (node: any) => {
-        if (node.depth < 2 || node.depth > 3) return
+        if (node.depth !== 2) return
         const text = node.children
             .filter((c: any) => c.type === 'text')
             .map((c: any) => c.value)

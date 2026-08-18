@@ -11,6 +11,19 @@ html {
     background-color: black;
 }
 
+html,
+body,
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none;
+}
+
 a,
 a * {
     text-decoration: none !important;
@@ -21,4 +34,8 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+figure {
+    margin: 0;
 }

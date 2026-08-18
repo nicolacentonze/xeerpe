@@ -1,5 +1,10 @@
 .wrapper {
     position: relative;
+
+    pre {
+        padding: 1rem;
+        border-radius: .5rem;
+    }
 }
 
 .copyBtn {
@@ -21,3 +26,4 @@
 .copyBtn:focus-visible {
     opacity: 1;
 }
+
