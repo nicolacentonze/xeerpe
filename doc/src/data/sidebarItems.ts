@@ -1,4 +1,4 @@
-import {SidebarGroup} from "@/src/models/sidebar.ts";
+import {GuidePage, SidebarGroup} from "@/src/models/sidebar.ts";
 
 export const sidebarElements: SidebarGroup[] = [
     {
@@ -31,3 +31,12 @@ export const sidebarElements: SidebarGroup[] = [
         ],
     },
 ]
+
+export const guidePages: GuidePage[] = sidebarElements.flatMap((group) =>
+    group.items.map((item) => ({
+        title: item.title,
+        slug: item.slug,
+        href: `/guide/${item.slug}`,
+        groupTitle: group.title,
+    }))
+);

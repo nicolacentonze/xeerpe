@@ -14,3 +14,10 @@ export interface SidebarContextValue {
     toggle: () => void;
     close: () => void;
 }
+
+export interface GuidePage {
+    title: string;
+    slug: string;
+    href: string;
+    groupTitle: string;
+}

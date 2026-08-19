@@ -9,6 +9,7 @@ import classes from '../guide.module.css'
 import CodeBlock from "@cmp/codeBlock/codeBlock.tsx";
 import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
 import getToc from "@/src/utils/getToc.ts";
+import GuideNav from "@cmp/GuideNav/guideNav.tsx";
 
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
 
@@ -45,6 +46,7 @@ const GuidePage = async ({params,}: {
         <div className={classes.guideLayout}>
             <div className={classes.guideArticle}>
                 <article>{content}</article>
+                <GuideNav />
             </div>
             <TableOfContents items={toc}/>
         </div>

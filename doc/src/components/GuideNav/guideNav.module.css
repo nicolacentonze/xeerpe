@@ -1,0 +1,18 @@
+.guideNav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+}
+
+.next {
+    margin-left: auto;
+    text-align: right;
+}
+
+.eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
