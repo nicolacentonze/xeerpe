@@ -5,9 +5,9 @@ import {SidebarGroup, SidebarItem} from "@/src/models/sidebar.ts";
 const sitemap = (): MetadataRoute.Sitemap => {
     return sidebarElements.flatMap((group: SidebarGroup) =>
         group.items.map((item: SidebarItem) => ({
-            url: `https://tuosito.com/guide/${item.slug}`,
+            url: `https://www.xeerpe.io/guide/${item.slug}`,
             lastModified: new Date(),
-            changeFrequency: 'monthly' as const,
+            changeFrequency: 'daily' as const,
             priority: group.slug === sidebarElements[0].slug ? 0.9 : 0.6,
         }))
     )

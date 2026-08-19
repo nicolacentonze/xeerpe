@@ -27,9 +27,7 @@ const RootLayout = ({children}: { children: React.ReactNode }) => {
         .toStyle()
 
     return (
-        <html lang="en" style={{
-            height: '100%', width: '100%', ...xeerpeBackground
-        }} className={roboto.className}>
+        <html lang="en" style={xeerpeBackground} className={roboto.className}>
         <body>
         <SidebarProvider>
             <Navbar/>

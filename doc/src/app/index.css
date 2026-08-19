@@ -24,6 +24,10 @@ body::-webkit-scrollbar,
     display: none;
 }
 
+main {
+    height: calc(100% - 64px - 32px);
+}
+
 a,
 a * {
     text-decoration: none !important;
