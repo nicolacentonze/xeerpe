@@ -1,0 +1,35 @@
+.xeerpeButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 9px 18px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.primary {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.primary:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.secondary {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #9ab09a;
+    padding: 9px 6px;
+}
+
+.secondary:hover {
+    color: white;
+}

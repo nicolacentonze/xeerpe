@@ -43,12 +43,12 @@ const examples = [
         code: [
             "new Builder()",
             "  .linearGradient({ from: '#1a1a2e', to: '#16213e' })",
-            "  .dots({ color: '#fff', size: '3px', spacing: '18px', opacity: 0.25 })",
+            "  .dots({ color: '#fff', size: '4px', spacing: '18px', opacity: 0.25 })",
             "  .toStyle()",
         ].join('\n'),
         style: new Builder()
             .linearGradient({ from: '#1a1a2e', to: '#16213e' })
-            .dots({ color: '#fff', size: '3px', spacing: '18px', opacity: 0.25 })
+            .dots({ color: '#fff', size: '4px', spacing: '18px', opacity: 0.25 })
             .toStyle(),
     },
     {
