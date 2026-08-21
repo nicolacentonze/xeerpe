@@ -114,6 +114,10 @@ export class Builder {
         return this.animation('breathe', options)
     }
 
+    aurora(options: AnimationOptions = {}): this {
+        return this.animation('aurora', options)
+    }
+
     toStyle(): Record<string, string> {
         const grouped: Record<LayerType, CSSProperties[]> = {
             gradient: [],
@@ -155,6 +159,8 @@ export class Builder {
         if (grouped.animation.length) {
             style.animation = grouped.animation[0].animation ?? ''
         }
+
+        style.backgroundPosition = 'center'
 
         return style
     }

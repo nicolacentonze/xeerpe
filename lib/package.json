@@ -1,6 +1,6 @@
 {
   "name": "xeerpe",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "private": false,
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",

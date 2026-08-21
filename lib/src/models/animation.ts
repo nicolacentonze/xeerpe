@@ -1,4 +1,4 @@
-export type AnimationType = 'pulse' | 'rotate' | 'breathe'
+export type AnimationType = 'pulse' | 'rotate' | 'breathe' | 'aurora'
 
 export interface AnimationOptions {
     duration?: string

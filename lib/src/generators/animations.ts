@@ -11,9 +11,13 @@ export const generateRotateAnimation = (options: AnimationOptions): string => {
 }
 
 export const generateBreatheAnimation = (options: AnimationOptions): string => {
+    const {duration = '12s', easing = 'ease-in-out', iterationCount = 'infinite'} = options
+    return `xeerpe-breathe ${duration} ${easing} ${iterationCount}`
+}
+
+export const generateAuroraAnimation = (options: AnimationOptions): string => {
     const {duration = '12s', easing = 'ease-in-out', direction = 'alternate', iterationCount = 'infinite'} = options
     return `xeerpe-breathe ${duration} ${easing} ${direction} ${iterationCount}`
-
 }
 
 export const buildAnimationByType = (type: AnimationType, options: AnimationOptions) => {
@@ -24,6 +28,8 @@ export const buildAnimationByType = (type: AnimationType, options: AnimationOpti
             return generateRotateAnimation(options)
         case 'breathe':
             return generateBreatheAnimation(options)
+        case 'aurora':
+            return generateAuroraAnimation(options)
         default:
             throw new Error(`Unknown gradient type: ${type}`)
     }

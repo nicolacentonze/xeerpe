@@ -1,7 +1,7 @@
 import Image from "next/image";
 import xeerpeLogo from '@assets/xeerpeLogo.png'
 import classes from "./page.module.css"
-import Link from "next/link";
+import Examples from "@cmp/examples/examples.tsx";
 
 const Page = () => {
 
@@ -16,6 +16,9 @@ const Page = () => {
                         <h1 className={classes.mainDescription}>Chain properties and effects to style your background.</h1>
                     </div>
                 </div>
+
+                <Examples />
+
 
                 <div className={classes.creditsSection}>
                     Released under the MIT License – © 2026 Nicola Centonze

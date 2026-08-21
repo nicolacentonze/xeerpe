@@ -17,6 +17,15 @@
 }
 
 @keyframes xeerpe-breathe {
+    0%, 100% {
+        background-size: 100% 100%;
+    }
+    50% {
+        background-size: 200% 200%;
+    }
+}
+
+@keyframes xeerpe-aurora {
     0% {
         background-size: 100% 100%;
     }

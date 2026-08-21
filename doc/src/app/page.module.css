@@ -1,5 +1,4 @@
 .mainContainer {
-    height: 100%;
     display: flex;
     padding: 1rem;
     box-sizing: border-box;
@@ -38,6 +37,7 @@
 
 
     .creditsSection{
+        margin-top: 2rem;
         text-align: center;
         color: #b5b5b5 !important;
         a {
