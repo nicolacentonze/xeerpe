@@ -9,7 +9,7 @@ import classes from '../guide.module.css'
 import CodeBlock from "@cmp/codeBlock/codeBlock.tsx";
 import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
 import getToc from "@/src/utils/getToc.ts";
-import GuideNav from "@cmp/GuideNav/guideNav.tsx";
+import GuideNav from "@cmp/guideNav/guideNav.tsx";
 
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
 
