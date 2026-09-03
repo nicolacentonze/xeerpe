@@ -107,5 +107,8 @@ export const colors = {
     fandango:      "#b53389",
     cerise:        "#de3163",
     magenta:       "#ff00ff",
+
+    teal:          "#008080",
+    sapphire:      "#0F52BA",
 }
 

@@ -17,7 +17,7 @@ export const generateBreatheAnimation = (options: AnimationOptions): string => {
 
 export const generateAuroraAnimation = (options: AnimationOptions): string => {
     const {duration = '12s', easing = 'ease-in-out', direction = 'alternate', iterationCount = 'infinite'} = options
-    return `xeerpe-breathe ${duration} ${easing} ${direction} ${iterationCount}`
+    return `xeerpe-aurora ${duration} ${easing} ${direction} ${iterationCount}`
 }
 
 export const buildAnimationByType = (type: AnimationType, options: AnimationOptions) => {
