@@ -22,9 +22,10 @@ const Page = () => {
                     <div className={classes.mainSection}>
                     <LinkButton href={'/guide'}>Get Started →</LinkButton>
                     </div>
+                    <Examples />
+                    
                 </div>
 
-                <Examples />
 
 
                 <div className={classes.creditsSection}>

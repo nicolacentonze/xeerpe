@@ -13,6 +13,14 @@ import GuideNav from "@cmp/guideNavPages/guideNav.tsx";
 
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
 
+export const generateStaticParams = async () => {
+    const dir = path.join(process.cwd(), 'src/app/guide/mdx')
+    const files = await fs.readdir(dir)
+    return files
+        .filter((file) => file.endsWith('.mdx'))
+        .map((file) => ({slug: file.replace(/\.mdx$/, '')}))
+}
+
 const GuidePage = async ({params,}: {
     params: Promise<{ slug: string }>
 }) => {

@@ -1,6 +1,6 @@
 .examplesContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(max(260px, calc((100% - 40px) / 3)), 1fr));
     gap: 20px;
     width: 100%;
     padding: 2rem;
@@ -14,11 +14,10 @@
 }
 
 .swatch {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     border-radius: 16px;
     background-position: center;
 }
-
 .caption {
     display: flex;
     flex-direction: column;
@@ -33,18 +32,18 @@
 
 .description {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .code {
     margin: 0;
     padding: 10px 12px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 9px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.6);
     white-space: pre-wrap;
     overflow-wrap: break-word;
 }

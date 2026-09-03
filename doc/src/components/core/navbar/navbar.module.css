@@ -23,6 +23,7 @@
         align-items: center;
         justify-content: center;
         color: #c3c3c3 !important;
+        object-fit: contain;
     }
 
     .headerLogoImage {
