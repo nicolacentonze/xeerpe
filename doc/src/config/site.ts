@@ -12,6 +12,10 @@ export const SITE_TITLE =
 export const SITE_DESCRIPTION =
     'Chain gradients, filters, effects, patterns and animations into a single CSS style object. Zero dependencies, works with any frameworks'
 
+export const BACKGROUND_COLOR = '#050705'
+
+export const THEME_COLOR = '#5EB847'
+
 export const SITE_LOCALE = 'en_US'
 
 export const AUTHOR_NAME = 'Nicola Centonze'

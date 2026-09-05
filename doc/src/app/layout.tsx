@@ -1,8 +1,8 @@
-import {Metadata} from "next";
+import {Metadata, Viewport} from "next";
 import {
     SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, SITE_LOCALE,
     AUTHOR_NAME, AUTHOR_URL, INDEXABLE,
-    serializeJsonLd, softwareJsonLd,
+    serializeJsonLd, softwareJsonLd, BACKGROUND_COLOR,
 } from "@/src/config/site.ts";
 import Sidebar from "@cmp/core/sidebar/sidebar.tsx";
 import Navbar from "@cmp/core/navbar/navbar.tsx";
@@ -57,6 +57,11 @@ const roboto = Roboto({
     weight: ['100', '300', '400', '500', '700', '900'],
     style: ['normal', 'italic'],
 })
+
+export const viewport: Viewport = {
+    themeColor: BACKGROUND_COLOR,
+    colorScheme: 'dark'
+}
 
 const RootLayout = ({children}: { children: React.ReactNode }) => {
 

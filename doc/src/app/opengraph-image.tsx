@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og'
 import { join } from 'node:path'
 import { readFile } from 'node:fs/promises'
+import {BACKGROUND_COLOR} from "@/src/config/site.ts";
 
 export const alt = 'xeerpe — craft CSS backgrounds, fluently.'
 export const size = { width: 1200, height: 630 }
@@ -22,7 +23,7 @@ const Image = ()=> {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 32,
-                background: '#050705'
+                background: BACKGROUND_COLOR
             }}
         >
             <img src={logoSrc} height={250} alt={alt}/>
