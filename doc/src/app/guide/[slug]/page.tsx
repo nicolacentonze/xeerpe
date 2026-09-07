@@ -12,6 +12,7 @@ import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
 import getToc from "@/src/utils/getToc.ts";
 import GuideNav from "@cmp/guideNavPages/guideNav.tsx";
 import { getGuidePage } from "@/src/data/sidebarItems.ts";
+import {TocItem} from "@/src/models/tocItem.ts";
 
 export const dynamicParams = false
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
@@ -77,12 +78,13 @@ const GuidePage = async ({params}: {
 
     const toc = getToc(source)
 
+    toc.unshift({id: page.slug, text: page.title, depth: 1} as TocItem)
 
     return (
         <div className={classes.guideLayout}>
             <div className={classes.guideArticle}>
                 <article>
-                    <h1>{page.title}</h1>
+                    <h1 id={page.slug}>{page.title}</h1>
                     {content}
                 </article>
                 <GuideNav />

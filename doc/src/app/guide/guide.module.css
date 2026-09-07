@@ -16,6 +16,10 @@
                 flex: 1 auto;
                 height: 100%;
                 overflow-y: auto;
+                h1 {
+                    color: #c3c3c3 !important;
+                    font-size: 24px;
+                }
             }
         }
     }

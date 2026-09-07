@@ -6,15 +6,26 @@
         padding-bottom: 1rem;
     }
 
-    .toc a {
-        display: block;
-        padding: 4px 0 4px 12px;
-        border-left: 2px solid transparent;
-    }
+    .toc {
+        li {
+            list-style: none;
+        }
 
-    .toc a.active {
-        border-left-color: #34d399;
-        font-weight: 600;
+        a {
+            display: block;
+            padding: 4px 0 4px 12px;
+            border-left: 2px solid transparent;
+
+            &.active {
+                border-left-color: #34d399;
+                font-weight: 600;
+            }
+        }
+
+        :global(.depth2) {
+            margin-left: .5rem;
+            opacity: 0.85;
+        }
     }
 }
 

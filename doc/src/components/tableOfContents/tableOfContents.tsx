@@ -78,7 +78,20 @@ const TableOfContents = ({ items }: { items: TocItem[] }) => {
         window.history.replaceState(null, '', url)
     }, [activeId])
 
-    const handleClick = (id: string) => {
+    const handleClick = (
+        event: React.MouseEvent<HTMLAnchorElement>,
+        id: string
+    ) => {
+        event.preventDefault()
+
+        const element = document.getElementById(id)
+        if (!element) return
+
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+        })
+
         setActiveId(id)
     }
 
@@ -89,10 +102,10 @@ const TableOfContents = ({ items }: { items: TocItem[] }) => {
             <nav aria-label="On this page" className={classes.toc}>
                 <ul>
                     {items.map((item) => (
-                        <li key={item.id} data-depth={item.depth}>
+                        <li key={item.id} data-depth={item.depth} className={'depth' + item.depth}>
                             <a
                                 href={`#${item.id}`}
-                                onClick={() => handleClick(item.id)}
+                                onClick={(event) => handleClick(event, item.id)}
                                 className={
                                     item.id === activeId ? classes.active : undefined
                                 }
