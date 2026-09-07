@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import {notFound} from 'next/navigation'
+import type { Metadata } from 'next'
 import {compileMDX} from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
 import {XeerpeDemo} from '@cmp/xeerpe/demos.tsx'
@@ -10,8 +11,31 @@ import CodeBlock from "@cmp/codeBlock/codeBlock.tsx";
 import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
 import getToc from "@/src/utils/getToc.ts";
 import GuideNav from "@cmp/guideNavPages/guideNav.tsx";
+import { getGuidePage } from "@/src/data/sidebarItems.ts";
 
+export const dynamicParams = false
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
+
+export const generateMetadata = async (
+    {params}: { params: Promise<{ slug: string }> }
+): Promise<Metadata> => {
+    const {slug} = await params
+    const page = getGuidePage(slug)
+    if (!page) return {}
+
+    return {
+        title: page.title,
+        description: page.description,
+        alternates: { canonical: page.href },
+        openGraph: {
+            type: 'article',
+            url: page.href,
+            title: `${page.title} — xeerpe`,
+            description: page.description,
+        },
+        robots: page.draft ? { index: false, follow: true } : undefined,
+    }
+}
 
 export const generateStaticParams = async () => {
     const dir = path.join(process.cwd(), 'src/app/guide/mdx')
@@ -21,11 +45,15 @@ export const generateStaticParams = async () => {
         .map((file) => ({slug: file.replace(/\.mdx$/, '')}))
 }
 
-const GuidePage = async ({params,}: {
+const GuidePage = async ({params}: {
     params: Promise<{ slug: string }>
 }) => {
+
+
     const {slug} = await params
     const filePath = path.join(process.cwd(), 'src/app/guide/mdx', `${slug}.mdx`)
+    const page = getGuidePage(slug)
+    if (!page) notFound()
 
     let source: string
     try {
@@ -53,7 +81,10 @@ const GuidePage = async ({params,}: {
     return (
         <div className={classes.guideLayout}>
             <div className={classes.guideArticle}>
-                <article>{content}</article>
+                <article>
+                    <h1>{page.title}</h1>
+                    {content}
+                </article>
                 <GuideNav />
             </div>
             <TableOfContents items={toc}/>
