@@ -102,7 +102,7 @@ const TableOfContents = ({ items }: { items: TocItem[] }) => {
             <nav aria-label="On this page" className={classes.toc}>
                 <ul>
                     {items.map((item) => (
-                        <li key={item.id} data-depth={item.depth} className={'depth' + item.depth}>
+                        <li key={item.id} data-depth={item.depth} className={classes['depth' + item.depth]}>
                             <a
                                 href={`#${item.id}`}
                                 onClick={(event) => handleClick(event, item.id)}

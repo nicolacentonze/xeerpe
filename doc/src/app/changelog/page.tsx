@@ -1,8 +1,9 @@
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
-    title: 'xeerpe -  Changelog',
-    description: 'xeerpe - Changelog Page',
+    title: 'Changelog',
+    description: 'Every xeerpe release, what changed and when.',
+    alternates: { canonical: '/changelog' },
 }
 
 const Doc = () => {

@@ -37,12 +37,16 @@ const Sidebar = () => {
                 {isGuideRoute && sidebarElements.map((group: SidebarGroup) => (
                     <div key={group.slug} className={classes.group}>
                         <h3 className={classes.groupTitle}>{group.title}</h3>
-                        <ul>
+                        <ul className={classes.sidebarLinksGroup}>
                             {group.items.map((item: SidebarItem) => (
                                 <li key={item.slug}>
+                                    <div className={classes.linkItem}>
+
                                     <SidebarLink href={`/guide/${item.slug}`}>
                                         {item.title}
                                     </SidebarLink>
+                                    </div>
+
                                 </li>
                             ))}
                         </ul>

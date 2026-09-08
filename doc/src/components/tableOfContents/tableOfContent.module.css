@@ -17,12 +17,12 @@
             border-left: 2px solid transparent;
 
             &.active {
-                border-left-color: #34d399;
+                border-left-color: #5EB847;
                 font-weight: 600;
             }
         }
 
-        :global(.depth2) {
+        .depth2 {
             margin-left: .5rem;
             opacity: 0.85;
         }
