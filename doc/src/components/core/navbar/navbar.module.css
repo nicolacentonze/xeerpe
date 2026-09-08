@@ -1,10 +1,10 @@
 .header {
-    width: calc(100% - 32px);
+    width: calc(100% - 16px);
     height: 4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 16px;
+    margin: 8px;
     padding: 1rem;
     box-sizing: border-box;
     border-radius: 0.5rem;

@@ -1,9 +1,10 @@
 .tocContainer {
     width: 250px;
-    padding: 1rem;
-
+    padding: 2rem;
+    box-sizing: border-box;
     .tocTitle {
         padding-bottom: 1rem;
+        padding-top: 1.4rem;
     }
 
     .toc {

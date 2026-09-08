@@ -1,7 +1,7 @@
 .guideContainer {
     display: flex;
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 0 2rem;
     height: calc(100% - 64px - 32px);
     width: 100%;
     .guideContents {
@@ -16,6 +16,8 @@
                 flex: 1 auto;
                 height: 100%;
                 overflow-y: auto;
+                padding-top: 2rem;
+                box-sizing: border-box;
                 h1 {
                     color: #c3c3c3 !important;
                     font-size: 24px;

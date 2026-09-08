@@ -1,7 +1,7 @@
 .sidebar {
     position: absolute;
     width: 300px;
-    margin: 0 16px;
+    margin: 0 1rem;
     padding: 1rem;
     box-sizing: border-box;
     border-radius: 0.5rem;
@@ -15,9 +15,6 @@
     overflow-y: auto;
 
     .navbarLinksGroup, .sidebarLinksGroup {
-
-
-
         li {
             padding-bottom: .5rem;
             padding-top: .5rem;
@@ -26,10 +23,10 @@
             .linkItem {
                 margin-left: .75rem;
                 margin-right: .75rem;
-                a {
-                    display: block;
-                    width: 100%;
-                }
+            }
+            a {
+                display: block;
+                width: 100%;
             }
             &:hover {
                 background-color: rgba(255, 255, 255, .1);
