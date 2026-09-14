@@ -13,7 +13,7 @@
             justify-content: space-between;
             height: 100%;
             .guideArticle {
-                flex: 1 auto;
+                flex-grow: 1;
                 min-width: 0;
                 height: 100%;
                 overflow-y: auto;
