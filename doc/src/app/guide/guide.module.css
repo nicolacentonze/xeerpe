@@ -7,13 +7,14 @@
     .guideContents {
         color: white;
         width: 100%;
-        margin-left: calc(300px + 16px + 16px) ;
+        margin-left: calc(250px + 16px + 16px) ;
         .guideLayout {
             display: flex;
             justify-content: space-between;
             height: 100%;
             .guideArticle {
-                flex: 1 auto;
+                flex-grow: 1;
+                min-width: 0;
                 height: 100%;
                 overflow-y: auto;
                 padding-top: 2rem;
