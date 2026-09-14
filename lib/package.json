@@ -19,9 +19,35 @@
     "./animations.css": "./dist/animations.css",
     "./package.json": "./package.json"
   },
-  "files": ["dist/*"],
-  "sideEffects": ["*.css"],
-  "keywords": ["xeerpe"],
+  "files": [
+    "dist/*"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "keywords": [
+    "css",
+    "gradient",
+    "css-gradient",
+    "mesh-gradient",
+    "linear-gradient",
+    "radial-gradient",
+    "conic-gradient",
+    "background",
+    "animated-background",
+    "css-animation",
+    "css-in-js",
+    "inline-styles",
+    "noise",
+    "grain",
+    "vignette",
+    "glow",
+    "pattern",
+    "react",
+    "vue",
+    "angular"
+  ],
+  "homepage": "https://xeerpe.io",
   "description": "xeerpe",
   "author": "Nicola Centonze",
   "license": "MIT",

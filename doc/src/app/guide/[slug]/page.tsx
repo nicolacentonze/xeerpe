@@ -13,6 +13,7 @@ import getToc from "@/src/utils/getToc.ts";
 import GuideNav from "@cmp/guideNavPages/guideNav.tsx";
 import { getGuidePage } from "@/src/data/sidebarItems.ts";
 import {TocItem} from "@/src/models/tocItem.ts";
+import Table from "@cmp/table/table.tsx";
 
 export const dynamicParams = false
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
@@ -65,8 +66,12 @@ const GuidePage = async ({params}: {
 
     const {content} = await compileMDX({
         source,
-        components: mdxComponents,
+        components: {
+            ...mdxComponents,
+            table: Table,
+        },
         options: {
+
             parseFrontmatter: true, mdxOptions: {
                 rehypePlugins: [
                     rehypeSlug,

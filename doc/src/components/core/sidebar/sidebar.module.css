@@ -1,6 +1,6 @@
 .sidebar {
     position: absolute;
-    width: 300px;
+    width: 250px;
     margin: 0 1rem;
     padding: 1rem;
     box-sizing: border-box;
@@ -16,17 +16,23 @@
 
     .navbarLinksGroup, .sidebarLinksGroup {
         li {
-            padding-bottom: .5rem;
-            padding-top: .5rem;
             color: rgba(255, 255, 255, .5);
             border-bottom: 1px solid rgba(255, 255, 255, .1);
+            height: 36px;
+            display: flex;
+            align-items: center;
             .linkItem {
                 margin-left: .75rem;
-                margin-right: .75rem;
+                box-sizing: border-box;
+                height: 100%;
+                width: 100%;
             }
             a {
-                display: block;
+                display: flex;
+                align-items: center;
                 width: 100%;
+                height: 100%;
+
             }
             &:hover {
                 background-color: rgba(255, 255, 255, .1);

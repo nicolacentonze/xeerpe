@@ -1,0 +1,29 @@
+.table {
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    table-layout: fixed;
+    width: 500px;
+}
+
+.table th,
+.table td {
+    padding: 0.6rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-wrap: anywhere;
+    white-space: wrap;
+}
+
+.table th {
+    background: rgba(255, 255, 255, 0.04);
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table code {
+    font-size: 0.85em;
+}
