@@ -133,7 +133,7 @@ export class Builder {
 
         const style: Record<string, string> = {}
 
-        if (grouped.gradient.length || grouped.effect.length || grouped.pattern)  {
+        if (grouped.gradient.length || grouped.effect.length || grouped.pattern.length) {
             const backgroundImages = [...grouped.effect, ...grouped.pattern, ...grouped.gradient]
                 .flatMap(p => [p.backgroundImage, p.background].filter(Boolean))
 
@@ -148,16 +148,21 @@ export class Builder {
             if (backgroundImages.length) style.backgroundImage = backgroundImages.join(', ')
             if (backgroundSizes.length) style.backgroundSize = backgroundSizes.join(', ')
             if (backgroundColor) style.backgroundColor = backgroundColor
-            if (boxShadows) style.boxShadow = boxShadows.join(', ')
+            if (boxShadows.length) style.boxShadow = boxShadows.join(', ')
         }
 
         if (grouped.filter.length) {
-            style.filter = grouped.filter[0].filter ?? ''
-            style.backdropFilter = grouped.filter[0]?.backdropFilter ?? ''
+            const filters = grouped.filter.map(p => p.filter).filter(Boolean)
+            const backdropFilters = grouped.filter.map(p => p.backdropFilter).filter(Boolean)
+
+            if (filters.length) style.filter = filters.join(' ')
+            if (backdropFilters.length) style.backdropFilter = backdropFilters.join(' ')
         }
 
         if (grouped.animation.length) {
-            style.animation = grouped.animation[0].animation ?? ''
+            const animations = grouped.animation.map(p => p.animation).filter(Boolean)
+
+            if (animations.length) style.animation = animations.join(', ')
         }
 
         style.backgroundPosition = 'center'
@@ -165,15 +170,21 @@ export class Builder {
         return style
     }
 
-    toTextStyle(): any {
+    toTextStyle(): Record<string, string> {
         const background = this.toStyle()
-        return {
-            backgroundImage: background.backgroundImage ?? background.background,
+
+        const style: Record<string, string> = {
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             color: 'transparent',
             WebkitTextFillColor: 'transparent',
         }
+
+        if (background.backgroundImage) style.backgroundImage = background.backgroundImage
+        if (background.backgroundSize) style.backgroundSize = background.backgroundSize
+        if (background.backgroundColor) style.backgroundColor = background.backgroundColor
+
+        return style
     }
 
 }
