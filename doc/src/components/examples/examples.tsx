@@ -1,14 +1,5 @@
-import { Builder, colors } from 'xeerpe';
+import { Builder, Preset, colors } from 'xeerpe';
 import classes from './examples.module.css';
-
-const meshLayers = [
-    { position: '15% 15%', from: colors.malachite, to: 'transparent', colorFromPosition: '0px', colorToPosition: '55%' },
-    { position: '40% 8%', from: colors.celadon, to: 'transparent', colorFromPosition: '0px', colorToPosition: '55%' },
-    { position: '68% 18%', from: colors.verdigris, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-    { position: '85% 30%', from: colors.malachite, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-    { position: '45% 50%', from: colors.amethyst, to: 'transparent', colorFromPosition: '0px', colorToPosition: '45%' },
-    { position: '20% 65%', from: colors.wisteria, to: 'transparent', colorFromPosition: '0px', colorToPosition: '40%' },
-];
 
 const oceanMeshLayers = [
     { position: '10% 20%', from: colors.aquamarine, to: 'transparent', colorFromPosition: '0px', colorToPosition: '55%' },
@@ -62,16 +53,12 @@ const examples = [
     },
     {
         name: 'Northern Lights',
-        description: 'Animated multi-layer mesh gradient',
+        description: 'Animated multi-layer mesh gradient from preset',
         code: [
-            "new Builder()",
-            "  .meshGradient({ background: '#050914', layers: meshLayers })",
-            "  .aurora({ duration: '5s' })",
+            "new Preset('northern-lights')",
             "  .toStyle()",
         ].join('\n'),
-        style: new Builder()
-            .meshGradient({ background: '#050914', layers: meshLayers })
-            .aurora({ duration: '5s' })
+        style: new Preset('northern-lights')
             .toStyle(),
     },
     {
@@ -132,6 +119,16 @@ const examples = [
             .radialGradient({ from: 'rgba(0,255,140,0.12)', to: 'transparent', size: 'closest-side' })
             .linearGradient({ from: '#050705', to: '#0a0f0a', angle: '135deg' })
             .grid({ color: '#00b300' })
+            .toStyle(),
+    },
+    {
+        name: 'sunrise',
+        description: "A warm sunrise gradient",
+        code: [
+            "new Preset('sunrise')",
+            "  .toStyle()",
+        ].join('\n'),
+        style: new Preset('sunrise')
             .toStyle(),
     },
 
