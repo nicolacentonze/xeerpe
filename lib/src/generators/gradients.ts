@@ -4,19 +4,24 @@ import {
     GradientColorStop,
     GradientOptions,
     GradientType,
-    LinearGradientOptions, MeshGradientOptions,
+    LinearGradientOptions,
+    MeshGradientOptions,
     RadialGradientOptions,
 } from "../models/index.ts";
 import { isValidAngle, isValidDirection, isValidPosition } from "../validations/index.ts";
+import { resolveColor } from "../utils/index.ts";
 
 const formatColorStop = (stop: GradientColorStop): string => {
-    if (typeof stop === 'string') return stop
+    if (typeof stop === 'string') {
+        return resolveColor(stop)
+    }
 
     const { color, position } = stop
-    if (!position) return color
-    if (!isValidPosition(position)) return color
+    const resolvedColor = resolveColor(color)
+    if (!position) return resolvedColor
+    if (!isValidPosition(position)) return resolvedColor
 
-    return `${color} ${position}`
+    return `${resolvedColor} ${position}`
 }
 
 export const linearGradientBuilder = (options: LinearGradientOptions): string => {
@@ -29,7 +34,7 @@ export const linearGradientBuilder = (options: LinearGradientOptions): string =>
 
     const colors = options.colors?.length
         ? options.colors.map(formatColorStop).join(', ')
-        : `${options.from}, ${options.to}`
+        : `${resolveColor(options.from)}, ${resolveColor(options.to)}`
 
     const size = options.size ? ` ${options.size}` : ''
     return `linear-gradient(${direction}, ${colors}${size})`
@@ -43,7 +48,7 @@ export const radialGradientBuilder = (options: RadialGradientOptions): string =>
     const fromStop = options.colorFromPosition ? ` ${options.colorFromPosition}` : ''
     const toStop = options.colorToPosition ? ` ${options.colorToPosition}` : ''
 
-    const colors = `${options.from}${fromStop}, ${options.to}${toStop}`
+    const colors = `${resolveColor(options.from)}${fromStop}, ${resolveColor(options.to)}${toStop}`
     return `radial-gradient(${shape}${size} ${position}, ${colors})`
 }
 
@@ -57,7 +62,7 @@ export const conicGradientBuilder = (options: ConicGradientOptions): string => {
 
     const colors = options.colors?.length
         ? options.colors.map(formatColorStop).join(', ')
-        : `${options.from}, ${options.to}`
+        : `${resolveColor(options.from)}, ${resolveColor(options.to)}`
 
     return `conic-gradient(${angle}${position}, ${colors})`
 }
@@ -66,8 +71,7 @@ export const meshGradient = (options: MeshGradientOptions): string => {
     return options.layers
         .map((layer: RadialGradientOptions) => {
             layer.shape = layer.shape ?? null
-            const gradient = radialGradientBuilder(layer)
-            return `${gradient}`
+            return radialGradientBuilder(layer)
         })
         .join(', ')
 }
@@ -78,7 +82,7 @@ export const buildGradientByType = (type: GradientType, options: GradientOptions
         case 'radial': return radialGradientBuilder(options as RadialGradientOptions)
         case 'conic': return conicGradientBuilder(options as ConicGradientOptions)
         case 'mesh': return meshGradient(options as MeshGradientOptions)
-        default: throw new Error(`Unknown gradient type: ${type}`)
+        default: throw new Error(`Unknown gradient type: "${type}"`)
     }
 }
 
@@ -88,7 +92,7 @@ export const buildGradientLayer = (type: GradientType, options: GradientOptions)
     const properties: CSSProperties = {
         ...(isMesh && {
             backgroundImage: buildGradientByType(type, options),
-            backgroundColor: (options as MeshGradientOptions).background,
+            backgroundColor: resolveColor((options as MeshGradientOptions).background),
         }),
         ...(!isMesh && {
             background: buildGradientByType(type, options),

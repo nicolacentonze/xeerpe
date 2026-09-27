@@ -1,4 +1,5 @@
 import {CSSLength, RgbColor} from "../models/index.ts";
+import {isValidColor} from "../validations/index.ts";
 
 export const hexToRgb = (hex: string): RgbColor => {
     const hexDigits = hex.replace('#', '')
@@ -36,4 +37,10 @@ export const parseLength = (input: string): CSSLength => {
     if (!match) throw new Error(`Invalid CSS length: "${input}"`)
     const [, value, unit] = match
     return { value: parseFloat(value), unit: unit || 'px' }
+}
+
+export const resolveColor = (value: string | null | undefined, defaultColor = 'transparent'): string => {
+    if (value == null) return defaultColor
+    if (!isValidColor(value)) throw new Error(`Invalid color: "${value}".`)
+    return value
 }
