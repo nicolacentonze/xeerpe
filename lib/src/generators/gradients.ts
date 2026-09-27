@@ -1,7 +1,6 @@
 import { BuilderLayer, CSSProperties } from "../models/index.ts";
 import {
     ConicGradientOptions,
-    GradientColorStop,
     GradientOptions,
     GradientType,
     LinearGradientOptions,
@@ -17,20 +16,7 @@ import {
     isValidBackgroundSize,
     isValidCSSPosition,
 } from "../validations/index.ts";
-import { resolveColor } from "../utils/index.ts";
-
-const formatColorStop = (stop: GradientColorStop): string => {
-    if (typeof stop === 'string') {
-        return resolveColor(stop)
-    }
-
-    const { color, position } = stop
-    const resolvedColor = resolveColor(color)
-    if (!position) return resolvedColor
-    if (!isValidPosition(position)) return resolvedColor
-
-    return `${resolvedColor} ${position}`
-}
+import { resolveColor, formatColorStop } from "../utils/index.ts";
 
 export const linearGradientBuilder = (options: LinearGradientOptions): string => {
     const direction =

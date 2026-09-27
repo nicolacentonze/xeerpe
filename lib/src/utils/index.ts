@@ -1,5 +1,5 @@
-import {CSSLength, RgbColor} from "../models/index.ts";
-import {isValidColor} from "../validations/index.ts";
+import {CSSLength, GradientColorStop, RgbColor} from "../models/index.ts";
+import {isValidColor, isValidPosition} from "../validations/index.ts";
 
 export const hexToRgb = (hex: string): RgbColor => {
     const hexDigits = hex.replace('#', '')
@@ -41,6 +41,22 @@ export const parseLength = (input: string): CSSLength => {
 
 export const resolveColor = (value: string | null | undefined, defaultColor = 'transparent'): string => {
     if (value == null) return defaultColor
-    if (!isValidColor(value)) throw new Error(`Invalid color: "${value}".`)
+    if (!isValidColor(value)) {
+        console.error(`Invalid color: "${value}". Falling back to "${defaultColor}".`)
+        return defaultColor
+    }
     return value
+}
+
+export const formatColorStop = (stop: GradientColorStop): string => {
+    if (typeof stop === 'string') {
+        return resolveColor(stop)
+    }
+
+    const { color, position } = stop
+    const resolvedColor = resolveColor(color)
+    if (!position) return resolvedColor
+    if (!isValidPosition(position)) return resolvedColor
+
+    return `${resolvedColor} ${position}`
 }
