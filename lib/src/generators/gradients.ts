@@ -8,7 +8,15 @@ import {
     MeshGradientOptions,
     RadialGradientOptions,
 } from "../models/index.ts";
-import { isValidAngle, isValidDirection, isValidPosition } from "../validations/index.ts";
+import {
+    isValidAngle,
+    isValidDirection,
+    isValidPosition,
+    isValidRadialShape,
+    isValidRadialSize,
+    isValidBackgroundSize,
+    isValidCSSPosition,
+} from "../validations/index.ts";
 import { resolveColor } from "../utils/index.ts";
 
 const formatColorStop = (stop: GradientColorStop): string => {
@@ -41,9 +49,17 @@ export const linearGradientBuilder = (options: LinearGradientOptions): string =>
 }
 
 export const radialGradientBuilder = (options: RadialGradientOptions): string => {
-    const shape = options.shape === null ? '' : `${options.shape ?? 'circle'} `
-    const size = options.size ? ` ${options.size}` : ''
-    const position = `at ${options.position ?? 'center'}`
+    const shape = options.shape === undefined
+        ? 'circle '
+        : options.shape === null
+            ? ''
+            : isValidRadialShape(options.shape)
+                ? `${options.shape} `
+                : 'circle '
+
+    const size = options.size && isValidRadialSize(options.size) ? ` ${options.size}` : ''
+
+    const position = `at ${options.position && isValidCSSPosition(options.position) ? options.position : 'center'}`
 
     const fromStop = options.colorFromPosition && isValidPosition(options.colorFromPosition) ? ` ${options.colorFromPosition}` : ''
     const toStop = options.colorToPosition && isValidPosition(options.colorToPosition) ? ` ${options.colorToPosition}` : ''
@@ -58,7 +74,7 @@ export const conicGradientBuilder = (options: ConicGradientOptions): string => {
             ? `from ${options.angle} `
             : ''
 
-    const position = `at ${options.position ?? 'center'}`
+    const position = `at ${options.position && isValidCSSPosition(options.position) ? options.position : 'center'}`
 
     const colors = options.colors?.length
         ? options.colors.map(formatColorStop).join(', ')
@@ -89,6 +105,10 @@ export const buildGradientByType = (type: GradientType, options: GradientOptions
 export const buildGradientLayer = (type: GradientType, options: GradientOptions): BuilderLayer => {
     const isMesh = type === 'mesh'
 
+    const backgroundSize = options.backgroundSize && isValidBackgroundSize(options.backgroundSize)
+        ? options.backgroundSize
+        : 'auto'
+
     const properties: CSSProperties = {
         ...(isMesh && {
             backgroundImage: buildGradientByType(type, options),
@@ -97,7 +117,7 @@ export const buildGradientLayer = (type: GradientType, options: GradientOptions)
         ...(!isMesh && {
             background: buildGradientByType(type, options),
         }),
-        backgroundSize: options.backgroundSize ?? 'auto',
+        backgroundSize,
     }
 
     return { type: 'gradient', properties }
