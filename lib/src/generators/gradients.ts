@@ -45,8 +45,8 @@ export const radialGradientBuilder = (options: RadialGradientOptions): string =>
     const size = options.size ? ` ${options.size}` : ''
     const position = `at ${options.position ?? 'center'}`
 
-    const fromStop = options.colorFromPosition ? ` ${options.colorFromPosition}` : ''
-    const toStop = options.colorToPosition ? ` ${options.colorToPosition}` : ''
+    const fromStop = options.colorFromPosition && isValidPosition(options.colorFromPosition) ? ` ${options.colorFromPosition}` : ''
+    const toStop = options.colorToPosition && isValidPosition(options.colorToPosition) ? ` ${options.colorToPosition}` : ''
 
     const colors = `${resolveColor(options.from)}${fromStop}, ${resolveColor(options.to)}${toStop}`
     return `radial-gradient(${shape}${size} ${position}, ${colors})`
