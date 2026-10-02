@@ -1,7 +1,7 @@
 <p align="center">
   <br><br>
   <picture>
-    <img src="https://raw.githubusercontent.com/nicolacentonze/xeerpe/main/lib/media/xeerpe.png" height="80">
+    <img src="https://raw.githubusercontent.com/nicolacentonze/xeerpe/main/lib/media/xeerpe.png" height="100">
   </picture>
   <br><br>
 </p>

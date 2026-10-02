@@ -1,17 +1,27 @@
-import { promises as fs } from 'fs'
-import path from 'path'
-import { compileMDX } from 'next-mdx-remote/rsc'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import type {Metadata} from 'next'
+import {compileMDX} from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
 import rehypePrettyCode from 'rehype-pretty-code'
+import CodeBlock from '@cmp/codeBlock/codeBlock.tsx'
 import classes from './about.module.css'
-import CodeBlock from "@cmp/codeBlock/codeBlock.tsx";
-import {Metadata} from "next";
 import SocialLinks from "@/src/app/about/sociallinks/socialLinks.tsx";
 
+const title = 'About'
+const description =
+    'xeerpe is an open source TypeScript library for building CSS gradients, patterns, filters and animations with a chainable API.'
+
 export const metadata: Metadata = {
-    title: 'About',
-    description: 'Who builds xeerpe, why it exists and how to contribute.',
-    alternates: { canonical: '/about' },
+    title,
+    description,
+    alternates: {canonical: '/about'},
+    openGraph: {
+        type: 'website',
+        url: '/about',
+        title: `${title} — xeerpe`,
+        description,
+    },
 }
 
 const AboutPage = async () => {
@@ -20,14 +30,14 @@ const AboutPage = async () => {
         'utf-8'
     )
 
-    const { content } = await compileMDX({
+    const {content} = await compileMDX({
         source,
-        components: { pre: CodeBlock, SocialLinks },
+        components: {pre: CodeBlock, SocialLinks},
         options: {
             mdxOptions: {
                 rehypePlugins: [
                     rehypeSlug,
-                    [rehypePrettyCode, { theme: 'github-dark', keepBackground: true }],
+                    [rehypePrettyCode, {theme: 'github-dark', keepBackground: true}],
                 ],
             },
         },
