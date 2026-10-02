@@ -1,0 +1,22 @@
+.list {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0;
+}
+
+.link {
+    display: inline-flex;
+    padding: 0.5rem;
+    border-radius: 8px;
+    opacity: 0.75;
+    text-decoration: none;
+    transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    opacity: 1;
+    background: rgba(127, 127, 127, 0.18);
+}
