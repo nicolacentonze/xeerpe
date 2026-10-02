@@ -8,6 +8,8 @@ export const demos = {
 
     'linear-direction': () => new Builder()
         .linearGradient({from: '#f97316', to: '#7c2d12', direction: 'to top'})
+        .grid({color: '#ffffff50'})
+
         .toStyle()
 
 } satisfies Record<string, () => React.CSSProperties>
