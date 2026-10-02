@@ -14,7 +14,8 @@ import {
     buildEffectLayer,
     buildFilterLayer,
     buildPatternLayer,
-    buildAnimationLayer
+    buildAnimationLayer, generateLiquidAnimation, generatePlasmaAnimation, generateFloatAnimation,
+    generateDriftAnimation
 } from "../generators/index.ts";
 import {
     ConicGradientOptions,
@@ -116,6 +117,26 @@ export class Builder {
 
     aurora(options: AnimationOptions = {}): this {
         return this.animation('aurora', options)
+    }
+
+    shimmer(options: AnimationOptions = {}): this {
+        return this.animation('shimmer', options)
+    }
+
+    liquid(options: AnimationOptions = {}): this {
+        return this.animation('liquid', options)
+    }
+
+    plasma(options: AnimationOptions = {}): this {
+        return this.animation('plasma', options)
+    }
+
+    float(options: AnimationOptions = {}): this {
+        return this.animation('float', options)
+    }
+
+    drift(options: AnimationOptions = {}): this {
+        return this.animation('drift', options)
     }
 
     toStyle(): Record<string, string> {
