@@ -1,6 +1,8 @@
-const HEX_REGEX = /^#([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/
+export const HEX_REGEX = /^#([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/
 const COLOR_FUNC_REGEX = /^(rgb|rgba|hsl|hsla|oklch|color|hwb|lch|lab)\(.+\)$/i
 const NAMED_COLOR_REGEX = /^[a-zA-Z]+$/
+
+export const isHexColor = (value: string): boolean => HEX_REGEX.test(value.trim())
 
 export const isValidColor = (value: string): boolean => {
     const t = value.trim()

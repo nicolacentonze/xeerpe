@@ -1,43 +1,55 @@
-import {CSSLength, GradientColorStop, RgbColor} from "../models/index.ts";
-import {isValidColor, isValidPosition} from "../validations/index.ts";
-
-export const hexToRgb = (hex: string): RgbColor => {
-    const hexDigits = hex.replace('#', '')
-    const expandedHex = hexDigits.length === 3
-        ? hexDigits.split('').map(digit => digit + digit).join('')
-        : hexDigits
-    const hexValue = parseInt(expandedHex, 16)
-    return {
-        red: (hexValue >> 16) & 255,
-        green: (hexValue >> 8) & 255,
-        blue: hexValue & 255,
-    }
-}
-
-export const withAlpha = (color: string, alpha: number): string => {
-    if (color.startsWith('#')) {
-        const {red, green, blue} = hexToRgb(color)
-        return `rgba(${red}, ${green}, ${blue}, ${alpha})`
-    }
-    if (color.startsWith('rgb(')) {
-        return color.replace('rgb(', 'rgba(').replace(')', `, ${alpha})`)
-    }
-    if (color.startsWith('hsl(')) {
-        return color.replace('hsl(', 'hsla(').replace(')', `, ${alpha})`)
-    }
-    return color
-}
+import {CSSLength, GradientColorStop, RgbaColor} from "../models/index.ts";
+import {isHexColor, isValidColor, isValidPosition} from "../validations/index.ts";
 
 export const clamp = (value: number, min: number, max: number): number =>
     Math.min(max, Math.max(min, value))
 
+export const hexToRgba = (hex: string): RgbaColor => {
+    const trimmed = hex.trim()
+    if (!isHexColor(trimmed)) throw new Error(`Invalid hex color: "${hex}"`)
+
+    const digits = trimmed.slice(1)
+
+    const expanded = digits.length <= 4
+        ? digits.split('').map(d => d + d).join('')
+        : digits
+
+    const rgb = parseInt(expanded.slice(0, 6), 16)
+    const alpha = expanded.length === 8
+        ? parseInt(expanded.slice(6, 8), 16) / 255
+        : undefined
+
+    return {
+        red: (rgb >> 16) & 255,
+        green: (rgb >> 8) & 255,
+        blue: rgb & 255,
+        alpha,
+    }
+}
+
+export const withAlpha = (color: string, alpha?: number, fallbackAlpha = 1): string => {
+    if (isHexColor(color)) {
+        const {red, green, blue, alpha: embedded} = hexToRgba(color)
+        const finalAlpha = embedded ?? alpha ?? fallbackAlpha
+        const rounded = Math.round(clamp(finalAlpha, 0, 1) * 1000) / 1000
+        return `rgba(${red}, ${green}, ${blue}, ${rounded})`
+    }
+    if (color.startsWith('rgb(')) {
+        return color.replace('rgb(', 'rgba(').replace(')', `, ${alpha ?? fallbackAlpha})`)
+    }
+    if (color.startsWith('hsl(')) {
+        return color.replace('hsl(', 'hsla(').replace(')', `, ${alpha ?? fallbackAlpha})`)
+    }
+    return color
+}
 
 export const parseLength = (input: string): CSSLength => {
     const match = input.trim().match(/^(-?\d*\.?\d+)([a-z%]*)$/i)
     if (!match) throw new Error(`Invalid CSS length: "${input}"`)
     const [, value, unit] = match
-    return { value: parseFloat(value), unit: unit || 'px' }
+    return {value: parseFloat(value), unit: unit || 'px'}
 }
+
 
 export const resolveColor = (value: string | null | undefined, defaultColor = 'transparent'): string => {
     if (value == null) return defaultColor
