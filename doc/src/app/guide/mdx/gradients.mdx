@@ -1,10 +1,534 @@
-## Gradients Page
+Gradients are the base layer of every xeerpe background. This page documents every gradient generator, its options and how to combine them.
 
-<XeerpeDemo example="linear-basic"/>
+## Generators
 
-<div style={{ padding: '2rem', textAlign: 'center', border: '2px dashed currentColor', borderRadius: '1rem' }}>
-    <p style={{ fontSize: '2rem', margin: 0 }}>🚧</p>
-    <strong>Work in progress</strong>
-    <p>This page is under construction. Content will be available soon.</p>
-</div>
+Generators are the `Builder` methods that create a gradient layer. Each call adds one layer, and `toStyle()` merges every layer into a single CSS style object.
 
+```ts
+import { Builder } from 'xeerpe'
+
+const style = new Builder()
+  .linearGradient({
+    from: '#FFB347',
+    to: '#4A1942',
+  })
+  .toStyle()
+```
+
+xeerpe ships four gradient generators: `linearGradient`, `radialGradient`, `conicGradient` and `meshGradient`.
+
+All options are optional unless marked as required. Colors accept any valid CSS color string, such as hex, `rgb()`, `hsl()`, named colors or `transparent`. An invalid color is reported with `console.error` and replaced by `transparent`.
+
+---
+
+## Shared options
+
+Every generator extends the same base options.
+
+<Prop name="from" type="string" defaultValue="'transparent'">
+
+    Color at the start of the gradient. Use it together with `to` for a simple two-color gradient.
+
+</Prop>
+
+<Prop name="to" type="string" defaultValue="'transparent'">
+
+    Color at the end of the gradient.
+
+</Prop>
+
+<Prop name="backgroundSize" type="string" defaultValue="'auto'">
+
+    A CSS `background-size` value: `auto`, `cover`, `contain`, or one or two lengths such as `'200% 200%'` or `'400px'`. Enlarging the background is a common way to prepare a gradient for animation. Invalid values fall back to `'auto'`.
+
+</Prop>
+
+---
+
+## linearGradient
+
+Blends colors along a straight line. Set the direction with an angle or with a keyword. Without either, the gradient runs at `135deg`.
+
+### Options
+
+<Prop name="colors" type="(string | GradientColorStop)[]">
+
+    A list of color stops, for when two colors are not enough. When present, it replaces `from` and `to`. Each entry is either a plain color string or a [color stop](#color-stops) with an explicit position.
+
+</Prop>
+
+<Prop
+    name="angle"
+    type={[
+        "`${number}deg`",
+        "`${number}rad`",
+        "`${number}grad`",
+        "`${number}turn`",
+    ]}
+    defaultValue="'135deg'"
+>
+
+    The direction of the gradient line as a CSS angle, for example `'45deg'`, `'0.25turn'` or `'1.57rad'`. If both `angle` and `direction` are set, `angle` wins.
+
+</Prop>
+
+<Prop
+    name="direction"
+    type={[
+        "'to top'",
+        "'to bottom'",
+        "'to left'",
+        "'to right'",
+        "'to top right'",
+        "'to bottom right'",
+        "'to top left'",
+        "'to bottom left'",
+    ]}
+>
+
+    The direction of the gradient line as a CSS keyword. Use it instead of `angle` when a side or a corner is more readable than a number.
+
+</Prop>
+
+<Prop name="size" type="string">
+
+    A value appended right after the last color inside `linear-gradient()`. In practice it sets the position of the last color stop, for example `'70%'`.
+
+</Prop>
+
+### Examples
+
+#### Two colors
+
+The simplest form: a `from` and a `to` color.
+
+<XeerpeDemo example="linear-basic" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#2dd4bf',
+    to: '#1e1b4b',
+  })
+  .toStyle()
+```
+
+#### Angle
+
+Rotate the gradient line with `angle`.
+
+<XeerpeDemo example="linear-angle" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#ff9a8b',
+    to: '#6a3093',
+    angle: '160deg',
+  })
+  .toStyle()
+```
+
+#### Direction
+
+Point the gradient toward a side or a corner with `direction`.
+
+<XeerpeDemo example="linear-direction" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#020617',
+    to: '#38bdf8',
+    direction: 'to top right',
+  })
+  .toStyle()
+```
+
+#### Multiple stops
+
+Use `colors` with positions to place stops precisely. Two stops at the same position create a hard edge, here the horizon between a sunset sky and the sea.
+
+<XeerpeDemo example="linear-stops" />
+
+```ts
+new Builder()
+  .linearGradient({
+    colors: [
+      '#0b1437',
+      { color: '#4c1d95', position: '35%' },
+      { color: '#f472b6', position: '55%' },
+      { color: '#fdba74', position: '62%' },
+      { color: '#0c2a4d', position: '62%' },
+      '#020617',
+    ],
+    direction: 'to bottom',
+  })
+  .toStyle()
+```
+
+---
+
+## radialGradient
+
+Colors radiate outward from a center point. Unless you set `shape`, the gradient is a circle.
+
+### Options
+
+<Prop name="shape" type={["'circle'", "'ellipse'", "null"]} defaultValue="'circle'">
+
+    The shape of the gradient. A circle keeps the same radius in every direction, while an ellipse stretches with its container. With `null` no shape is emitted and the browser default (an ellipse) applies.
+
+</Prop>
+
+<Prop name="position" type="string" defaultValue="'center'">
+
+    The center of the gradient, using CSS position syntax: keywords such as `'center'` or `'top left'`, or one or two lengths such as `'20% 80%'`. Invalid values fall back to `'center'`.
+
+</Prop>
+
+<Prop
+    name="size"
+    type={[
+        "'closest-side'",
+        "'closest-corner'",
+        "'farthest-side'",
+        "'farthest-corner'",
+        "string",
+    ]}
+>
+
+    How far the gradient extends. Use a keyword for a size relative to the container, or a CSS length, percentage or `calc()` expression for an explicit radius. Invalid values are ignored.
+
+    `closest-side` and `closest-corner` stop at the side or corner nearest to the center. `farthest-side` and `farthest-corner` stop at the ones farthest from it.
+
+</Prop>
+
+<Prop name="colorFromPosition" type="string">
+
+    Where the `from` color stop is placed along the gradient radius, as a CSS length, percentage or `calc()` expression, for example `'0%'`.
+
+</Prop>
+
+<Prop name="colorToPosition" type="string">
+
+    Where the `to` color stop is placed along the gradient radius, for example `'70%'`. Lower values make the `to` color take over earlier.
+
+</Prop>
+
+### Examples
+
+#### Basic glow
+
+A soft glow from the center.
+
+<XeerpeDemo example="radial-basic" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#a5b4fc',
+    to: '#0b0720',
+  })
+  .toStyle()
+```
+
+#### Position
+
+Move the light source with `position`, and use `colorToPosition` to decide where the shadow takes over.
+
+<XeerpeDemo example="radial-position" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#fb7185',
+    to: '#1e0b2e',
+    position: '25% 30%',
+    colorToPosition: '80%',
+  })
+  .toStyle()
+```
+
+#### Ellipse
+
+Switch to an `ellipse` and limit it with `closest-side` for a spotlight that follows the shape of its container.
+
+<XeerpeDemo example="radial-shape" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#67e8f9',
+    to: '#020617',
+    shape: 'ellipse',
+    size: 'closest-side',
+  })
+  .toStyle()
+```
+
+#### Stop positions
+
+Place both colors explicitly with `colorFromPosition` and `colorToPosition`. Here the `to` color is reached at 70% of the radius, which leaves a solid rim around the glow.
+
+<XeerpeDemo example="radial-stops" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#fef08a',
+    to: '#7c2d12',
+    colorFromPosition: '0%',
+    colorToPosition: '70%',
+  })
+  .toStyle()
+```
+
+---
+
+## conicGradient
+
+Colors sweep around a center point, like the hands of a clock.
+
+### Options
+
+<Prop name="colors" type="(string | GradientColorStop)[]">
+
+    A list of color stops arranged around the circle. When present, it replaces `from` and `to`. Repeat the first color at the end for a seamless loop.
+
+</Prop>
+
+<Prop name="angle" type="string">
+
+    The angle where the sweep starts, as a CSS angle such as `'45deg'` or `'0.25turn'`. It is emitted as `from <angle>` inside `conic-gradient()`, so do not write the `from` keyword yourself.
+
+</Prop>
+
+<Prop name="position" type="string" defaultValue="'center'">
+
+    The center of the sweep, using CSS position syntax such as `'center'` or `'30% 70%'`. Invalid values fall back to `'center'`.
+
+</Prop>
+
+### Examples
+
+#### Full sweep
+
+A full-color sweep. The first color is repeated at the end, so there is no visible seam.
+
+<XeerpeDemo example="conic-basic" />
+
+```ts
+new Builder()
+.conicGradient({
+colors: [
+    '#f472b6',
+    '#c084fc',
+    '#60a5fa',
+    '#34d399',
+    '#fbbf24',
+    '#f472b6',
+],
+})
+.toStyle()
+```
+
+#### Angle and position
+
+Rotate the start of the sweep with `angle` and move its center with `position`.
+
+<XeerpeDemo example="conic-angle-position" />
+
+```ts
+new Builder()
+.conicGradient({
+colors: [
+    '#1e1b4b',
+    '#6d28d9',
+    '#e879f9',
+    '#6d28d9',
+    '#1e1b4b',
+],
+    angle: '30deg',
+    position: '70% 30%',
+})
+.toStyle()
+```
+
+---
+
+## meshGradient
+
+Composes several radial layers over a solid background to create soft, organic color fields.
+
+### Options
+
+<Prop name="background" type="string" required>
+
+    The solid color rendered underneath every layer. It is applied as the element's `background-color`.
+
+</Prop>
+
+<Prop name="layers" type="RadialGradientOptions[]" required>
+
+    The gradient layers drawn over `background`. Each layer accepts all the [radialGradient options](#radialgradient). Layers are stacked in order, so give each one a transparent `to` color to keep the layers below visible. Unlike a standalone `radialGradient`, a layer without `shape` has no shape keyword, so the browser default (an ellipse) applies.
+
+</Prop>
+
+### Examples
+
+#### Soft color fields
+
+Four soft blobs of color over a dark base. Use `colorToPosition` to control how far each one spreads.
+
+<XeerpeDemo example="mesh-basic" />
+
+```ts
+new Builder()
+.meshGradient({
+background: '#070b1f',
+    layers: [
+    {
+        from: 'rgba(124,58,237,0.85)',
+        to: 'transparent',
+        position: '12% 18%',
+        colorToPosition: '60%',
+    },
+    {
+        from: 'rgba(34,211,238,0.65)',
+        to: 'transparent',
+        position: '88% 20%',
+        colorToPosition: '55%',
+    },
+    {
+        from: 'rgba(244,114,182,0.65)',
+        to: 'transparent',
+        position: '70% 100%',
+        colorToPosition: '60%',
+    },
+    {
+        from: 'rgba(59,130,246,0.6)',
+        to: 'transparent',
+        position: '10% 90%',
+        colorToPosition: '50%',
+    },
+],
+})
+.toStyle()
+```
+
+---
+
+## Color stops
+
+Entries of `colors` can be a color string or a stop object with an explicit position.
+
+```ts
+type GradientColorStop =
+| string
+| {
+color: string
+position?: LinearGradientPosition
+}
+```
+
+<Prop name="color" type="string" required>
+
+    The stop color.
+
+</Prop>
+
+<Prop
+    name="position"
+    type={[
+        "`${number}%`",
+        "`${number}px`",
+        "`${number}rem`",
+        "`${number}em`",
+        "`${number}vh`",
+        "`${number}vw`",
+        "`${number}vmin`",
+        "`${number}vmax`",
+        "`calc(${string})`",
+    ]}
+>
+
+    Where the stop sits along the gradient. It accepts a percentage, a length, or a `calc()` expression. Invalid positions are dropped and the color is used without one.
+
+</Prop>
+
+```ts
+{ color: '#FF6B6B', position: '40%' }
+{ color: '#FF6B6B', position: '12rem' }
+{ color: '#FF6B6B', position: 'calc(50% - 2rem)' }
+```
+
+---
+
+## Layering generators
+
+A single chain can contain several generators. Every call adds a new layer, and the first layers you add are drawn on top. Put translucent glows first and a solid base last.
+
+<XeerpeDemo example="layered-glow" />
+
+```ts
+new Builder()
+.radialGradient({
+from: 'rgba(34,211,238,0.55)',
+    to: 'transparent',
+    position: '85% 15%',
+    colorToPosition: '60%',
+})
+.radialGradient({
+from: 'rgba(168,85,247,0.55)',
+    to: 'transparent',
+    position: '10% 95%',
+    colorToPosition: '60%',
+})
+.linearGradient({
+from: '#0b1020',
+    to: '#05060f',
+    angle: '135deg',
+})
+.toStyle()
+```
+
+---
+
+## Types reference
+
+```ts
+type GradientType = 'linear' | 'radial' | 'conic' | 'mesh'
+
+interface GradientBase {
+from?: string
+to?: string
+backgroundSize?: string
+}
+
+interface LinearGradientOptions extends GradientBase {
+colors?: (string | GradientColorStop)[]
+angle?: LinearGradientAngle
+direction?: LinearGradientDirection
+size?: string
+}
+
+interface RadialGradientOptions extends GradientBase {
+shape?: RadialGradientShape
+position?: string
+size?: RadialGradientSize
+colorFromPosition?: string
+colorToPosition?: string
+}
+
+interface ConicGradientOptions extends GradientBase {
+colors?: (string | GradientColorStop)[]
+angle?: string
+position?: string
+}
+
+interface MeshGradientOptions extends GradientBase {
+background: string
+layers: RadialGradientOptions[]
+}
+```

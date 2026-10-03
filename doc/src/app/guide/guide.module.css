@@ -6,7 +6,7 @@
     width: 100%;
     .guideContents {
         color: white;
-        width: 100%;
+        width: calc(100% - (250px + 16px + 16px));
         margin-left: calc(250px + 16px + 16px) ;
         .guideLayout {
             display: flex;
@@ -32,6 +32,7 @@
 @media (max-width: 768px) {
     .guideContainer {
         .guideContents {
+            width: 100%;
             margin-left: 0 ;
         }
 

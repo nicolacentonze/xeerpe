@@ -14,6 +14,7 @@ import GuideNav from "@cmp/guideNavPages/guideNav.tsx";
 import { getGuidePage } from "@/src/data/sidebarItems.ts";
 import {TocItem} from "@/src/models/tocItem.ts";
 import Table from "@cmp/table/table.tsx";
+import Prop from "@cmp/prop/prop.tsx";
 
 export const dynamicParams = false
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
@@ -69,6 +70,7 @@ const GuidePage = async ({params}: {
         components: {
             ...mdxComponents,
             table: Table,
+            Prop
         },
         options: {
 

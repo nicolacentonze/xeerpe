@@ -1,0 +1,79 @@
+.prop {
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--accent, #6fbf4b);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.name {
+    padding: 0;
+    background: none;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent, #6fbf4b);
+}
+
+.required {
+    padding: 0.1rem 0.55rem;
+    border: 1px solid rgba(255, 179, 71, 0.5);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffb347;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-top: 0.6rem;
+}
+
+.label {
+    min-width: 3.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.type {
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.07);
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+}
+
+.body {
+    margin-top: 0.85rem;
+    line-height: 1.6;
+}
+
+.body > p {
+    margin: 0.5rem 0;
+}
+
+.body > p:first-child {
+    margin-top: 0;
+}
+
+.body > p:last-child {
+    margin-bottom: 0;
+}
