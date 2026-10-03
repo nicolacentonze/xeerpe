@@ -2,7 +2,7 @@
     margin: 1.25rem 0;
     padding: 1rem 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 3px solid var(--accent, #6fbf4b);
+    border-left: 3px solid #5EB847;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.03);
 }
@@ -18,7 +18,7 @@
     background: none;
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--accent, #6fbf4b);
+    color: #5EB847;
 }
 
 .required {
