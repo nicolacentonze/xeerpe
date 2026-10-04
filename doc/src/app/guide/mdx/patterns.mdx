@@ -1,5 +1,294 @@
-<div style={{ padding: '2rem', textAlign: 'center', border: '2px dashed currentColor', borderRadius: '1rem' }}>
-    <p style={{ fontSize: '2rem', margin: 0 }}>🚧</p>
-    <strong>Work in progress</strong>
-    <p>This page is under construction. Content will be available soon.</p>
-</div>
+Patterns repeat a small tile across the background, such as dots or grid lines. This page documents every pattern, its options and how patterns stack with other layers.
+
+## Overview
+
+xeerpe ships two patterns: `dots` and `grid`. Both are drawn as lightweight SVG tiles, and every option is optional.
+
+```ts
+import { Builder } from 'xeerpe'
+
+const style = new Builder()
+  .linearGradient({
+    from: '#0f172a',
+    to: '#1e293b',
+  })
+  .dots({
+    color: '#e2e8f0',
+    opacity: 0.25,
+  })
+  .toStyle()
+```
+
+Patterns are drawn **above** gradients and **below** effects. When you add several patterns, the one you add first is drawn on top.
+
+Lengths such as `size`, `spacing` and `strokeWidth` must be a number followed by a unit, for example `'24px'` or `'2rem'`. A value that cannot be parsed throws an `Invalid CSS length` error. Use the same unit for all the lengths of a pattern, because they are measured against each other.
+
+---
+
+## Shared options
+
+These options work the same way in both patterns.
+
+<Prop name="color" type="string" defaultValue="'#000000'">
+
+    The color of the dots or lines. The pattern `opacity` is applied to hex, `rgb()` and `hsl()` colors. Any other format, such as a named color or `rgba()`, is used as it is and ignores `opacity`. For 8-digit hex colors, the alpha channel of the color wins over `opacity`.
+
+</Prop>
+
+<Prop name="background" type="string" defaultValue="'transparent'">
+
+    The color painted behind the pattern in every tile. Leave it transparent to see the gradient below. An opaque color covers every layer under the pattern.
+
+</Prop>
+
+<Prop name="backgroundSize" type="string" defaultValue="'auto'">
+
+    A CSS `background-size` value for the pattern layer. With `auto`, the tile keeps the size it has by default.
+
+</Prop>
+
+---
+
+## dots
+
+A regular grid of round dots. The distance between dots comes from `spacing`, and the dot radius comes from `size`.
+
+### Options
+
+<Prop name="size" type="string" defaultValue="'20px'">
+
+    The base size of the dots. The dot radius is 15% of this value, so `'20px'` gives a radius of 3px. When `spacing` is not set, `size` is also the distance between the centers of the dots.
+
+</Prop>
+
+<Prop name="spacing" type="string">
+
+    The distance between the centers of neighboring dots, which is the size of the repeating tile. It defaults to the value of `size`.
+
+</Prop>
+
+<Prop name="strokeWidth" type="string">
+
+    The dot radius, which overrides the radius calculated from `size`. Only the number is used, measured in the same unit as `spacing`.
+
+</Prop>
+
+<Prop name="opacity" type="number" defaultValue="0.2">
+
+    Opacity of the dots, from `0` to `1`. See `color` for the color formats it applies to.
+
+</Prop>
+
+### Examples
+
+#### Polka dots
+
+With the defaults, `size` controls both the dots and their spacing.
+
+<XeerpeDemo example="dots-basic" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#0f172a',
+    to: '#1e293b',
+  })
+  .dots({
+    color: '#e2e8f0',
+    opacity: 0.25,
+  })
+  .toStyle()
+```
+
+#### Spacing
+
+Set `spacing` larger than `size` to get small dots far apart, like a field of stars.
+
+<XeerpeDemo example="dots-spacing" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#020617',
+    to: '#1e1b4b',
+  })
+  .dots({
+    color: '#ffffff',
+    size: '14px',
+    spacing: '30px',
+    opacity: 0.45,
+  })
+  .toStyle()
+```
+
+#### Dot radius
+
+Use `strokeWidth` to set the radius directly. Here the dots are bigger than the 15% that `size` would give.
+
+<XeerpeDemo example="dots-radius" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#fb7185',
+    to: '#f59e0b',
+  })
+  .dots({
+    color: '#ffffff',
+    size: '40px',
+    strokeWidth: '5px',
+    opacity: 0.35,
+  })
+  .toStyle()
+```
+
+#### Tile background
+
+Set `background` to an opaque color to make the pattern a standalone surface. It replaces everything under the pattern.
+
+<XeerpeDemo example="dots-background" />
+
+```ts
+new Builder()
+  .dots({
+    color: '#38bdf8',
+    background: '#0b1220',
+    size: '24px',
+    opacity: 0.6,
+  })
+  .toStyle()
+```
+
+---
+
+## grid
+
+A grid of thin lines, useful for technical and blueprint looks.
+
+### Options
+
+<Prop name="size" type="string" defaultValue="'40px'">
+
+    The size of each grid cell.
+
+</Prop>
+
+<Prop name="strokeWidth" type="string" defaultValue="'1px'">
+
+    The thickness of the lines. Only the number is used, measured in the same unit as `size`.
+
+</Prop>
+
+<Prop name="opacity" type="number" defaultValue="0.1">
+
+    Opacity of the lines, from `0` to `1`. See `color` for the color formats it applies to.
+
+</Prop>
+
+### Examples
+
+#### Basic grid
+
+A fine grid with a light color on a dark gradient.
+
+<XeerpeDemo example="grid-basic" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#04140d',
+    to: '#0a2a1c',
+  })
+  .grid({
+    color: '#34d399',
+    size: '32px',
+    opacity: 0.25,
+  })
+  .toStyle()
+```
+
+#### Stroke width
+
+Increase `strokeWidth` for bolder lines, and use a smaller `size` for a denser grid.
+
+<XeerpeDemo example="grid-stroke" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#312e81',
+    to: '#1e1b4b',
+  })
+  .grid({
+    color: '#a5b4fc',
+    size: '24px',
+    strokeWidth: '2px',
+    opacity: 0.3,
+  })
+  .toStyle()
+```
+
+---
+
+## Combining patterns
+
+A single chain can contain several patterns. Add the one that should be on top first. Mixing a large, faint grid with small dots adds depth without competing for attention.
+
+### Examples
+
+#### Grid and dots
+
+A large grid with a lighter layer of dots over a deep blue gradient.
+
+<XeerpeDemo example="patterns-layered" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#0c4a6e',
+    to: '#020617',
+    angle: '160deg',
+  })
+  .grid({
+    color: '#7dd3fc',
+    size: '80px',
+    opacity: 0.18,
+  })
+  .dots({
+    color: '#e0f2fe',
+    size: '16px',
+    spacing: '20px',
+    opacity: 0.12,
+  })
+  .toStyle()
+```
+
+---
+
+## Types reference
+
+```ts
+type PatternType = 'dots' | 'grid'
+
+interface PatterBaseOptions {
+  color?: string
+  background?: string
+  size?: string
+  opacity?: number
+  strokeWidth?: string
+  backgroundSize?: string
+}
+
+interface DotsOptions extends PatterBaseOptions {
+  color?: string
+  background?: string
+  size?: string
+  spacing?: string
+  style?: string
+  opacity?: number
+}
+
+interface GridOptions extends PatterBaseOptions {}
+
+type PatternOptions = DotsOptions | GridOptions
+```

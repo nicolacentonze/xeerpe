@@ -1,5 +1,138 @@
-<div style={{ padding: '2rem', textAlign: 'center', border: '2px dashed currentColor', borderRadius: '1rem' }}>
-    <p style={{ fontSize: '2rem', margin: 0 }}>🚧</p>
-    <strong>Work in progress</strong>
-    <p>This page is under construction. Content will be available soon.</p>
+Filters apply a CSS filter to the element itself. Unlike gradients, patterns and effects, they do not add a background layer. This page documents the available filters and how they behave.
+
+## Overview
+
+xeerpe currently ships one filter, `blur`. It can blur the element itself or whatever sits behind it.
+
+```ts
+import { Builder } from 'xeerpe'
+
+const style = new Builder()
+  .linearGradient({
+    from: '#6366f1',
+    to: '#ec4899',
+  })
+  .blur({ amount: '4px', type: 'blur' })
+  .toStyle()
+```
+
+A filter affects the whole element: its gradients, patterns and effects, and also its content. If you add several blurs to the same chain, they are combined.
+
+---
+
+## blur
+
+Blurs the element or its backdrop, depending on `type`.
+
+### Options
+
+<Prop name="amount" type="string" defaultValue="'20px'">
+
+    The blur radius, as a CSS length such as `'8px'` or `'0.5rem'`. Larger values give a stronger blur.
+
+</Prop>
+
+<Prop name="type" type={["'backdrop'", "'blur'"]} defaultValue="'backdrop'">
+
+    `backdrop` blurs whatever is behind the element, using `backdrop-filter`. It is the frosted-glass effect, and it needs an element with a translucent background to be visible. `blur` blurs the element itself, including its own background and content, using `filter`.
+
+</Prop>
+
+### Examples
+
+#### Element blur
+
+With `type: 'blur'` the element and its edges become soft. This is a quick way to turn a mesh gradient into glowing orbs of light.
+
+<XeerpeDemo example="blur-element" />
+
+```ts
+new Builder()
+  .meshGradient({
+    background: '#070b1f',
+    layers: [
+      {
+        from: 'rgba(124,58,237,0.95)',
+        to: 'transparent',
+        position: '25% 35%',
+        colorToPosition: '55%',
+      },
+      {
+        from: 'rgba(34,211,238,0.9)',
+        to: 'transparent',
+        position: '75% 65%',
+        colorToPosition: '55%',
+      },
+    ],
+  })
+  .blur({
+    amount: '18px',
+    type: 'blur',
+  })
+  .toStyle()
+```
+
+#### Softening a pattern
+
+A small `amount` softens a sharp pattern without losing its structure.
+
+<XeerpeDemo example="blur-soften" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#6366f1',
+    to: '#ec4899',
+  })
+  .grid({
+    color: '#ffffff',
+    size: '24px',
+    opacity: 0.5,
+  })
+  .blur({
+    amount: '3px',
+    type: 'blur',
+  })
+  .toStyle()
+```
+
+#### Backdrop blur
+
+`backdrop` is the default type, so you only need an `amount`. The blur applies to what is behind the element, so it needs something to show through. Give the element a translucent background and place it over a colorful one.
+
+```ts
+new Builder()
+  .blur({ amount: '16px' })
+  .toStyle()
+```
+
+```tsx
+<div className="hero">
+  <div
+    style={{
+      ...new Builder()
+        .blur({ amount: '16px' })
+        .toStyle(),
+      background: 'rgba(255, 255, 255, 0.08)',
+    }}
+  >
+    Frosted glass
+  </div>
 </div>
+```
+
+---
+
+## Types reference
+
+```ts
+type FilterType = 'blur'
+type BlurType = 'backdrop' | 'blur'
+
+interface BlurOptions {
+  amount?: string
+  type?: BlurType
+}
+
+type FilterOptions = BlurOptions
+```

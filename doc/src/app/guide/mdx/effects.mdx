@@ -1,5 +1,485 @@
-<div style={{ padding: '2rem', textAlign: 'center', border: '2px dashed currentColor', borderRadius: '1rem' }}>
-    <p style={{ fontSize: '2rem', margin: 0 }}>🚧</p>
-    <strong>Work in progress</strong>
-    <p>This page is under construction. Content will be available soon.</p>
-</div>
+Effects add texture, depth and light on top of your gradients and patterns. This page documents every effect, its options and how effects stack.
+
+## Overview
+
+xeerpe ships four effects: `noise`, `vignette`, `grain` and `glow`. Every option is optional, so `.noise()` with no arguments already works.
+
+```ts
+import { Builder } from 'xeerpe'
+
+const style = new Builder()
+  .linearGradient({
+    from: '#4c1d95',
+    to: '#0ea5e9',
+  })
+  .noise()
+  .toStyle()
+```
+
+`noise`, `vignette` and `grain` are background layers. They are drawn **above** patterns and gradients, and when you add several of them the one you add first is drawn on top. `glow` is different: it does not add a layer but a `box-shadow`, so it is drawn around or inside the element itself.
+
+The effects that take a color (`vignette` and `glow`) accept any valid CSS color string.
+
+---
+
+## noise
+
+Overlays a grayscale noise texture generated with an SVG turbulence filter. Because it is grayscale, it adds texture without tinting the colors below.
+
+### Options
+
+<Prop name="opacity" type="number" defaultValue="0.25">
+
+    Opacity of the noise, from `0` (invisible) to `1` (fully opaque).
+
+</Prop>
+
+<Prop name="scale" type="number" defaultValue="0.65">
+
+    The base frequency of the noise. High values (around `0.5` to `1`) produce fine, sand-like grain, while low values (such as `0.01`) produce large, soft shapes.
+
+</Prop>
+
+<Prop name="type" type={["'turbulence'", "'fractalNoise'"]} defaultValue="'fractalNoise'">
+
+    The kind of noise. `fractalNoise` gives an even, grainy texture. `turbulence` is more contrasted and, at low `scale` values, produces cloud-like patterns.
+
+</Prop>
+
+<Prop name="octaves" type="number" defaultValue="16">
+
+    How many layers of detail are combined. Lower values give a smoother, simpler texture and are cheaper to render.
+
+</Prop>
+
+<Prop name="backgroundSize" type="string" defaultValue="'auto'">
+
+    A CSS `background-size` value for the noise layer.
+
+</Prop>
+
+### Examples
+
+#### Default noise
+
+With no options, `noise()` adds a fine, subtle texture.
+
+<XeerpeDemo example="noise-basic" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#4c1d95',
+    to: '#0ea5e9',
+    angle: '160deg',
+  })
+  .noise()
+  .toStyle()
+```
+
+#### Scale and opacity
+
+Lower `scale` to enlarge the grain and raise `opacity` to make it more visible.
+
+<XeerpeDemo example="noise-scale" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#f97316',
+    to: '#7c2d12',
+  })
+  .noise({ scale: 0.3, opacity: 0.35 })
+  .toStyle()
+```
+
+#### Turbulence
+
+Switch `type` to `turbulence` and use a very low `scale` for soft clouds. Fewer `octaves` keep the shapes simple.
+
+<XeerpeDemo example="noise-turbulence" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#0f172a',
+    to: '#1d4ed8',
+  })
+  .noise({
+    type: 'turbulence',
+    scale: 0.012,
+    octaves: 4,
+    opacity: 0.5,
+  })
+  .toStyle()
+```
+
+---
+
+## vignette
+
+Darkens, or tints, the edges of the element with a radial fade, which draws the eye toward the center.
+
+### Options
+
+<Prop name="color" type="string" defaultValue="'#000000'">
+
+    The color at the edges. The `intensity` is applied to hex, `rgb()` and `hsl()` colors. Any other format, such as a named color or `rgba()`, is used as it is and ignores `intensity`. For 8-digit hex colors the alpha channel of the color wins over `intensity`.
+
+</Prop>
+
+<Prop name="intensity" type="number" defaultValue="0.2">
+
+    Opacity of the vignette color at the edges, from `0` to `1`. Values outside that range are clamped.
+
+</Prop>
+
+<Prop name="spread" type="number" defaultValue="0.2">
+
+    How far the vignette reaches toward the center, from `0` (no visible vignette) to `1` (it starts at the center). With the default of `0.2` only the outer 20% fades; with `0.5` the outer half does.
+
+</Prop>
+
+<Prop name="backgroundSize" type="string" defaultValue="'auto'">
+
+    A CSS `background-size` value for the vignette layer.
+
+</Prop>
+
+### Examples
+
+#### Default vignette
+
+The defaults darken the corners lightly.
+
+<XeerpeDemo example="vignette-basic" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#fde68a',
+    to: '#fb923c',
+    angle: '135deg',
+  })
+  .vignette()
+  .toStyle()
+```
+
+#### Color, intensity and spread
+
+Use a tinted `color`, a higher `intensity` and a wider `spread` for a strong framing effect.
+
+<XeerpeDemo example="vignette-custom" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#f9a8d4',
+    to: '#c4b5fd',
+    angle: '135deg',
+  })
+  .vignette({
+    color: '#312e81',
+    intensity: 0.65,
+    spread: 0.45,
+  })
+  .toStyle()
+```
+
+---
+
+## grain
+
+Adds a very light film grain. It is designed to be subtle: the strongest setting is only a faint texture, which is what makes backgrounds feel less digital.
+
+### Options
+
+<Prop name="intensity" type="number" defaultValue="1">
+
+    How visible the grain is. The grain opacity is `0.08 × intensity`, limited to a range from `0.01` to `0.12`. In practice values from about `0.125` to `1.5` change the strength, and anything above `1.5` has the same maximum effect.
+
+</Prop>
+
+<Prop name="size" type="string" defaultValue="'100%'">
+
+    The width and height of the generated grain image, as an SVG length such as `'100%'` or `'200px'`.
+
+</Prop>
+
+<Prop name="animated" type="boolean" defaultValue="false">
+
+    When `true`, the grain flickers slowly in a two-second loop, like moving film.
+
+</Prop>
+
+<Prop name="backgroundSize" type="string" defaultValue="'auto'">
+
+    A CSS `background-size` value for the grain layer.
+
+</Prop>
+
+### Examples
+
+#### Film grain
+
+Grain works best on large, smooth areas. At full strength it is a quiet texture rather than a visible pattern, so zoom in to see it.
+
+<XeerpeDemo example="grain-basic" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#2dd4bf',
+    to: '#1e1b4b',
+  })
+  .grain({ intensity: 1.5 })
+  .toStyle()
+```
+
+---
+
+## glow
+
+Adds a soft colored light around the element, or inside it. Under the hood it is a `box-shadow`, so it follows the element's rounded corners.
+
+### Options
+
+<Prop name="amount" type="string" defaultValue="'20px'">
+
+    The blur radius of the glow. Larger values give a softer, wider light.
+
+</Prop>
+
+<Prop name="spread" type="string">
+
+    How much the glow grows before it is blurred. Positive values make it larger and more intense, negative values make it smaller. It is omitted by default.
+
+</Prop>
+
+<Prop name="x" type="string" defaultValue="'0px'">
+
+    Horizontal offset of the glow.
+
+</Prop>
+
+<Prop name="y" type="string" defaultValue="'0px'">
+
+    Vertical offset of the glow.
+
+</Prop>
+
+<Prop name="color" type="string" defaultValue="'#ffffff'">
+
+    The color of the glow. Use a translucent color such as `rgba()` for a softer light.
+
+</Prop>
+
+<Prop name="type" type={["'outer'", "'inner'"]} defaultValue="'outer'">
+
+    `outer` draws the glow outside the element. `inner` draws it inside, along the edges.
+
+</Prop>
+
+An outer glow is drawn outside the element's box, so leave some space around it and make sure no parent has `overflow: hidden`, which would clip it.
+
+### Examples
+
+#### Outer glow
+
+A cyan light around a dark panel. `spread` makes the glow slightly stronger near the edge.
+
+<XeerpeDemo example="glow-outer" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#0b1020',
+    to: '#05060f',
+  })
+  .glow({
+    color: '#22d3ee',
+    amount: '40px',
+    spread: '2px',
+  })
+  .toStyle()
+```
+
+#### Inner glow
+
+With `type: 'inner'` the light comes from the edges and fades toward the center.
+
+<XeerpeDemo example="glow-inner" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#0b1020',
+    to: '#05060f',
+  })
+  .glow({
+    type: 'inner',
+    color: '#a855f7',
+    amount: '70px',
+  })
+  .toStyle()
+```
+
+#### Offset glow
+
+Use `x` and `y` to move the light, for example to simulate a colored shadow below the element.
+
+<XeerpeDemo example="glow-offset" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#1e293b',
+    to: '#0f172a',
+  })
+  .glow({
+    color: 'rgba(244,114,182,0.6)',
+    amount: '48px',
+    y: '28px',
+  })
+  .toStyle()
+```
+
+#### Stacked glows
+
+Each `glow()` call adds a shadow, and they are combined. Pairing an inner and an outer glow gives a neon outline.
+
+<XeerpeDemo example="glow-neon" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#06080f',
+    to: '#0b1020',
+  })
+  .glow({
+    type: 'inner',
+    color: '#22d3ee',
+    amount: '40px',
+  })
+  .glow({
+    color: '#22d3ee',
+    amount: '30px',
+  })
+  .toStyle()
+```
+
+---
+
+## Combining effects
+
+Effects can be combined with each other, with patterns and with any gradient. Add them after the gradient in the order you want them stacked, with the first one on top.
+
+### Examples
+
+#### Film look
+
+A warm gradient with a tinted vignette and film grain.
+
+<XeerpeDemo example="effects-film" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#7c4a2d',
+    to: '#e0a96d',
+    angle: '160deg',
+  })
+  .vignette({
+    color: '#1a0f0a',
+    intensity: 0.7,
+    spread: 0.5,
+  })
+  .grain({ intensity: 1.5 })
+  .toStyle()
+```
+
+#### Textured aurora
+
+A mesh gradient with a light noise layer and a vignette to focus the center.
+
+<XeerpeDemo example="effects-aurora" />
+
+```ts
+new Builder()
+  .meshGradient({
+    background: '#070b1f',
+    layers: [
+      {
+        from: 'rgba(124,58,237,0.85)',
+        to: 'transparent',
+        position: '12% 18%',
+        colorToPosition: '60%',
+      },
+      {
+        from: 'rgba(34,211,238,0.65)',
+        to: 'transparent',
+        position: '88% 20%',
+        colorToPosition: '55%',
+      },
+      {
+        from: 'rgba(244,114,182,0.65)',
+        to: 'transparent',
+        position: '70% 100%',
+        colorToPosition: '60%',
+      },
+    ],
+  })
+  .noise({ opacity: 0.2 })
+  .vignette({
+    intensity: 0.6,
+    spread: 0.4,
+  })
+  .toStyle()
+```
+
+---
+
+## Types reference
+
+```ts
+type EffectType = 'noise' | 'vignette' | 'grain' | 'glow'
+type NoiseType = 'turbulence' | 'fractalNoise'
+type GlowType = 'outer' | 'inner'
+
+interface NoiseOptions {
+  opacity?: number
+  scale?: number
+  type?: NoiseType
+  octaves?: number
+  backgroundSize?: string
+}
+
+interface VignetteOptions {
+  color?: string
+  intensity?: number
+  spread?: number
+  backgroundSize?: string
+}
+
+interface GrainOptions {
+  intensity?: number
+  size?: string
+  animated?: boolean
+  backgroundSize?: string
+}
+
+interface GlowOptions {
+  amount?: string
+  spread?: string
+  x?: string
+  y?: string
+  color?: string
+  type?: GlowType
+}
+
+type EffectOptions =
+  | NoiseOptions
+  | VignetteOptions
+  | GrainOptions
+  | GlowOptions
+```

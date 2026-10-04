@@ -1,5 +1,568 @@
-<div style={{ padding: '2rem', textAlign: 'center', border: '2px dashed currentColor', borderRadius: '1rem' }}>
-    <p style={{ fontSize: '2rem', margin: 0 }}>🚧</p>
-    <strong>Work in progress</strong>
-    <p>This page is under construction. Content will be available soon.</p>
-</div>
+Animations bring your backgrounds to life with CSS keyframes. This page documents every animation, its options and how to combine them.
+
+## Overview
+
+xeerpe ships nine animations: `pulse`, `rotate`, `breathe`, `aurora`, `shimmer`, `liquid`, `plasma`, `float` and `drift`. Each one is a `Builder` method, so you add it to the chain like any other layer.
+
+```ts
+import { Builder } from 'xeerpe'
+
+const style = new Builder()
+  .radialGradient({
+    from: '#34d399',
+    to: '#052e1c',
+  })
+  .pulse()
+  .toStyle()
+```
+
+An animation does not add a background layer. It adds one `animation` property to the style returned by `toStyle()`, which points to a keyframe animation defined in the xeerpe stylesheet.
+
+The same animation can also be added with the generic `animation()` method, which takes the animation name and its options. The options are required in this form, so pass an empty object to use the defaults.
+
+```ts
+new Builder()
+  .animation('pulse', {})
+  .toStyle()
+```
+
+Animations act on two different things:
+
+- **The background:** `breathe`, `aurora`, `shimmer` and `drift` scale or move the background. `liquid` does both, and also shifts its hue.
+- **The whole element:** `pulse`, `rotate`, `float` and `plasma` affect the element and everything inside it, text included.
+
+---
+
+## Setup
+
+The keyframes live in a stylesheet that you need to load once. Without it the style is applied but nothing moves, and the browser reports no error.
+
+```ts
+import 'xeerpe/animations.css'
+```
+
+Add the import to the entry file of your app. In Angular, add `node_modules/xeerpe/dist/animations.css` to the `styles` array of your project in `angular.json`.
+
+All keyframes are prefixed with `xeerpe-`, so they do not collide with your own animations.
+
+---
+
+## Shared options
+
+Every animation accepts the same four options. Each animation has its own defaults, listed in its section below.
+
+<Prop name="duration" type="string">
+
+    How long one cycle takes, as a CSS time such as `'4s'` or `'800ms'`.
+
+</Prop>
+
+<Prop name="easing" type="string">
+
+    The timing function, for example `'linear'`, `'ease-in-out'`, `'cubic-bezier(0.4, 0, 0.2, 1)'` or `'steps(4)'`.
+
+</Prop>
+
+<Prop name="direction" type={["'normal'", "'reverse'", "'alternate'", "'alternate-reverse'"]}>
+
+    Whether the animation plays forward, backward or alternates between the two. Only `pulse` and `aurora` use it. The other animations ignore it.
+
+</Prop>
+
+<Prop name="iterationCount" type={["number", "'infinite'"]}>
+
+    How many times the animation runs. Use a number to play it a fixed number of times, or `'infinite'` to loop forever.
+
+</Prop>
+
+The values are inserted into the CSS as they are, without validation. If a value is not valid CSS, for example a duration without a unit, the browser ignores the whole `animation` declaration and nothing moves.
+
+### Example
+
+Every option is optional, and any you leave out keeps the default of the animation.
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#34d399',
+    to: '#052e1c',
+  })
+  .pulse({
+    duration: '2s',
+    easing: 'ease-in',
+    direction: 'alternate-reverse',
+    iterationCount: 3,
+  })
+  .toStyle()
+```
+
+The code above produces this `animation` value:
+
+```css
+animation: xeerpe-pulse 2s ease-in alternate-reverse 3
+```
+
+---
+
+## pulse
+
+Fades the element between full opacity and 70% opacity, which makes it breathe softly. It changes the opacity of the whole element, content included, so the page behind shows through.
+
+### Defaults
+
+```ts
+{
+  duration: '4s',
+  easing: 'ease-in-out',
+  direction: 'alternate',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Pulsing glow
+
+A radial glow that fades in and out.
+
+<XeerpeDemo example="pulse-glow" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#34d399',
+    to: '#052e1c',
+    colorToPosition: '75%',
+  })
+  .pulse({ duration: '3s' })
+  .toStyle()
+```
+
+---
+
+## rotate
+
+Spins the element a full turn around its center. It rotates the whole element and its content, so it works best on a square or round element.
+
+### Defaults
+
+```ts
+{
+  duration: '12s',
+  easing: 'linear',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Color wheel
+
+A conic gradient on a round element becomes a spinning color wheel.
+
+<XeerpeDemo example="rotate-conic" width="180px" height="180px" borderRadius="50%" />
+
+```ts
+new Builder()
+  .conicGradient({
+    colors: [
+      '#f472b6',
+      '#a78bfa',
+      '#38bdf8',
+      '#34d399',
+      '#f472b6',
+    ],
+  })
+  .rotate({ duration: '8s' })
+  .toStyle()
+```
+
+---
+
+## breathe
+
+Zooms the background in and out, from 100% to 200% of its size and back. At its largest the background is magnified, so the details of the gradient spread out.
+
+### Defaults
+
+```ts
+{
+  duration: '12s',
+  easing: 'ease-in-out',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Breathing mesh
+
+The blobs of a mesh gradient swell and shrink.
+
+<XeerpeDemo example="breathe-mesh" />
+
+```ts
+new Builder()
+  .meshGradient({
+    background: '#070b1f',
+    layers: [
+      {
+        from: 'rgba(124,58,237,0.85)',
+        to: 'transparent',
+        position: '12% 18%',
+        colorToPosition: '60%',
+      },
+      {
+        from: 'rgba(34,211,238,0.65)',
+        to: 'transparent',
+        position: '88% 20%',
+        colorToPosition: '55%',
+      },
+      {
+        from: 'rgba(244,114,182,0.65)',
+        to: 'transparent',
+        position: '70% 100%',
+        colorToPosition: '60%',
+      },
+    ],
+  })
+  .breathe({ duration: '8s' })
+  .toStyle()
+```
+
+---
+
+## aurora
+
+A gentler version of `breathe`: the background grows from 100% to 120% of its size and back. It adds slow movement without changing the look of the gradient.
+
+### Defaults
+
+```ts
+{
+  duration: '12s',
+  easing: 'ease-in-out',
+  direction: 'alternate',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Northern lights
+
+A subtle drift on a mesh gradient, enough to feel alive without drawing attention.
+
+<XeerpeDemo example="aurora-mesh" />
+
+```ts
+new Builder()
+  .meshGradient({
+    background: '#04121c',
+    layers: [
+      {
+        from: 'rgba(16,185,129,0.8)',
+        to: 'transparent',
+        position: '15% 25%',
+        colorToPosition: '60%',
+      },
+      {
+        from: 'rgba(56,189,248,0.65)',
+        to: 'transparent',
+        position: '85% 30%',
+        colorToPosition: '55%',
+      },
+      {
+        from: 'rgba(168,85,247,0.6)',
+        to: 'transparent',
+        position: '55% 100%',
+        colorToPosition: '60%',
+      },
+    ],
+  })
+  .aurora({ duration: '8s' })
+  .toStyle()
+```
+
+---
+
+## shimmer
+
+Slides the background horizontally, from right to left, which produces a moving highlight. It is the classic loading skeleton effect.
+
+The background must be wider than the element, otherwise there is nothing to slide. Set `backgroundSize` on the gradient to something like `'200% 100%'`. Because the background repeats, start and end the gradient with the same color so the loop has no visible seam, and keep the gradient horizontal (`90deg`).
+
+### Defaults
+
+```ts
+{
+  duration: '3s',
+  easing: 'linear',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Loading skeleton
+
+A lighter band that travels across a dark surface.
+
+<XeerpeDemo example="shimmer-skeleton" />
+
+```ts
+new Builder()
+  .linearGradient({
+    colors: ['#1e293b', '#475569', '#1e293b'],
+    angle: '90deg',
+    backgroundSize: '200% 100%',
+  })
+  .shimmer({ duration: '2.5s' })
+  .toStyle()
+```
+
+---
+
+## liquid
+
+Combines three movements: the background slides from one side to the other, zooms from 100% to 200%, and its hue shifts by 30 degrees. The result is a gradient that flows and changes color slowly.
+
+It animates the `filter` of the element, so it replaces any blur applied with `blur()` and `type: 'blur'` while it runs.
+
+### Defaults
+
+```ts
+{
+  duration: '8s',
+  easing: 'ease-in-out',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Flowing gradient
+
+A four-color gradient that drifts and changes hue.
+
+<XeerpeDemo example="liquid-flow" />
+
+```ts
+new Builder()
+  .linearGradient({
+    colors: [
+      '#06b6d4',
+      '#6366f1',
+      '#d946ef',
+      '#f97316',
+    ],
+    angle: '135deg',
+  })
+  .liquid()
+  .toStyle()
+```
+
+---
+
+## plasma
+
+Cycles the hue of the whole element through a full turn, so every color in it changes continuously. It affects the content of the element too.
+
+It animates the `filter` of the element, so it replaces any blur applied with `blur()` and `type: 'blur'` while it runs.
+
+### Defaults
+
+```ts
+{
+  duration: '6s',
+  easing: 'linear',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Hue cycle
+
+A mesh gradient whose colors travel around the color wheel.
+
+<XeerpeDemo example="plasma-hue" />
+
+```ts
+new Builder()
+  .meshGradient({
+    background: '#070b1f',
+    layers: [
+      {
+        from: 'rgba(124,58,237,0.85)',
+        to: 'transparent',
+        position: '12% 18%',
+        colorToPosition: '60%',
+      },
+      {
+        from: 'rgba(34,211,238,0.65)',
+        to: 'transparent',
+        position: '88% 20%',
+        colorToPosition: '55%',
+      },
+      {
+        from: 'rgba(244,114,182,0.65)',
+        to: 'transparent',
+        position: '70% 100%',
+        colorToPosition: '60%',
+      },
+    ],
+  })
+  .plasma({ duration: '8s' })
+  .toStyle()
+```
+
+---
+
+## float
+
+Moves the whole element up by 10 pixels and back down, like it is floating. It pairs well with `glow()`, because the light moves with the element.
+
+### Defaults
+
+```ts
+{
+  duration: '6s',
+  easing: 'ease-in-out',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Floating card
+
+A panel with a soft glow that rises and sinks.
+
+<XeerpeDemo example="float-card" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#1e293b',
+    to: '#0f172a',
+  })
+  .glow({
+    color: 'rgba(56,189,248,0.5)',
+    amount: '40px',
+    y: '20px',
+  })
+  .float()
+  .toStyle()
+```
+
+---
+
+## drift
+
+Moves the background from the top left to the bottom right and back. Like `shimmer`, it needs a background larger than the element: use `backgroundSize` with a value such as `'300% 300%'`, so the movement reveals different parts of the gradient.
+
+### Defaults
+
+```ts
+{
+  duration: '10s',
+  easing: 'ease-in-out',
+  iterationCount: 'infinite',
+}
+```
+
+### Examples
+
+#### Wandering gradient
+
+A multi-color gradient three times larger than its element, slowly sliding across it.
+
+<XeerpeDemo example="drift-gradient" />
+
+```ts
+new Builder()
+  .linearGradient({
+    colors: [
+      '#0ea5e9',
+      '#6366f1',
+      '#ec4899',
+      '#f59e0b',
+    ],
+    angle: '135deg',
+    backgroundSize: '300% 300%',
+  })
+  .drift()
+  .toStyle()
+```
+
+---
+
+## Combining animations
+
+You can add more than one animation to the same chain. They run at the same time, each with its own options.
+
+<XeerpeDemo example="combo-drift-plasma" />
+
+```ts
+new Builder()
+  .linearGradient({
+    colors: [
+      '#0ea5e9',
+      '#6366f1',
+      '#ec4899',
+      '#f59e0b',
+    ],
+    angle: '135deg',
+    backgroundSize: '300% 300%',
+  })
+  .drift({ duration: '12s' })
+  .plasma({ duration: '16s' })
+  .toStyle()
+```
+
+A few things to watch when you combine animations:
+
+Two animations that change the same property do not add up. The one added last wins. `float` and `rotate` both animate `transform`, so with `.float().rotate()` the element only rotates, and with `.rotate().float()` it only floats.
+
+`breathe`, `aurora` and `liquid` set a single `background-size` for every layer of the element. Avoid them in chains with patterns or other layers that have their own `backgroundSize`, because those layers would be resized too.
+
+`liquid` and `plasma` animate `filter`, which replaces any blur applied with `blur()` and `type: 'blur'` while they run.
+
+---
+
+## Reduced motion
+
+The animations do not check the user's motion preferences by themselves. To respect `prefers-reduced-motion`, add a rule like this to your stylesheet. It stops every xeerpe animation for the users who asked for less motion.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  [style*='xeerpe-'] {
+    animation: none !important;
+  }
+}
+```
+
+---
+
+## Types reference
+
+```ts
+type AnimationType =
+  | 'pulse'
+  | 'rotate'
+  | 'breathe'
+  | 'aurora'
+  | 'shimmer'
+  | 'liquid'
+  | 'plasma'
+  | 'float'
+  | 'drift'
+
+interface AnimationOptions {
+  duration?: string
+  easing?: string
+  direction?: 'normal' | 'reverse' | 'alternate' | 'alternate-reverse'
+  iterationCount?: number | 'infinite'
+}
+```
