@@ -1,5 +1,277 @@
-<div style={{ padding: '2rem', textAlign: 'center', border: '2px dashed currentColor', borderRadius: '1rem' }}>
-    <p style={{ fontSize: '2rem', margin: 0 }}>🚧</p>
-    <strong>Work in progress</strong>
-    <p>This page is under construction. Content will be available soon.</p>
-</div>
+Presets are ready-made backgrounds. You pick one by name and get a complete, good-looking style with a single line of code. This page documents the available presets, how to build on top of them and the color palette they use.
+
+## Overview
+
+A preset is created with the `Preset` class, which takes the name of the preset. Call `toStyle()` to get the style, exactly as you do with a `Builder`.
+
+```ts
+import { Preset } from 'xeerpe'
+
+const style = new Preset('sunrise').toStyle()
+```
+
+`Preset` extends `Builder`. It is a builder that already contains the layers of the preset, so everything you can do with a `Builder` you can also do with a preset.
+
+xeerpe ships two presets: `sunrise` and `northern-lights`.
+
+<Prop name="name" type="string" required>
+
+    The name of the preset, either `'sunrise'` or `'northern-lights'`. Names are case-sensitive.
+
+    TypeScript does not check the name, because the type is a plain `string`. An unknown name throws an error with the message `Preset "<name>" not found` as soon as the preset is created.
+
+</Prop>
+
+Presets take no other options. To change how a preset looks, see [Customizing a preset](#customizing-a-preset).
+
+---
+
+## sunrise
+
+A soft vertical gradient from warm peach at the top to pale sky blue at the bottom. It is a light background, so it pairs well with dark text.
+
+<XeerpeDemo example="preset-sunrise" />
+
+```ts
+new Preset('sunrise')
+.toStyle()
+```
+
+### How sunrise is built
+
+`sunrise` is a single linear gradient with four color stops.
+
+```ts
+new Builder()
+.linearGradient({
+colors: [
+    { color: '#FFE5D9', position: '0%' },
+    { color: '#FFCDB6', position: '35%' },
+    { color: '#FFB7A3', position: '55%' },
+    { color: '#BFD8F2', position: '100%' },
+],
+    direction: 'to bottom',
+})
+.toStyle()
+```
+
+---
+
+## northern-lights
+
+A dark navy base covered by six overlapping blobs of green, teal and violet, like an aurora in the night sky. It includes a slow `aurora` animation of five seconds that gently zooms the background in and out.
+
+The animation needs the xeerpe stylesheet. Without it the preset still renders, but it does not move. See the [Setup](/guide/animations#setup) section of the Animations page.
+
+<XeerpeDemo example="preset-northern-lights" />
+
+```ts
+new Preset('northern-lights')
+.toStyle()
+```
+
+### How northern-lights is built
+
+`northern-lights` is a mesh gradient built with colors from the [palette](#colors), plus an `aurora` animation.
+
+```ts
+new Builder()
+.meshGradient({
+background: '#050914',
+    layers: [
+    {
+        position: '15% 15%',
+        from: colors.malachite,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '55%',
+    },
+    {
+        position: '40% 8%',
+        from: colors.celadon,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '55%',
+    },
+    {
+        position: '68% 18%',
+        from: colors.verdigris,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '50%',
+    },
+    {
+        position: '85% 30%',
+        from: colors.malachite,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '50%',
+    },
+    {
+        position: '45% 50%',
+        from: colors.amethyst,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '45%',
+    },
+    {
+        position: '20% 65%',
+        from: colors.wisteria,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '40%',
+    },
+],
+})
+.aurora({ duration: '5s' })
+.toStyle()
+```
+
+---
+
+## Extending a preset
+
+Because a preset is a builder, you can keep chaining after it. Effects, patterns, filters and animations all work, and they are drawn on top of the preset.
+
+### Examples
+
+#### Film look
+
+Grain and a warm vignette give the soft sunrise a photographic feel.
+
+<XeerpeDemo example="preset-sunrise-film" />
+
+```ts
+new Preset('sunrise')
+.grain({ intensity: 1.5 })
+.vignette({
+color: '#7c2d12',
+    intensity: 0.2,
+    spread: 0.5,
+})
+.toStyle()
+```
+
+#### Textured night
+
+A light noise layer and a vignette add depth to the northern lights.
+
+<XeerpeDemo example="preset-lights-textured" />
+
+```ts
+new Preset('northern-lights')
+.noise({ opacity: 0.15 })
+.vignette({
+intensity: 0.5,
+    spread: 0.4,
+})
+.toStyle()
+```
+
+A few things to know when you extend a preset:
+
+Effects and patterns are always drawn above gradients, so they work on any preset.
+
+A gradient that you add after a preset is drawn below the gradient of the preset, because the layers added first sit on top. On `sunrise`, which is fully opaque, a second gradient would be hidden.
+
+An animation you add runs together with the animation of the preset. For example, `new Preset('northern-lights').float()` runs both `aurora` and `float`.
+
+---
+
+## Customizing a preset
+
+A preset cannot be configured: its colors, positions and timings are fixed, and you cannot register your own presets. To change one, rebuild it with a `Builder` and edit the values. The snippets above that show how each preset is built are the starting point.
+
+### Examples
+
+#### Warm variation
+
+The `northern-lights` structure with a warm palette, a different base color and a slower animation.
+
+<XeerpeDemo example="preset-custom" />
+
+```ts
+new Builder()
+.meshGradient({
+background: '#140a1f',
+    layers: [
+    {
+        position: '15% 20%',
+        from: colors.coral,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '55%',
+    },
+    {
+        position: '45% 8%',
+        from: colors.amber,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '50%',
+    },
+    {
+        position: '82% 22%',
+        from: colors.mulberry,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '55%',
+    },
+    {
+        position: '25% 72%',
+        from: colors.sakura,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '45%',
+    },
+    {
+        position: '72% 78%',
+        from: colors.byzantium,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '50%',
+    },
+],
+})
+.aurora({ duration: '12s' })
+.toStyle()
+```
+
+To reuse your own recipe in several places, wrap the chain in a function that returns the style.
+
+---
+
+## Colors
+
+xeerpe also exports `colors`, the palette used by its presets: 100 named colors, each one a six-digit hex string. You can use them anywhere a color is accepted.
+
+```ts
+import { Builder, colors } from 'xeerpe'
+
+const style = new Builder()
+.linearGradient({
+from: colors.inkwell,
+    to: colors.obsidian,
+})
+.toStyle()
+```
+
+<ColorPalette />
+
+---
+
+## Types reference
+
+```ts
+class Preset extends Builder {
+constructor(name: string)
+}
+
+type PresetConfig = (builder: Builder) => void
+
+const colors: {
+inkwell: string
+obsidian: string
+void: string
+// ...and 97 more named colors
+}
+```

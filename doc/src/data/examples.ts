@@ -1,4 +1,4 @@
-import {Builder} from 'xeerpe'
+import {Builder, Preset, colors} from 'xeerpe'
 
 export const demos = {
 
@@ -604,6 +604,73 @@ export const demos = {
         })
         .drift({duration: '12s'})
         .plasma({duration: '16s'})
+        .toStyle(),
+
+    'preset-sunrise': () => new Preset('sunrise')
+        .toStyle(),
+
+    'preset-northern-lights': () => new Preset('northern-lights')
+        .toStyle(),
+
+    'preset-sunrise-film': () => new Preset('sunrise')
+        .grain({intensity: 1.5})
+        .vignette({
+            color: '#7c2d12',
+            intensity: 0.2,
+            spread: 0.5,
+        })
+        .toStyle(),
+
+    'preset-lights-textured': () => new Preset('northern-lights')
+        .noise({opacity: 0.15})
+        .vignette({
+            intensity: 0.5,
+            spread: 0.4,
+        })
+        .toStyle(),
+
+    'preset-custom': () => new Builder()
+        .meshGradient({
+            background: '#140a1f',
+            layers: [
+                {
+                    position: '15% 20%',
+                    from: colors.coral,
+                    to: 'transparent',
+                    colorFromPosition: '0px',
+                    colorToPosition: '55%',
+                },
+                {
+                    position: '45% 8%',
+                    from: colors.amber,
+                    to: 'transparent',
+                    colorFromPosition: '0px',
+                    colorToPosition: '50%',
+                },
+                {
+                    position: '82% 22%',
+                    from: colors.mulberry,
+                    to: 'transparent',
+                    colorFromPosition: '0px',
+                    colorToPosition: '55%',
+                },
+                {
+                    position: '25% 72%',
+                    from: colors.sakura,
+                    to: 'transparent',
+                    colorFromPosition: '0px',
+                    colorToPosition: '45%',
+                },
+                {
+                    position: '72% 78%',
+                    from: colors.byzantium,
+                    to: 'transparent',
+                    colorFromPosition: '0px',
+                    colorToPosition: '50%',
+                },
+            ],
+        })
+        .aurora({duration: '12s'})
         .toStyle(),
 
 } satisfies Record<string, () => React.CSSProperties>

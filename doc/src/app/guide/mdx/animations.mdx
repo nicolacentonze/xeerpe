@@ -90,7 +90,7 @@ new Builder()
   .pulse({
     duration: '2s',
     easing: 'ease-in',
-    direction: 'alternate-reverse',
+    direction: 'reverse',
     iterationCount: 3,
   })
   .toStyle()
@@ -99,7 +99,7 @@ new Builder()
 The code above produces this `animation` value:
 
 ```css
-animation: xeerpe-pulse 2s ease-in alternate-reverse 3
+animation: xeerpe-pulse 2s ease-in reverse 3
 ```
 
 ---
@@ -562,7 +562,11 @@ type AnimationType =
 interface AnimationOptions {
   duration?: string
   easing?: string
-  direction?: 'normal' | 'reverse' | 'alternate' | 'alternate-reverse'
+  direction?:
+    | 'normal'
+    | 'reverse'
+    | 'alternate'
+    | 'alternate-reverse'
   iterationCount?: number | 'infinite'
 }
 ```

@@ -458,9 +458,9 @@ position?: LinearGradientPosition
 </Prop>
 
 ```ts
-{ color: '#FF6B6B', position: '40%' }
-{ color: '#FF6B6B', position: '12rem' }
-{ color: '#FF6B6B', position: 'calc(50% - 2rem)' }
+{ color: 'red', position: '40%' }
+{ color: 'red', position: '12rem' }
+{ color: 'red', position: 'calc(50% - 2rem)' }
 ```
 
 ---
@@ -498,7 +498,11 @@ from: '#0b1020',
 ## Types reference
 
 ```ts
-type GradientType = 'linear' | 'radial' | 'conic' | 'mesh'
+type GradientType =
+| 'linear'
+| 'radial'
+| 'conic'
+| 'mesh'
 
 interface GradientBase {
 from?: string
@@ -506,14 +510,16 @@ to?: string
 backgroundSize?: string
 }
 
-interface LinearGradientOptions extends GradientBase {
+interface LinearGradientOptions
+extends GradientBase {
 colors?: (string | GradientColorStop)[]
 angle?: LinearGradientAngle
 direction?: LinearGradientDirection
 size?: string
 }
 
-interface RadialGradientOptions extends GradientBase {
+interface RadialGradientOptions
+extends GradientBase {
 shape?: RadialGradientShape
 position?: string
 size?: RadialGradientSize
@@ -521,13 +527,15 @@ colorFromPosition?: string
 colorToPosition?: string
 }
 
-interface ConicGradientOptions extends GradientBase {
+interface ConicGradientOptions
+extends GradientBase {
 colors?: (string | GradientColorStop)[]
 angle?: string
 position?: string
 }
 
-interface MeshGradientOptions extends GradientBase {
+interface MeshGradientOptions
+extends GradientBase {
 background: string
 layers: RadialGradientOptions[]
 }
