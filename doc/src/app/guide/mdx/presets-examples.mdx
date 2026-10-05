@@ -1,5 +1,101 @@
-<div className="wip">
-    <p>🚧</p>
-    <strong>Work in progress</strong>
-    <p>This page is under construction. Content will be available soon.</p>
-</div>
+More than 200 ready-made backgrounds, from polished gold to a night in the jungle. Every preset is one line of code: pick one, click it to copy the snippet, and paste it into your project.
+
+```ts
+import { Preset } from 'xeerpe'
+
+const style = new Preset('gold').toStyle()
+```
+
+A preset is a regular `Builder`, so you can keep chaining effects, patterns, filters and animations after it. See [Extending a preset](/guide/presets#extending-a-preset).
+
+> **Note:** the presets under [Motion](#motion), and `northern-lights`, are animated. They need the xeerpe stylesheet, otherwise they render without moving. See [Add the stylesheet](/guide/installation#add-the-stylesheet).
+
+Every name is also available in code, so you can build your own picker:
+
+```ts
+import { presetCategories, presetNames } from 'xeerpe'
+
+presetCategories.metals // ['gold', 'antique-gold', 'rose-gold', ...]
+presetNames.length      // every preset, in every category
+```
+
+---
+
+## Metals
+
+Polished, brushed and liquid metals. Multi-stop gradients with bright bands give each one its reflections, and a touch of grain keeps them from looking flat.
+
+<PresetGallery category="metals" />
+
+## Gems
+
+Deep, saturated stones lit from the top left, with a soft reflection across the surface. Opal, pearl and moonstone stay light and milky.
+
+<PresetGallery category="gems" />
+
+## Food
+
+Chocolate, coffee, fruit and drinks. Rich browns get a glossy sheen, fruit stays bright and juicy.
+
+<PresetGallery category="food" />
+
+## Nature
+
+Forests, deserts, oceans and flowers. Dark, dense greens for the jungle, warm sand for the dunes, clear water for the lagoon.
+
+<PresetGallery category="nature" />
+
+## Sky
+
+From dawn to midnight. Vertical gradients follow the light of the day, and some skies come with a field of stars.
+
+<PresetGallery category="sky" />
+
+## Space
+
+Galaxies, nebulae and planets. Black holes and eclipses use crisp rings of light, nebulae use soft clouds of color.
+
+<PresetGallery category="space" />
+
+## Neon
+
+Glowing colors on dark bases. Synthwave suns, laser beams and grids that look straight out of an arcade.
+
+<PresetGallery category="neon" />
+
+## Pastel
+
+Light, airy color fields. They work well behind dark text, on cards and in empty states.
+
+<PresetGallery category="pastel" />
+
+## Neutral
+
+Paper, stone, marble and ink. Quiet backgrounds with a subtle texture, for interfaces that should not shout.
+
+<PresetGallery category="neutral" />
+
+## Luxury
+
+Velvet, silk and satin, deep reds and royal blues, and an Art Deco sunburst in black and gold.
+
+<PresetGallery category="luxury" />
+
+## Textures
+
+Backgrounds built around a pattern or a material: blueprints, graph paper, chalkboards, denim and cork.
+
+<PresetGallery category="textures" />
+
+## Moods
+
+Seasons and feelings, from a calm, misty morning to a burst of euphoria.
+
+<PresetGallery category="moods" />
+
+## Motion
+
+Animated presets. Lights that breathe, gradients that drift, metals that shimmer. They move the background only, never the content of the element.
+
+<PresetGallery category="motion" />
+

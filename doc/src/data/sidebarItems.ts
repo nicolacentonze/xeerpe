@@ -44,8 +44,8 @@ export const sidebarElements: SidebarGroup[] = [
             {
                 title: 'Patterns',
                 slug: 'patterns',
-                description: 'Repeat dots and grid patterns over your CSS backgrounds with xeerpe. ' +
-                    'Pattern options, spacing, stroke width and layering.',
+                description: 'Add dots, grids, star fields and sunburst rays over your CSS backgrounds ' +
+                    'with xeerpe. Pattern options, examples and layering.',
             },
             {
                 title: 'Animations',
@@ -56,8 +56,8 @@ export const sidebarElements: SidebarGroup[] = [
             {
                 title: 'Presets',
                 slug: 'presets',
-                description: 'Ready-made xeerpe backgrounds in one line: sunrise and northern-lights. ' +
-                    'Extend or rebuild a preset and browse the 100-color palette.',
+                description: 'Ready-made xeerpe backgrounds in one line of code. How presets work, ' +
+                    'how to extend or rebuild one, and the 100-color palette.',
             },
         ],
     },
@@ -65,23 +65,25 @@ export const sidebarElements: SidebarGroup[] = [
         title: 'Examples',
         slug: 'examples',
         items: [
-            {
-                title: 'Simple',
-                slug: 'simple-examples',
-                description: 'WIP',
-                draft: true,
-            },
-            {
-                title: 'Elaborate',
-                slug: 'elaborate-examples',
-                description: 'WIP',
-                draft: true,
-            },
+            // {
+            //     title: 'Simple',
+            //     slug: 'simple-examples',
+            //     description: 'Short, copy-ready xeerpe recipes: single gradients with a pattern, ' +
+            //         'an effect or an animation on top.',
+            //     draft: true,
+            // },
+            // {
+            //     title: 'Elaborate',
+            //     slug: 'elaborate-examples',
+            //     description: 'Advanced xeerpe backgrounds that combine gradients, patterns, effects ' +
+            //         'and animations in a single chain.',
+            //     draft: true,
+            // },
             {
                 title: 'Presets',
                 slug: 'presets-examples',
-                description: 'WIP',
-                draft: true,
+                description: 'Browse more than 200 ready-made xeerpe backgrounds, from gold and chocolate ' +
+                    'to jungle and galaxy. Click a preset to copy its code.',
             },
         ],
     },

@@ -7,7 +7,7 @@ export const generatePulseAnimation = (options: AnimationOptions): string => {
 
 export const generateRotateAnimation = (options: AnimationOptions): string => {
     const { duration = '12s', easing = 'linear', iterationCount = 'infinite' } = options
-    return `xeerpe-rotate ${duration} ${easing} ${iterationCount}; transform-origin: center`
+    return `xeerpe-rotate ${duration} ${easing} ${iterationCount} transform-origin: center`
 }
 
 export const generateBreatheAnimation = (options: AnimationOptions): string => {

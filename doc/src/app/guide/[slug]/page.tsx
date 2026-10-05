@@ -16,6 +16,7 @@ import {TocItem} from "@/src/models/tocItem.ts";
 import Table from "@cmp/table/table.tsx";
 import Prop from "@cmp/prop/prop.tsx";
 import ColorPalette from "@cmp/colorPalette/colorPalette.tsx";
+import PresetGallery from "@cmp/presetGallery/presetGallery.tsx";
 
 export const dynamicParams = false
 const mdxComponents = {XeerpeDemo, pre: CodeBlock}
@@ -72,6 +73,7 @@ const GuidePage = async ({params}: {
             ...mdxComponents,
             table: Table,
             ColorPalette,
+            PresetGallery,
             Prop
         },
         options: {

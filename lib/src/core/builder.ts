@@ -7,7 +7,7 @@ import {
     NoiseOptions,
     VignetteOptions,
     GrainOptions, BlurOptions, FilterType, FilterOptions, GlowOptions, PatternOptions, PatternType, DotsOptions,
-    GridOptions, AnimationOptions, AnimationType
+    GridOptions, StarsOptions, RaysOptions, AnimationOptions, AnimationType
 } from "../models/index.ts";
 import {
     buildGradientLayer,
@@ -101,6 +101,14 @@ export class Builder {
 
     grid(options: GridOptions = {}): this {
         return this.pattern('grid', options)
+    }
+
+    stars(options: StarsOptions = {}): this {
+        return this.pattern('stars', options)
+    }
+
+    rays(options: RaysOptions = {}): this {
+        return this.pattern('rays', options)
     }
 
     pulse(options: AnimationOptions = {}): this {

@@ -12,16 +12,17 @@ const style = new Preset('sunrise').toStyle()
 
 `Preset` extends `Builder`: it is a builder that already contains the layers of the preset. Everything you can do with a `Builder`, you can also do with a preset.
 
-xeerpe ships two presets: `sunrise` and `northern-lights`.
+xeerpe ships more than 200 presets, grouped in categories such as metals, gems, food, nature and space. Browse them all in [Preset examples](/guide/presets-examples). This page uses `sunrise` and `northern-lights` to explain how presets work.
 
 <Prop name="name" type="string" required>
 
-    The name of the preset, either `'sunrise'` or `'northern-lights'`. Names are case-sensitive.
+    The name of the preset, such as `'gold'`, `'jungle'` or `'northern-lights'`. Names are kebab-case and case-sensitive. The full list is exported as `presetNames`.
 
     TypeScript does not check the name, because the type is a plain `string`. An unknown name throws an error with the message `Preset "<name>" not found` as soon as the preset is created.
 
 </Prop>
 
+Presets take no other options. To change how a preset looks, see [Customizing a preset](#customizing-a-preset).
 
 ---
 
@@ -175,6 +176,70 @@ new Preset('northern-lights')
 
 ---
 
+## Customizing a preset
+
+A preset cannot be configured: its colors, positions and timings are fixed, and you cannot register your own presets. To change one, rebuild it with a `Builder` and edit the values. The *How it is built* snippets above are the starting point.
+
+### Examples
+
+#### Warm variation
+
+The `northern-lights` structure with a warm palette, a different base color and a slower animation.
+
+<XeerpeDemo example="preset-custom" />
+
+```ts
+import { Builder, colors } from 'xeerpe'
+
+new Builder()
+  .meshGradient({
+    background: '#140a1f',
+    layers: [
+      {
+        position: '15% 20%',
+        from: colors.coral,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '55%',
+      },
+      {
+        position: '45% 8%',
+        from: colors.amber,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '50%',
+      },
+      {
+        position: '82% 22%',
+        from: colors.mulberry,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '55%',
+      },
+      {
+        position: '25% 72%',
+        from: colors.sakura,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '45%',
+      },
+      {
+        position: '72% 78%',
+        from: colors.byzantium,
+        to: 'transparent',
+        colorFromPosition: '0px',
+        colorToPosition: '50%',
+      },
+    ],
+  })
+  .aurora({ duration: '12s' })
+  .toStyle()
+```
+
+To reuse your own recipe in several places, wrap the chain in a function that returns the style.
+
+---
+
 ## Colors
 
 xeerpe also exports `colors`, the palette used by its presets: 100 named colors, each one a six-digit hex string. Use them anywhere a color is accepted.
@@ -203,4 +268,21 @@ class Preset extends Builder {
 
 type PresetConfig = (builder: Builder) => void
 
+const presetCategories: {
+  classic: string[]
+  metals: string[]
+  gems: string[]
+  // ...and 11 more categories
+}
+
+type PresetCategory = keyof typeof presetCategories
+
+const presetNames: string[]
+
+const colors: {
+  inkwell: string
+  obsidian: string
+  void: string
+  // ...and 97 more named colors
+}
 ```

@@ -1,31 +1,31 @@
 import {PresetConfig} from "../models/index.ts";
-import {colors} from "./colors.ts";
+import {metalPresets} from "./library/metals.ts";
+import {gemPresets} from "./library/gems.ts";
+import {foodPresets} from "./library/food.ts";
+import {naturePresets} from "./library/nature.ts";
+import {skyPresets} from "./library/sky.ts";
+import {spacePresets} from "./library/space.ts";
+import {neonPresets} from "./library/neon.ts";
+import {pastelPresets} from "./library/pastel.ts";
+import {neutralPresets} from "./library/neutral.ts";
+import {luxuryPresets} from "./library/luxury.ts";
+import {texturePresets} from "./library/textures.ts";
+import {moodPresets} from "./library/moods.ts";
+import {motionPresets} from "./library/motion.ts";
+
 
 export const xeerpePresets: Record<string, PresetConfig> = {
-    'sunrise': (builder) => {
-        builder
-            .linearGradient({
-                colors: [
-                    { color: '#FFE5D9', position: '0%' },
-                    { color: '#FFCDB6', position: '35%' },
-                    { color: '#FFB7A3', position: '55%' },
-                    { color: '#BFD8F2', position: '100%' }
-                ],
-                direction: 'to bottom'
-            });
-    },
-    'northern-lights': (builder) => {
-        const meshLayers = [
-            { position: '15% 15%', from: colors.malachite, to: 'transparent', colorFromPosition: '0px', colorToPosition: '55%' },
-            { position: '40% 8%', from: colors.celadon, to: 'transparent', colorFromPosition: '0px', colorToPosition: '55%' },
-            { position: '68% 18%', from: colors.verdigris, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-            { position: '85% 30%', from: colors.malachite, to: 'transparent', colorFromPosition: '0px', colorToPosition: '50%' },
-            { position: '45% 50%', from: colors.amethyst, to: 'transparent', colorFromPosition: '0px', colorToPosition: '45%' },
-            { position: '20% 65%', from: colors.wisteria, to: 'transparent', colorFromPosition: '0px', colorToPosition: '40%' },
-        ];
-
-        builder
-            .meshGradient({ background: '#050914', layers: meshLayers })
-            .aurora({ duration: '5s' });
-    }
+    ...metalPresets,
+    ...gemPresets,
+    ...foodPresets,
+    ...naturePresets,
+    ...skyPresets,
+    ...spacePresets,
+    ...neonPresets,
+    ...pastelPresets,
+    ...neutralPresets,
+    ...luxuryPresets,
+    ...texturePresets,
+    ...moodPresets,
+    ...motionPresets,
 };

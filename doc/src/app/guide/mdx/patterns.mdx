@@ -1,8 +1,8 @@
-Patterns repeat a small tile across the background, such as dots or grid lines. This page documents every pattern, its options and how patterns stack with other layers.
+Patterns draw a repeated motif over the background, such as dots, grid lines, stars or rays. This page documents every pattern, its options and how patterns stack with other layers.
 
 ## Overview
 
-xeerpe ships two patterns: `dots` and `grid`. Both are drawn as lightweight SVG tiles, and every option is optional.
+xeerpe ships four patterns: `dots`, `grid`, `stars` and `rays`. The first three are drawn as lightweight SVG tiles, while `rays` is a repeating conic gradient that radiates from a point. Every option is optional.
 
 ```ts
 import { Builder } from 'xeerpe'
@@ -29,11 +29,11 @@ Lengths such as `size`, `spacing` and `strokeWidth` must be a number followed by
 
 ## Shared options
 
-These options work the same way in both patterns.
+These options work the same way in every pattern.
 
 <Prop name="color" type="string" defaultValue="'#000000'">
 
-    The color of the dots or lines. The pattern `opacity` is applied to hex, `rgb()` and `hsl()` colors. Any other format, such as a named color or `rgba()`, is used as it is and ignores `opacity`. For 8-digit hex colors, the alpha channel of the color wins over `opacity`.
+    The color of the dots, lines, stars or rays. The pattern `opacity` is applied to hex, `rgb()` and `hsl()` colors. Any other format, such as a named color or `rgba()`, is used as it is and ignores `opacity`. For 8-digit hex colors, the alpha channel of the color wins over `opacity`.
 
 </Prop>
 
@@ -232,6 +232,177 @@ new Builder()
 
 ---
 
+## stars
+
+A field of small stars scattered across a square tile. The layout is pseudo-random but deterministic: the same `seed` always draws the same sky, so the background never changes between renders.
+
+### Options
+
+<Prop name="color" type="string" defaultValue="'#ffffff'">
+
+    The color of the stars. Unlike the other patterns, the default is white.
+
+</Prop>
+
+<Prop name="size" type="string" defaultValue="'200px'">
+
+    The size of the repeating tile. Larger tiles make the repetition harder to notice.
+
+</Prop>
+
+<Prop name="count" type="number" defaultValue="24">
+
+    How many stars are drawn in each tile.
+
+</Prop>
+
+<Prop name="strokeWidth" type="string" defaultValue="'1.4px'">
+
+    The radius of the largest star. Each star gets a random radius between `0.4` and this value, and a random brightness, so the field has depth.
+
+</Prop>
+
+<Prop name="seed" type="number" defaultValue="1">
+
+    The starting point of the random layout. Change it to get a different arrangement with the same options.
+
+</Prop>
+
+<Prop name="opacity" type="number" defaultValue="0.9">
+
+    Opacity of the stars, from `0` to `1`. See `color` for the color formats it applies to.
+
+</Prop>
+
+### Examples
+
+#### Night sky
+
+With the defaults, `stars()` adds a white star field. It works best over a dark gradient.
+
+<XeerpeDemo example="stars-basic" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#1b2559',
+    to: '#050816',
+    position: '30% 20%',
+    colorToPosition: '90%',
+  })
+  .stars()
+  .toStyle()
+```
+
+#### Layered stars
+
+Two layers with different tile sizes and seeds hide the repetition of the tile. Here many small stars sit under a few large, warm ones.
+
+<XeerpeDemo example="stars-layered" />
+
+```ts
+new Builder()
+  .linearGradient({
+    from: '#0b1026',
+    to: '#2a1f5c',
+    direction: 'to bottom',
+  })
+  .stars({
+    size: '160px',
+    count: 30,
+    strokeWidth: '1px',
+    seed: 4,
+  })
+  .stars({
+    color: '#ffe8b0',
+    size: '310px',
+    count: 8,
+    strokeWidth: '2px',
+    seed: 9,
+  })
+  .toStyle()
+```
+
+---
+
+## rays
+
+Alternating rays that radiate from a point, like a sunburst. The rays fill the whole element and do not repeat as a tile, so `size` and `strokeWidth` are ignored.
+
+### Options
+
+<Prop name="count" type="number" defaultValue="12">
+
+    How many rays are drawn around the full circle. Each ray is followed by a gap of the same width.
+
+</Prop>
+
+<Prop name="position" type="string" defaultValue="'center'">
+
+    The point the rays start from, using CSS position syntax. Values outside the element, such as `'50% 115%'`, put the center below the edge, so only a fan of rays is visible.
+
+</Prop>
+
+<Prop name="angle" type="string" defaultValue="'0deg'">
+
+    Rotates the rays, as a CSS angle such as `'15deg'` or `'0.25turn'`.
+
+</Prop>
+
+<Prop name="opacity" type="number" defaultValue="0.15">
+
+    Opacity of the rays, from `0` to `1`. The gaps use `background`, which is transparent by default.
+
+</Prop>
+
+### Examples
+
+#### Sunburst
+
+Translucent white rays over a warm radial gradient.
+
+<XeerpeDemo example="rays-basic" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#fde68a',
+    to: '#f97316',
+  })
+  .rays({
+    color: '#ffffff',
+    opacity: 0.25,
+  })
+  .toStyle()
+```
+
+#### Art Deco fan
+
+Move the center below the bottom edge to show a fan of rays, then darken the corners with a vignette.
+
+<XeerpeDemo example="rays-sunburst" />
+
+```ts
+new Builder()
+  .radialGradient({
+    from: '#e6c35c',
+    to: '#15130e',
+    position: '50% 115%',
+    colorToPosition: '70%',
+  })
+  .rays({
+    color: '#e6c35c',
+    count: 18,
+    position: '50% 115%',
+    angle: '270deg',
+    opacity: 0.12,
+  })
+  .vignette({ intensity: 0.5, spread: 0.5 })
+  .toStyle()
+```
+
+---
+
 ## Combining patterns
 
 A single chain can contain several patterns. Add the one that should be on top first. A large, faint grid mixed with small dots adds depth without competing for attention.
@@ -270,7 +441,7 @@ new Builder()
 ## Types reference
 
 ```ts
-type PatternType = 'dots' | 'grid'
+type PatternType = 'dots' | 'grid' | 'stars' | 'rays'
 
 interface PatterBaseOptions {
   color?: string
@@ -292,5 +463,20 @@ interface DotsOptions extends PatterBaseOptions {
 
 interface GridOptions extends PatterBaseOptions {}
 
-type PatternOptions = DotsOptions | GridOptions
+interface StarsOptions extends PatterBaseOptions {
+  count?: number
+  seed?: number
+}
+
+interface RaysOptions extends PatterBaseOptions {
+  count?: number
+  position?: string
+  angle?: string
+}
+
+type PatternOptions =
+  | DotsOptions
+  | GridOptions
+  | StarsOptions
+  | RaysOptions
 ```

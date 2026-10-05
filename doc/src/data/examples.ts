@@ -439,6 +439,65 @@ export const demos = {
         })
         .toStyle(),
 
+    'stars-basic': () => new Builder()
+        .radialGradient({
+            from: '#1b2559',
+            to: '#050816',
+            position: '30% 20%',
+            colorToPosition: '90%',
+        })
+        .stars()
+        .toStyle(),
+
+    'stars-layered': () => new Builder()
+        .linearGradient({
+            from: '#0b1026',
+            to: '#2a1f5c',
+            direction: 'to bottom',
+        })
+        .stars({
+            size: '160px',
+            count: 30,
+            strokeWidth: '1px',
+            seed: 4,
+        })
+        .stars({
+            color: '#ffe8b0',
+            size: '310px',
+            count: 8,
+            strokeWidth: '2px',
+            seed: 9,
+        })
+        .toStyle(),
+
+    'rays-basic': () => new Builder()
+        .radialGradient({
+            from: '#fde68a',
+            to: '#f97316',
+        })
+        .rays({
+            color: '#ffffff',
+            opacity: 0.25,
+        })
+        .toStyle(),
+
+    'rays-sunburst': () => new Builder()
+        .radialGradient({
+            from: '#e6c35c',
+            to: '#15130e',
+            position: '50% 115%',
+            colorToPosition: '70%',
+        })
+        .rays({
+            color: '#e6c35c',
+            count: 18,
+            position: '50% 115%',
+            angle: '270deg',
+            opacity: 0.12,
+        })
+        .vignette({ intensity: 0.5, spread: 0.5 })
+        .toStyle(),
+
     'pulse-glow': () => new Builder()
         .radialGradient({
             from: '#34d399',

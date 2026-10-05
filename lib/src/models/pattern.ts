@@ -1,4 +1,4 @@
-export type PatternType = 'dots' | 'grid'
+export type PatternType = 'dots' | 'grid' | 'stars' | 'rays'
 
 export interface PatterBaseOptions {
     color?: string,
@@ -20,4 +20,15 @@ export interface DotsOptions extends PatterBaseOptions {
 
 export interface GridOptions extends PatterBaseOptions {}
 
-export type PatternOptions  = DotsOptions | GridOptions
+export interface StarsOptions extends PatterBaseOptions {
+    count?: number
+    seed?: number
+}
+
+export interface RaysOptions extends PatterBaseOptions {
+    count?: number
+    position?: string
+    angle?: string
+}
+
+export type PatternOptions  = DotsOptions | GridOptions | StarsOptions | RaysOptions

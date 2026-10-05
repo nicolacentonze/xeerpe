@@ -1,0 +1,71 @@
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1.25rem 0 2rem;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.preview {
+    display: block;
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tile:hover .preview,
+.tile:focus-visible .preview {
+    transform: translateY(-3px);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), 0 12px 28px -12px rgba(0, 0, 0, 0.8);
+}
+
+.tile:focus-visible {
+    outline: none;
+}
+
+.tile:focus-visible .preview {
+    outline: 2px solid #5EB847;
+    outline-offset: 3px;
+}
+
+.caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0 0.15rem;
+}
+
+.name {
+    padding: 0;
+    background: none;
+    font-size: 0.82rem;
+    color: #e5e5e5;
+}
+
+.action {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.tile:hover .action,
+.tile:focus-visible .action {
+    opacity: 1;
+    color: #5EB847;
+}
