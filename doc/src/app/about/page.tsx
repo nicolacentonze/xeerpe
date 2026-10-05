@@ -43,7 +43,7 @@ const AboutPage = async () => {
         },
     })
 
-    return <article className={classes.about}>{content}</article>
+    return <article className={`${classes.about} mdx`}>{content}</article>
 }
 
 export default AboutPage

@@ -76,7 +76,9 @@ const GuidePage = async ({params}: {
         },
         options: {
 
-            parseFrontmatter: true, mdxOptions: {
+            parseFrontmatter: true,
+            blockJS: false,
+            mdxOptions: {
                 rehypePlugins: [
                     rehypeSlug,
                     [rehypePrettyCode, {theme: 'github-dark', keepBackground: true}],
@@ -92,7 +94,7 @@ const GuidePage = async ({params}: {
     return (
         <div className={classes.guideLayout}>
             <div className={classes.guideArticle}>
-                <article>
+                <article className="mdx">
                     <h1 id={page.slug}>{page.title}</h1>
                     {content}
                 </article>

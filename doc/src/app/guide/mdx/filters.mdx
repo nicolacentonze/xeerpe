@@ -16,7 +16,7 @@ const style = new Builder()
   .toStyle()
 ```
 
-A filter affects the whole element: its gradients, patterns and effects, and also its content. If you add several blurs to the same chain, they are combined.
+> **Note:** a filter affects the whole element: its gradients, patterns and effects, and also its content, text included. If you add several blurs to the same chain, they are combined.
 
 ---
 
@@ -98,7 +98,7 @@ new Builder()
 
 #### Backdrop blur
 
-`backdrop` is the default type, so you only need an `amount`. The blur applies to what is behind the element, so it needs something to show through. Give the element a translucent background and place it over a colorful one.
+`backdrop` is the default type, so you only need an `amount`. The blur applies to what is behind the element, so it needs something to show through: give the element a translucent background and place it over a colorful one.
 
 ```ts
 new Builder()

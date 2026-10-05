@@ -2,51 +2,23 @@
     max-width: 680px;
     margin: 0 auto;
     padding: 2rem;
-    line-height: 1.75;
-}
-
-.changelog :not(pre) > code {
-    padding: 0.15em 0.4em;
-    border-radius: 6px;
-    font-size: 0.9em;
-    background: rgba(127, 127, 127, 0.18);
-}
-
-.changelog pre {
-    margin: 1.5rem 0;
-    overflow-x: auto;
-}
-
-.changelog a {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.changelog ul {
-    margin: 0 0 1.25rem;
-    padding-left: 1.25rem;
-    list-style: disc;
-}
-
-.changelog em {
-    display: block;
-    margin-bottom: 1rem;
-    opacity: 0.7;
-}
-
-.changelog hr {
-    margin: 2.5rem 0;
-    border: 0;
-    border-top: 1px solid rgba(127, 127, 127, 0.3);
 }
 
 .changelog small {
-    display: block;
-    font-size: 0.8rem;
-    letter-spacing: 0.04em;
-    opacity: 0.7;
+    display: inline-block;
+    padding: 0.1rem 0.6rem;
+    border: 1px solid rgba(94, 184, 71, 0.4);
+    border-radius: 999px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: #5EB847;
 }
 
-.changelog small + h2 {
-    margin-top: 0.25rem;
+.changelog h3 {
+    margin: 1.5rem 0 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
 }

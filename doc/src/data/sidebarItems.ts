@@ -8,8 +8,8 @@ export const sidebarElements: SidebarGroup[] = [
             {
                 title: 'Installation',
                 slug: 'installation',
-                description: 'Install xeerpe with npm or yarn and import the animation ' +
-                    'stylesheet. Setup for CSS and SCSS projects.',
+                description: 'Install xeerpe with npm, yarn or pnpm and import the animation ' +
+                    'stylesheet. Setup for CSS, SCSS and Angular projects.',
             },
             {
                 title: 'Usage',
@@ -26,38 +26,38 @@ export const sidebarElements: SidebarGroup[] = [
             {
                 title: 'Gradients',
                 slug: 'gradients',
-                description: '',
-                draft: true,
+                description: 'Create linear, radial, conic and mesh CSS gradients with xeerpe. ' +
+                    'Every generator option, color stops and how to layer gradients.',
             },
             {
                 title: 'Filters',
                 slug: 'filters',
-                description: '',
-                draft: true,
+                description: 'Blur an element or its backdrop with the xeerpe blur filter. ' +
+                    'Options, frosted glass examples and type reference.',
             },
             {
                 title: 'Effects',
                 slug: 'effects',
-                description: '',
-                draft: true,
+                description: 'Add noise, film grain, vignette and glow to CSS backgrounds with xeerpe. ' +
+                    'Every effect option, examples and how effects stack.',
             },
             {
                 title: 'Patterns',
                 slug: 'patterns',
-                description: '',
-                draft: true,
+                description: 'Repeat dots and grid patterns over your CSS backgrounds with xeerpe. ' +
+                    'Pattern options, spacing, stroke width and layering.',
             },
             {
                 title: 'Animations',
                 slug: 'animations',
-                description: '',
-                draft: true,
+                description: 'Animate CSS backgrounds with nine keyframe animations, from pulse to drift. ' +
+                    'Setup, shared options, combinations and reduced motion.',
             },
             {
                 title: 'Presets',
                 slug: 'presets',
-                description: '',
-                draft: true,
+                description: 'Ready-made xeerpe backgrounds in one line: sunrise and northern-lights. ' +
+                    'Extend or rebuild a preset and browse the 100-color palette.',
             },
         ],
     },
@@ -68,19 +68,19 @@ export const sidebarElements: SidebarGroup[] = [
             {
                 title: 'Simple',
                 slug: 'simple-examples',
-                description: '',
+                description: 'WIP',
                 draft: true,
             },
             {
                 title: 'Elaborate',
                 slug: 'elaborate-examples',
-                description: '',
+                description: 'WIP',
                 draft: true,
             },
             {
                 title: 'Presets',
                 slug: 'presets-examples',
-                description: '',
+                description: 'WIP',
                 draft: true,
             },
         ],

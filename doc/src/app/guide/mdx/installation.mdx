@@ -1,28 +1,37 @@
+xeerpe is published on npm and has no runtime dependencies. Install it with your package manager, then add the stylesheet if you plan to use animations.
 
-## npm
+## Install the package
 
-```bash
+```bash title="npm"
 npm install xeerpe
 ```
 
-## Yarn
-
-```bash
+```bash title="Yarn"
 yarn add xeerpe
 ```
 
-## Styles
+```bash title="pnpm"
+pnpm add xeerpe
+```
 
-If you want to use the animation features in `xeerpe`, import the `animations.css` file into your project.
+## Add the stylesheet
 
-### CSS
+Gradients, patterns, effects and filters work without any extra setup. Animations are different: their keyframes live in `animations.css`, which you import once in your project.
 
-```css
+> **Note:** without the stylesheet the animation styles are still applied, but nothing moves and the browser reports no error. This also applies to presets that include an animation, such as `northern-lights`.
+
+```ts title="JavaScript or TypeScript entry file"
+import 'xeerpe/animations.css'
+```
+
+```css title="CSS"
 @import 'xeerpe/animations.css';
 ```
 
-### SCSS
-
-```scss
+```scss title="SCSS"
 @use 'xeerpe/animations.css';
 ```
+
+In Angular, add `node_modules/xeerpe/dist/animations.css` to the `styles` array of your project in `angular.json`.
+
+Next, see [Usage](/guide/usage) to build your first background.

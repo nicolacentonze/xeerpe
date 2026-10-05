@@ -1,5 +1,7 @@
 Animations bring your backgrounds to life with CSS keyframes. This page documents every animation, its options and how to combine them.
 
+> **Note:** animations need the xeerpe stylesheet. If you have not added it yet, see [Setup](#setup).
+
 ## Overview
 
 xeerpe ships nine animations: `pulse`, `rotate`, `breathe`, `aurora`, `shimmer`, `liquid`, `plasma`, `float` and `drift`. Each one is a `Builder` method, so you add it to the chain like any other layer.
@@ -18,7 +20,7 @@ const style = new Builder()
 
 An animation does not add a background layer. It adds one `animation` property to the style returned by `toStyle()`, which points to a keyframe animation defined in the xeerpe stylesheet.
 
-The same animation can also be added with the generic `animation()` method, which takes the animation name and its options. The options are required in this form, so pass an empty object to use the defaults.
+The same animation can also be added with the generic `animation()` method, which takes the animation name and its options. In this form the options are required, so pass an empty object to use the defaults.
 
 ```ts
 new Builder()
@@ -26,7 +28,7 @@ new Builder()
   .toStyle()
 ```
 
-Animations act on two different things:
+Animations act on one of two targets:
 
 - **The background:** `breathe`, `aurora`, `shimmer` and `drift` scale or move the background. `liquid` does both, and also shifts its hue.
 - **The whole element:** `pulse`, `rotate`, `float` and `plasma` affect the element and everything inside it, text included.
@@ -35,15 +37,15 @@ Animations act on two different things:
 
 ## Setup
 
-The keyframes live in a stylesheet that you need to load once. Without it the style is applied but nothing moves, and the browser reports no error.
+The keyframes live in a stylesheet that you load once, in the entry file of your app.
 
 ```ts
 import 'xeerpe/animations.css'
 ```
 
-Add the import to the entry file of your app. In Angular, add `node_modules/xeerpe/dist/animations.css` to the `styles` array of your project in `angular.json`.
+> **Note:** without the stylesheet the style is applied but nothing moves, and the browser reports no error. For CSS, SCSS and Angular setups, see [Add the stylesheet](/guide/installation#add-the-stylesheet).
 
-All keyframes are prefixed with `xeerpe-`, so they do not collide with your own animations.
+All keyframes are prefixed with `xeerpe-`, so they never collide with your own animations.
 
 ---
 
@@ -75,7 +77,7 @@ Every animation accepts the same four options. Each animation has its own defaul
 
 </Prop>
 
-The values are inserted into the CSS as they are, without validation. If a value is not valid CSS, for example a duration without a unit, the browser ignores the whole `animation` declaration and nothing moves.
+> **Note:** the values are inserted into the CSS as they are, without validation. If a value is not valid CSS, for example a duration without a unit, the browser ignores the whole `animation` declaration and nothing moves.
 
 ### Example
 
@@ -290,7 +292,11 @@ new Builder()
 
 Slides the background horizontally, from right to left, which produces a moving highlight. It is the classic loading skeleton effect.
 
-The background must be wider than the element, otherwise there is nothing to slide. Set `backgroundSize` on the gradient to something like `'200% 100%'`. Because the background repeats, start and end the gradient with the same color so the loop has no visible seam, and keep the gradient horizontal (`90deg`).
+For a clean loop, the gradient needs three things:
+
+- **A wider background:** set `backgroundSize` to something like `'200% 100%'`, otherwise there is nothing to slide.
+- **The same color at both ends**, because the background repeats and a different color would leave a visible seam.
+- **A horizontal direction** (`90deg`), so the band travels in the same direction as the animation.
 
 ### Defaults
 
@@ -327,7 +333,7 @@ new Builder()
 
 Combines three movements: the background slides from one side to the other, zooms from 100% to 200%, and its hue shifts by 30 degrees. The result is a gradient that flows and changes color slowly.
 
-It animates the `filter` of the element, so it replaces any blur applied with `blur()` and `type: 'blur'` while it runs.
+> **Note:** `liquid` animates the `filter` of the element, so it replaces any blur applied with `blur()` and `type: 'blur'` while it runs.
 
 ### Defaults
 
@@ -368,7 +374,7 @@ new Builder()
 
 Cycles the hue of the whole element through a full turn, so every color in it changes continuously. It affects the content of the element too.
 
-It animates the `filter` of the element, so it replaces any blur applied with `blur()` and `type: 'blur'` while it runs.
+> **Note:** `plasma` animates the `filter` of the element, so it replaces any blur applied with `blur()` and `type: 'blur'` while it runs.
 
 ### Defaults
 
@@ -521,19 +527,17 @@ new Builder()
   .toStyle()
 ```
 
-A few things to watch when you combine animations:
+### Good to know
 
-Two animations that change the same property do not add up. The one added last wins. `float` and `rotate` both animate `transform`, so with `.float().rotate()` the element only rotates, and with `.rotate().float()` it only floats.
-
-`breathe`, `aurora` and `liquid` set a single `background-size` for every layer of the element. Avoid them in chains with patterns or other layers that have their own `backgroundSize`, because those layers would be resized too.
-
-`liquid` and `plasma` animate `filter`, which replaces any blur applied with `blur()` and `type: 'blur'` while they run.
+- **Same property, last one wins.** Two animations that change the same property do not add up. `float` and `rotate` both animate `transform`, so with `.float().rotate()` the element only rotates, and with `.rotate().float()` it only floats.
+- **Background size is shared.** `breathe`, `aurora` and `liquid` set a single `background-size` for every layer of the element. Avoid them in chains with patterns or other layers that have their own `backgroundSize`, because those layers would be resized too.
+- **Filters are replaced.** `liquid` and `plasma` animate `filter`, which replaces any blur applied with `blur()` and `type: 'blur'` while they run.
 
 ---
 
 ## Reduced motion
 
-The animations do not check the user's motion preferences by themselves. To respect `prefers-reduced-motion`, add a rule like this to your stylesheet. It stops every xeerpe animation for the users who asked for less motion.
+The animations do not check the user's motion preferences on their own. To respect `prefers-reduced-motion`, add this rule to your stylesheet. It stops every xeerpe animation for the users who asked for less motion.
 
 ```css
 @media (prefers-reduced-motion: reduce) {

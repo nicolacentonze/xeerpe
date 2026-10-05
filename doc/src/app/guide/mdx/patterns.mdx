@@ -21,7 +21,9 @@ const style = new Builder()
 
 Patterns are drawn **above** gradients and **below** effects. When you add several patterns, the one you add first is drawn on top.
 
-Lengths such as `size`, `spacing` and `strokeWidth` must be a number followed by a unit, for example `'24px'` or `'2rem'`. A value that cannot be parsed throws an `Invalid CSS length` error. Use the same unit for all the lengths of a pattern, because they are measured against each other.
+Lengths such as `size`, `spacing` and `strokeWidth` must be a number followed by a unit, for example `'24px'` or `'2rem'`. Use the same unit for all the lengths of a pattern, because they are measured against each other.
+
+> **Note:** unlike colors, an invalid length is not replaced by a fallback. A value that cannot be parsed throws an `Invalid CSS length` error.
 
 ---
 
@@ -232,7 +234,7 @@ new Builder()
 
 ## Combining patterns
 
-A single chain can contain several patterns. Add the one that should be on top first. Mixing a large, faint grid with small dots adds depth without competing for attention.
+A single chain can contain several patterns. Add the one that should be on top first. A large, faint grid mixed with small dots adds depth without competing for attention.
 
 ### Examples
 

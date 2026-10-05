@@ -1,65 +1,75 @@
 # Changelog
 
-<small>0.0.17 to 0.0.19</small>
+Every notable change to xeerpe, grouped by release range. The newest releases come first.
+
+<small>0.0.17 – 0.0.19</small>
 
 ## Presets, validation and animations
 
-**Added**
-- Presets: ready-made backgrounds built on the named color palette
-- Animations: `liquid`, `plasma`, `float`, `drift`, `shimmer`
-- Validation for colors, angles, background sizes, CSS positions, directions, radial options and color stop positions
+### Added
+
+- **Presets**: ready-made backgrounds built on the named color palette
+- **Animations**: `liquid`, `plasma`, `float`, `drift` and `shimmer`
+- **Validation** for colors, angles, background sizes, CSS positions, directions, radial options and color stop positions
 - `transparent` as the default color, with shared `resolveColor` and color stop helpers
 
-**Fixed**
+### Fixed
+
 - Inconsistent color handling in patterns
 
 ---
 
-<small>0.0.13 to 0.0.16</small>
+<small>0.0.13 – 0.0.16</small>
 
 ## Animations and refinements
 
-**Added**
-- New `aurora` animation and a reworked `breathe`
-- Builder: multiple filters, backdrop filters and animations now combine in one chain
-- Cleaner `toTextStyle()` output, typed and limited to defined properties
+### Added
+
+- **Animations**: new `aurora` and a reworked `breathe`
+- **Builder**: multiple filters, backdrop filters and animations now combine in a single chain
+- Cleaner `toTextStyle()` output, typed and limited to the defined properties
 - Updated README
 
-**Fixed**
+### Fixed
+
 - Default values for options
-- Aurora animation glitches
+- Glitches in the `aurora` animation
 - Style output when no pattern or shadow layers were set
 
 ---
 
-<small>0.0.5 to 0.0.12</small>
+<small>0.0.5 – 0.0.12</small>
 
 ## Effects, patterns and animation
 
-**Added**
-- Effects: `noise`, `vignette`, `grain` (animated with feTurbulence) and `glow`
-- Filters: `blur`
-- Patterns: `dots` and `grid`
-- Animations: `pulse`, `rotate`, `breathe`
+### Added
 
-**Fixed**
-- Glow effect issues
+- **Effects**: `noise`, `vignette`, `grain` (animated with `feTurbulence`) and `glow`
+- **Filters**: `blur`
+- **Patterns**: `dots` and `grid`
+- **Animations**: `pulse`, `rotate` and `breathe`
+
+### Fixed
+
+- Issues with the `glow` effect
 - Build and import errors when used from external projects
 
 ---
 
-<small>0.0.1 to 0.0.4</small>
+<small>0.0.1 – 0.0.4</small>
 
 ## Foundations
 
-**Added**
-- Chainable Builder API
-- Gradients: `linear`, `radial`, `conic`, `mesh`
-- Blur and the first grid logic
+### Added
+
+- Chainable `Builder` API
+- **Gradients**: `linear`, `radial`, `conic` and `mesh`
+- A first version of the blur filter and the grid pattern
 - First validation layer
 - Palette of 100 named colors
 - README, license and npm package setup
 
-**Fixed**
-- Package renamed to satisfy npm naming rules
-- Broken import and small typos
+### Fixed
+
+- Package renamed to satisfy the npm naming rules
+- A broken import and small typos

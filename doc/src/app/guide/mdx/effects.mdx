@@ -16,7 +16,10 @@ const style = new Builder()
   .toStyle()
 ```
 
-`noise`, `vignette` and `grain` are background layers. They are drawn **above** patterns and gradients, and when you add several of them the one you add first is drawn on top. `glow` is different: it does not add a layer but a `box-shadow`, so it is drawn around or inside the element itself.
+Effects come in two kinds:
+
+- **Background layers:** `noise`, `vignette` and `grain` are drawn **above** patterns and gradients. When you add several, the one you add first is drawn on top.
+- **Shadow:** `glow` does not add a layer. It adds a `box-shadow`, so it is drawn around or inside the element itself.
 
 The effects that take a color (`vignette` and `glow`) accept any valid CSS color string.
 
@@ -280,7 +283,7 @@ Adds a soft colored light around the element, or inside it. Under the hood it is
 
 </Prop>
 
-An outer glow is drawn outside the element's box, so leave some space around it and make sure no parent has `overflow: hidden`, which would clip it.
+> **Note:** an outer glow is drawn outside the element's box. Leave some space around it and make sure no parent has `overflow: hidden`, which would clip it.
 
 ### Examples
 
@@ -372,7 +375,7 @@ new Builder()
 
 ## Combining effects
 
-Effects can be combined with each other, with patterns and with any gradient. Add them after the gradient in the order you want them stacked, with the first one on top.
+Effects combine with each other, with patterns and with any gradient. Add them after the gradient in the order you want them stacked: the first one ends up on top.
 
 ### Examples
 

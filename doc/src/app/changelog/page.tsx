@@ -42,7 +42,7 @@ const ChangelogPage = async () => {
         },
     })
 
-    return <article className={classes.changelog}>{content}</article>
+    return <article className={`${classes.changelog} mdx`}>{content}</article>
 }
 
 export default ChangelogPage

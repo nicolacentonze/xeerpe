@@ -11,6 +11,7 @@ import {Builder} from "xeerpe"
 import {Roboto} from 'next/font/google'
 import '../../../lib/src/css/animations.css'
 import "./index.css"
+import "@/src/styles/mdx.css"
 
 
 export const metadata: Metadata = {

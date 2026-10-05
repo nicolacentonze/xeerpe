@@ -17,7 +17,9 @@ const style = new Builder()
 
 xeerpe ships four gradient generators: `linearGradient`, `radialGradient`, `conicGradient` and `meshGradient`.
 
-All options are optional unless marked as required. Colors accept any valid CSS color string, such as hex, `rgb()`, `hsl()`, named colors or `transparent`. An invalid color is reported with `console.error` and replaced by `transparent`.
+All options are optional unless marked as required. Colors accept any valid CSS color string: hex, `rgb()`, `hsl()`, named colors or `transparent`.
+
+> **Note:** an invalid color does not throw. It is reported with `console.error` and replaced by `transparent`.
 
 ---
 
@@ -320,17 +322,17 @@ A full-color sweep. The first color is repeated at the end, so there is no visib
 
 ```ts
 new Builder()
-.conicGradient({
-colors: [
-    '#f472b6',
-    '#c084fc',
-    '#60a5fa',
-    '#34d399',
-    '#fbbf24',
-    '#f472b6',
-],
-})
-.toStyle()
+  .conicGradient({
+    colors: [
+      '#f472b6',
+      '#c084fc',
+      '#60a5fa',
+      '#34d399',
+      '#fbbf24',
+      '#f472b6',
+    ],
+  })
+  .toStyle()
 ```
 
 #### Angle and position
@@ -341,18 +343,18 @@ Rotate the start of the sweep with `angle` and move its center with `position`.
 
 ```ts
 new Builder()
-.conicGradient({
-colors: [
-    '#1e1b4b',
-    '#6d28d9',
-    '#e879f9',
-    '#6d28d9',
-    '#1e1b4b',
-],
+  .conicGradient({
+    colors: [
+      '#1e1b4b',
+      '#6d28d9',
+      '#e879f9',
+      '#6d28d9',
+      '#1e1b4b',
+    ],
     angle: '30deg',
     position: '70% 30%',
-})
-.toStyle()
+  })
+  .toStyle()
 ```
 
 ---
@@ -385,36 +387,36 @@ Four soft blobs of color over a dark base. Use `colorToPosition` to control how 
 
 ```ts
 new Builder()
-.meshGradient({
-background: '#070b1f',
+  .meshGradient({
+    background: '#070b1f',
     layers: [
-    {
+      {
         from: 'rgba(124,58,237,0.85)',
         to: 'transparent',
         position: '12% 18%',
         colorToPosition: '60%',
-    },
-    {
+      },
+      {
         from: 'rgba(34,211,238,0.65)',
         to: 'transparent',
         position: '88% 20%',
         colorToPosition: '55%',
-    },
-    {
+      },
+      {
         from: 'rgba(244,114,182,0.65)',
         to: 'transparent',
         position: '70% 100%',
         colorToPosition: '60%',
-    },
-    {
+      },
+      {
         from: 'rgba(59,130,246,0.6)',
         to: 'transparent',
         position: '10% 90%',
         colorToPosition: '50%',
-    },
-],
-})
-.toStyle()
+      },
+    ],
+  })
+  .toStyle()
 ```
 
 ---
@@ -425,11 +427,11 @@ Entries of `colors` can be a color string or a stop object with an explicit posi
 
 ```ts
 type GradientColorStop =
-| string
-| {
-color: string
-position?: LinearGradientPosition
-}
+  | string
+  | {
+      color: string
+      position?: LinearGradientPosition
+    }
 ```
 
 <Prop name="color" type="string" required>
@@ -467,30 +469,30 @@ position?: LinearGradientPosition
 
 ## Layering generators
 
-A single chain can contain several generators. Every call adds a new layer, and the first layers you add are drawn on top. Put translucent glows first and a solid base last.
+A single chain can contain several generators. Every call adds a new layer, and **the first layer you add is drawn on top**. Put translucent glows first and a solid base last.
 
 <XeerpeDemo example="layered-glow" />
 
 ```ts
 new Builder()
-.radialGradient({
-from: 'rgba(34,211,238,0.55)',
+  .radialGradient({
+    from: 'rgba(34,211,238,0.55)',
     to: 'transparent',
     position: '85% 15%',
     colorToPosition: '60%',
-})
-.radialGradient({
-from: 'rgba(168,85,247,0.55)',
+  })
+  .radialGradient({
+    from: 'rgba(168,85,247,0.55)',
     to: 'transparent',
     position: '10% 95%',
     colorToPosition: '60%',
-})
-.linearGradient({
-from: '#0b1020',
+  })
+  .linearGradient({
+    from: '#0b1020',
     to: '#05060f',
     angle: '135deg',
-})
-.toStyle()
+  })
+  .toStyle()
 ```
 
 ---
@@ -499,44 +501,40 @@ from: '#0b1020',
 
 ```ts
 type GradientType =
-| 'linear'
-| 'radial'
-| 'conic'
-| 'mesh'
+  | 'linear'
+  | 'radial'
+  | 'conic'
+  | 'mesh'
 
 interface GradientBase {
-from?: string
-to?: string
-backgroundSize?: string
+  from?: string
+  to?: string
+  backgroundSize?: string
 }
 
-interface LinearGradientOptions
-extends GradientBase {
-colors?: (string | GradientColorStop)[]
-angle?: LinearGradientAngle
-direction?: LinearGradientDirection
-size?: string
+interface LinearGradientOptions extends GradientBase {
+  colors?: (string | GradientColorStop)[]
+  angle?: LinearGradientAngle
+  direction?: LinearGradientDirection
+  size?: string
 }
 
-interface RadialGradientOptions
-extends GradientBase {
-shape?: RadialGradientShape
-position?: string
-size?: RadialGradientSize
-colorFromPosition?: string
-colorToPosition?: string
+interface RadialGradientOptions extends GradientBase {
+  shape?: RadialGradientShape
+  position?: string
+  size?: RadialGradientSize
+  colorFromPosition?: string
+  colorToPosition?: string
 }
 
-interface ConicGradientOptions
-extends GradientBase {
-colors?: (string | GradientColorStop)[]
-angle?: string
-position?: string
+interface ConicGradientOptions extends GradientBase {
+  colors?: (string | GradientColorStop)[]
+  angle?: string
+  position?: string
 }
 
-interface MeshGradientOptions
-extends GradientBase {
-background: string
-layers: RadialGradientOptions[]
+interface MeshGradientOptions extends GradientBase {
+  background: string
+  layers: RadialGradientOptions[]
 }
 ```

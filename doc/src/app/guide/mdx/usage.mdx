@@ -1,15 +1,31 @@
-## Import
+Every xeerpe background starts the same way: create a `Builder`, chain the layers you want and call `toStyle()`. The result is a plain style object, so it works with any framework that accepts inline styles.
+
+## Your first background
+
 Import `Builder` from the package:
 
 ```ts
 import { Builder } from 'xeerpe'
 ```
 
-### CSS
+Then describe the background. This example creates a linear gradient that starts with `#34d399` and fades into `#172554`.
 
-The `box` class is only used to give the demo a visible size:
+```ts
+const style = new Builder()
+  .linearGradient({
+    from: '#34d399',
+    to: '#172554',
+  })
+  .toStyle()
+```
 
-```css
+<XeerpeDemo example="linear-basic" />
+
+`toStyle()` returns an object with camelCase CSS properties, such as `backgroundImage` and `backgroundPosition`. Apply it to any element.
+
+The examples below share this `box` class. It only gives the element a visible size:
+
+```css title="styles.css"
 .box {
   width: 300px;
   height: 100px;
@@ -17,111 +33,95 @@ The `box` class is only used to give the demo a visible size:
 }
 ```
 
-## Result
-The following example create a linear gradient that starts with `#34d399` and fades into `#172554`
-<XeerpeDemo example="linear-basic"/>
+---
 
 ## React
 
-```tsx
+Pass the object straight to the `style` prop.
+
+```tsx title="DemoComponent.tsx"
 import { Builder } from 'xeerpe'
 
 const DemoComponent = () => {
+  const xeerpeBackground = new Builder()
+    .linearGradient({
+      from: '#34d399',
+      to: '#172554',
+    })
+    .toStyle()
 
-  const xeerpeBackground =
-        new Builder()
-        .linearGradient({
-          from: '#34d399',
-          to: '#172554'
-        })
-        .toStyle()
-
-  return (
-
-    <div
-      className="box"
-      style={xeerpeBackground}
-    />
-
-  )
+  return <div className="box" style={xeerpeBackground} />
 }
 
 export default DemoComponent
 ```
 
+## Vue
+
+Bind the object to `:style`.
+
+```vue title="DemoComponent.vue"
+<script setup lang="ts">
+import { Builder } from 'xeerpe'
+
+const xeerpeBackground = new Builder()
+  .linearGradient({
+    from: '#34d399',
+    to: '#172554',
+  })
+  .toStyle()
+</script>
+
+<template>
+  <div class="box" :style="xeerpeBackground"></div>
+</template>
+```
+
 ## Angular
 
-```ts
+Bind the object to `[style]`.
+
+```ts title="demo.component.ts"
 import { Component } from '@angular/core'
-import { CommonModule } from '@angular/common'
 import { Builder } from 'xeerpe'
 
 @Component({
   selector: 'app-demo',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div
-      class="box"
-      [style]="xeerpeBackground"
-    ></div>
-  `,
+  template: `<div class="box" [style]="xeerpeBackground"></div>`,
 })
-
 export class DemoComponent {
-
   xeerpeBackground = new Builder()
     .linearGradient({
       from: '#34d399',
-      to: '#172554'
+      to: '#172554',
     })
     .toStyle()
-
 }
-```
-
-## Vue
-
-```vue
-<script setup lang="ts">
-
-import { Builder } from 'xeerpe'
-
-const xeerpeBackground = new Builder()
-  .linearGradient({
-    from: '#34d399',
-    to: '#172554'
-  })
-  .toStyle()
-
-</script>
-
-<template>
-
-  <div
-    class="box"
-    :style="xeerpeBackground"
-  ></div>
-
-</template>
 ```
 
 ## Vanilla JavaScript
 
-```js
+Copy the properties onto the element's `style` with `Object.assign`.
+
+```js title="main.js"
 import { Builder } from 'xeerpe'
 
 const xeerpeBackground = new Builder()
   .linearGradient({
     from: '#34d399',
-    to: '#172554'
+    to: '#172554',
   })
   .toStyle()
 
 const demoComponent = document.createElement('div')
 
 demoComponent.className = 'box'
-demoComponent.style.cssText = xeerpeBackground
+Object.assign(demoComponent.style, xeerpeBackground)
 
 document.body.appendChild(demoComponent)
 ```
+
+> **Note:** `toStyle()` returns an object, not a CSS string, so assigning it to `style.cssText` does not work.
+
+Next, explore what you can put in the chain, starting with [Gradients](/guide/gradients).

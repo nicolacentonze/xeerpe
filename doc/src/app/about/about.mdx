@@ -1,34 +1,41 @@
 # About
 
-xeerpe is a TypeScript library for building CSS backgrounds with a chainable API. You describe the layers you want, and it gives you back the styles.
+xeerpe is a TypeScript library for building CSS backgrounds with a chainable API. You describe the layers you want, and it hands you back a style object ready to use.
 
 ## The idea
 
-Describe a background the way you'd say it out loud. Start with a green glow, put something dark underneath, lay a grid over the top. xeerpe turns that into CSS.
+Describe a background the way you would say it out loud: start with a green glow, put something dark underneath, lay a grid over the top. xeerpe turns that sentence into CSS.
 
 ```ts
-import { Builder } from "xeerpe";
+import { Builder } from 'xeerpe'
 
-Builder()
-  .radialGradient(...)
-  .linearGradient(...)
-  .grid(...)
+const style = new Builder()
+  .radialGradient({ from: '#34d399', to: 'transparent' })
+  .linearGradient({ from: '#0b1020', to: '#05060f' })
+  .grid({ color: '#ffffff', opacity: 0.1 })
   .toStyle()
 ```
 
-You create a Builder, chain whatever you need, and finish with `toStyle()`. Everything in between is just a method.
+Create a `Builder`, chain whatever you need, and finish with `toStyle()`. Everything in between is just a method.
 
 ## What you can make
 
-Linear, radial and mesh gradients, stacked as many times as you like. Patterns on top, like grids, dots and grain, for when a flat gradient feels too clean. And animation, which you add once at the end of the chain so the whole background moves as a single thing instead of layer by layer.
+- **Gradients**: linear, radial, conic and mesh, stacked as many times as you like.
+- **Patterns**: grids and dots, for when a flat gradient feels too clean.
+- **Effects**: noise, grain, vignette and glow, for texture and light.
+- **Filters**: blur on the element itself, or frosted glass on what sits behind it.
+- **Animations**: nine keyframe animations that move the whole background as one piece.
+- **Presets**: ready-made backgrounds you can use in one line, or extend.
 
 ## Open source
 
-It's free to use, read and break. The code lives on [GitHub](https://github.com/) and the package is on [npm](https://www.npmjs.com/package/xeerpe). If something feels clumsy, open an issue. If you already know how to fix it, even better.
+xeerpe is free to use, read and break. The code lives on [GitHub](https://github.com/nicolacentonze/xeerpe) and the package is on [npm](https://www.npmjs.com/package/xeerpe), under the MIT license.
+
+If something feels clumsy, open an issue. If you already know how to fix it, even better.
 
 ## Who's behind it
 
-I'm Nicola Centonze, a Frontend Engineer working mostly with design systems and component libraries. xeerpe is one of my open source projects.
+I'm Nicola Centonze, a Frontend Engineer working mostly on design systems and component libraries. xeerpe is one of my open source projects.
 
 <SocialLinks />
 
