@@ -2,7 +2,7 @@
 
 // Everything here is public! This file gets bundled client-side, so it's readable from devtools
 
-export const SITE_URL = 'https://xeerpe.io'
+export const SITE_URL = 'https://www.xeerpe.io'
 
 export const SITE_NAME = 'xeerpe'
 
