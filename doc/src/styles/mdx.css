@@ -143,3 +143,8 @@
     max-width: 100%;
     margin-inline: 0;
 }
+
+.mdx :where(small[data-tone="blue"]) {
+    color: #60A5FA !important;
+    border-color: #60A5FA !important;
+}
