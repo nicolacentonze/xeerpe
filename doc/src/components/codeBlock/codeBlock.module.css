@@ -1,11 +1,21 @@
 .wrapper {
     position: relative;
-    overflow-x: scroll;
-
+    min-width: 0;
+    max-width: 100%;
 
     pre {
+        max-width: 100%;
+        margin: 1rem 0;
         padding: 1rem;
         border-radius: .5rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
+
+        code {
+            min-width: max-content;
+        }
     }
 }
 
@@ -13,6 +23,7 @@
     position: absolute;
     top: 1.5rem;
     right: 0.6rem;
+    z-index: 1;
     font-size: 0.75rem;
     padding: 0.25rem 0.65rem;
     border-radius: 6px;
@@ -29,3 +40,8 @@
     opacity: 1;
 }
 
+@media (hover: none) {
+    .copyBtn {
+        opacity: 1;
+    }
+}

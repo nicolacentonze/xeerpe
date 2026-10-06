@@ -137,3 +137,9 @@
     margin-bottom: 0.25rem;
     font-size: 1.1rem;
 }
+
+.mdx :where(figure) {
+    min-width: 0;
+    max-width: 100%;
+    margin-inline: 0;
+}
