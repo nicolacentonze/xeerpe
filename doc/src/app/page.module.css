@@ -11,8 +11,6 @@
     color: white;
 }
 
-/* Hero */
-
 .hero {
     display: flex;
     flex-direction: column;
@@ -57,8 +55,6 @@
     gap: 0.75rem;
 }
 
-/* Sections */
-
 .section {
     display: flex;
     flex-direction: column;
@@ -95,8 +91,6 @@
     display: flex;
     justify-content: center;
 }
-
-/* Final call to action */
 
 .cta {
     display: flex;

@@ -20,7 +20,6 @@
     min-width: 0;
 }
 
-/* The frame shows the page through transparent layers, like a canvas */
 .frame {
     padding: 10px;
     border-radius: 18px;

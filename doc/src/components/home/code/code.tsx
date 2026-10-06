@@ -1,7 +1,6 @@
 import classes from './code.module.css'
 import {CodeProps} from "@/src/models/home.ts";
 
-// Small, dependency-free highlighter for xeerpe chains: strings, methods, keywords and numbers.
 const TOKEN = /('[^']*'|\b(?:new|import|from|const)\b|\.\w+(?=\()|\b\d+(?:\.\d+)?\b)/g
 
 const tokenClass = (token: string): string | undefined => {
