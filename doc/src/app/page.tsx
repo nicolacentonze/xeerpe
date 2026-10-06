@@ -6,6 +6,7 @@ import ChainSteps from "@cmp/home/chainSteps/chainSteps.tsx";
 import PresetBento from "@cmp/home/presetBento/presetBento.tsx";
 import UiExamples from "@cmp/home/uiExamples/uiExamples.tsx";
 import {Builder, presetNames} from "xeerpe";
+import Link from "next/link";
 
 const Page = () => {
 
@@ -79,15 +80,28 @@ const Page = () => {
                     <h2 style={textStyle} className={classes.ctaTitle}>Craft. Chain. Done.</h2>
                     <p className={classes.ctaText}>
                         Zero dependencies, any framework.
+                        <br/>
                         Install it and write your first chain in a minute.
                     </p>
                     <div className={classes.actions}>
                         <LinkButton href={'/guide/usage'} >Read the usage guide</LinkButton>
                     </div>
+                    <div className={classes.joke}>
+                        Yes, this background is made with xeerpe too :)
+                    </div>
                 </section>
 
                 <div className={classes.creditsSection}>
-                    Released under the MIT License – © 2026 Nicola Centonze
+                    Released under the MIT License – © 2026{' '}
+                    <Link
+                        href="https://www.linkedin.com/in/nicolacentonze"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={classes.creditsLink}
+                        aria-label="Nicola Centonze"
+                    >
+                        Nicola Centonze
+                    </Link>
                 </div>
             </div>
         </main>
