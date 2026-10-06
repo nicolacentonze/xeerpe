@@ -86,7 +86,6 @@
 .mdx :where([data-rehype-pretty-code-title]) {
     margin-top: 1.25rem;
     margin-bottom: -0.6rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.75rem;
     letter-spacing: 0.02em;
     color: var(--mdx-muted);

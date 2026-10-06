@@ -1,0 +1,94 @@
+.chain {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+/* The frame shows the page through transparent layers, like a canvas */
+.frame {
+    padding: 10px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.preview {
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+}
+
+.index {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    color: #5EB847;
+}
+
+.title {
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+}
+
+.description {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.label {
+    align-self: flex-start;
+    margin-top: 0.2rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid rgba(94, 184, 71, 0.3);
+    border-radius: 8px;
+    background: rgba(94, 184, 71, 0.08);
+    font-size: 0.75rem;
+    color: #7fd968;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resultLabel {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 1100px) {
+    .steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem 0.75rem;
+    }
+
+    .label {
+        font-size: 0.68rem;
+    }
+}

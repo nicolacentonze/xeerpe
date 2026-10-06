@@ -1,0 +1,170 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    margin-bottom: 0.4rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+}
+
+.title {
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+}
+
+.description {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.code {
+    margin-top: 0.4rem;
+    font-size: 0.7rem;
+}
+
+/* Gradient text */
+.gradientText {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* Frosted glass */
+.glass {
+    padding: 1.4rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+}
+
+/* Neon button */
+.neon {
+    padding: 0.8rem 1.6rem;
+    border: 1px solid #22d3ee;
+    border-radius: 12px;
+    color: #a5f3fc;
+    font: inherit;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+/* Avatar ring */
+.avatar {
+    position: relative;
+    width: 104px;
+    height: 104px;
+}
+
+.ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+}
+
+.initials {
+    position: absolute;
+    inset: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #0a0f0a;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* Loading skeleton */
+.skeleton {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 75%;
+}
+
+.skeletonAvatar {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+.skeletonLines {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.skeletonLine {
+    display: block;
+    height: 12px;
+    border-radius: 6px;
+}
+
+.short {
+    width: 60%;
+}
+
+/* Spotlight card */
+.spotlight {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 75%;
+    padding: 1.2rem;
+    border: 1px solid rgba(94, 184, 71, 0.3);
+    border-radius: 16px;
+    color: white;
+}
+
+.badge {
+    align-self: flex-start;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(94, 184, 71, 0.2);
+    color: #a7e39a;
+    font-size: 0.7rem;
+}
+
+.spotlightTitle {
+    font-size: 1.3rem;
+}
+
+.spotlightText {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 1100px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    .grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

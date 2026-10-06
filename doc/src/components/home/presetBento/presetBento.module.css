@@ -1,0 +1,62 @@
+.bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 170px;
+    gap: 1rem;
+}
+
+.tile {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.9rem;
+    border-radius: 20px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tile:hover,
+.tile:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18), 0 20px 40px -20px rgba(0, 0, 0, 0.9);
+    outline: none;
+}
+
+.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.45rem 0.7rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+}
+
+.category {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.name {
+    font-size: 0.85rem;
+    color: white;
+}
+
+@media (max-width: 900px) {
+    .bento {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 150px;
+    }
+}

@@ -1,55 +1,144 @@
 .mainContainer {
     display: flex;
-    padding: 1rem;
-    height: 100%;
-    box-sizing: border-box;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    gap: 6rem;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 1rem 2rem 0;
+    box-sizing: border-box;
+    color: white;
+}
 
-    .logoAndMainSection {
-        width: 100%;
-        .xeerpeLogoContainer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            box-sizing: border-box;
-            flex: 0 auto;
+/* Hero */
 
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    width: 100%;
+    text-align: center;
 
-            img {
-                height: 100%;
-                min-width: 300px;
-                max-width: 600px;
-                object-fit: contain;
-            }
-        }
+    .xeerpeLogoContainer {
+        display: flex;
+        justify-content: center;
+        padding: 1.5rem 1rem 0.5rem;
+        box-sizing: border-box;
 
-        .mainSection{
-            padding: 1rem;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            width: 100%;
-
-            .mainDescription {
-                max-width: 800px;
-                text-align: center;
-            }
+        img {
+            width: min(520px, 80vw);
+            height: auto;
         }
     }
 
-
-
-    .creditsSection{
-        text-align: center;
-        color: #979696 !important;
-        padding: 1rem;
-        font-size: 14px;
-        box-sizing: border-box;
+    .mainDescription {
+        max-width: 800px;
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        line-height: 1.2;
     }
 }
 
+.lead {
+    max-width: 620px;
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+/* Sections */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+}
+
+.sectionHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 720px;
+}
+
+.eyebrow {
+    font-size: 0.8rem;
+    color: #5EB847;
+}
+
+.sectionTitle {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.2;
+}
+
+.sectionText {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.sectionFooter {
+    display: flex;
+    justify-content: center;
+}
+
+/* Final call to action */
+
+.cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 4.5rem 2rem;
+    border-radius: 28px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: inset 0 0 0 1px rgba(94, 184, 71, 0.25);
+}
+
+.ctaTitle {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    letter-spacing: -0.02em;
+}
+
+.ctaText {
+    max-width: 560px;
+    margin: 0 0 0.5rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.creditsSection {
+    padding: 0 1rem 2rem;
+    text-align: center;
+    color: #979696 !important;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        gap: 4rem;
+        padding: 1rem 1rem 0;
+    }
+
+    .cta {
+        padding: 3rem 1.25rem;
+    }
+}

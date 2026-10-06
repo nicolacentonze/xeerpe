@@ -8,10 +8,13 @@
         color: white;
         width: calc(100% - (250px + 16px + 16px));
         margin-left: calc(250px + 16px + 16px) ;
+        display: flex;
+        justify-content: center;
         .guideLayout {
             display: flex;
             justify-content: space-between;
             height: 100%;
+            max-width: 1240px;
             .guideArticle {
                 flex-grow: 1;
                 min-width: 0;

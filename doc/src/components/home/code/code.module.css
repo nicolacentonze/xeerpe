@@ -1,0 +1,29 @@
+.code {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.78);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.string {
+    color: #f6d58a;
+}
+
+.method {
+    color: #7fd968;
+}
+
+.number {
+    color: #8ab4ff;
+}
+
+.keyword {
+    color: #f472b6;
+}
