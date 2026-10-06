@@ -6,17 +6,19 @@
   <br><br>
 </p>
 
-<h3 align="center">craft CSS backgrounds, fluently.</h3>
+<h3 align="center">Craft. Chain. Done.</h3>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/xeerpe"><img src="https://img.shields.io/npm/v/xeerpe.svg" alt="npm version"></a>
   <a href="https://github.com/nicolacentonze/xeerpe/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/xeerpe.svg" alt="MIT license"></a>
-  <a href="https://xeerpe.io"><img src="https://img.shields.io/badge/docs-xeerpe.io-blue" alt="Documentation"></a>
+  <a href="https://xeerpe.io"><img src="https://img.shields.io/badge/docs-xeerpe.io-5EB847" alt="Documentation"></a>
 </p>
 
 ---
 
-<b>xeerpe</b> is a library for building CSS backgrounds with a fluent, chainable API: gradients, effects, filters, patterns, animations. Chain what you need, call `.toStyle()`, done!
+Gradients, patterns, effects and animations, all in one chain.
+
+Zero dependencies, any framework.
 
 ## Installation
 
@@ -24,31 +26,51 @@
 npm install xeerpe
 ```
 
-## Features
-
-- Gradients — linear, radial, conic, mesh
-- Effects — noise, vignette, grain, glow
-- Filters — blur
-- Patterns — dots, grid
-- Animations — pulse, rotate, breathe, aurora
-- Text fills — `.toTextStyle()` for gradient text
-
 ## Quick start
 
 ```ts
 import { Builder } from 'xeerpe'
 
-// Background
-const backgroundStyle = new Builder()
-    .linearGradient({ from: '#050705', to: '#0a0f0a', angle: '135deg' })
-    .dots()
+const style = new Builder()
+    .radialGradient({ from: '#FF7A18', to: 'transparent', position: '75% 25%' })
+    .linearGradient({ from: '#1a0b05', to: '#060302', angle: '160deg' })
+    .dots({ color: '#FF7A18', size: '24px', opacity: 0.14 })
+    .grain({ intensity: 2 })
     .toStyle()
+```
 
-// Gradient text
+The result is a plain object, so it works anywhere that accepts inline styles:
+
+```tsx
+// React
+<div style={style} />
+```
+
+```vue
+<!-- Vue -->
+<div :style="style" />
+```
+
+It also works in Angular and plain JavaScript. See the [guide](https://www.xeerpe.io/guide/installation#installation) for each framework.
+
+### Gradient text
+
+```ts
 const textStyle = new Builder()
-    .linearGradient({ from: '#050705', to: '#0a0f0a', angle: '135deg' })
+    .linearGradient({ from: '#5EB847', to: '#BFD43F', angle: '135deg' })
     .toTextStyle()
 ```
+
+## Features
+
+- **Gradients**: linear, radial, conic, mesh
+- **Patterns**: dots, grid, stars, rays
+- **Effects**: noise, vignette, grain, glow
+- **Filters**: blur, backdrop filters
+- **Animations**: pulse, rotate, breathe, aurora, liquid, plasma, float, drift, shimmer
+- **Presets**: ready-made backgrounds
+- **Text fills**: `.toTextStyle()` for gradient text
+- **Typed and validated**: fully typed, with validation for colors, angles, sizes and positions
 
 ## Documentation
 
