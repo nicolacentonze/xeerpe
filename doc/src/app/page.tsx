@@ -32,7 +32,8 @@ const Page = () => {
                         Chain properties and effects to customize your backgrounds and text
                     </h1>
                     <p className={classes.lead}>
-                        Gradients, patterns, effects and animations in one chainable TypeScript API.
+                        Gradients, patterns, effects and animations, all in one chain.
+                        <br/>
                         Zero dependencies, any framework.
                     </p>
                     <div className={classes.actions}>
