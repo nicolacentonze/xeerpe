@@ -18,7 +18,7 @@ export const chainSteps: ChainStep[] = [
             .linearGradient({ from: '#1a0b05', to: '#060302', angle: '160deg' }),
     },
     {
-        title: 'Lay a grid over the top',
+        title: 'Lay a pattern over the top',
         description: 'Patterns always sit above the gradients.',
         label: ".dots({ … })",
         code: ".dots({ color: '#FF7A18', size: '24px', opacity: 0.14 })",
