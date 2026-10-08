@@ -23,7 +23,7 @@
 .frame {
     padding: 10px;
     border-radius: var(--radius-xl);
-    background: var(--surface-tint);
+    background: var(--surface-solid);
     border: 1px solid var(--border);
 }
 

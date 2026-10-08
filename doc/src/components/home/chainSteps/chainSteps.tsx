@@ -1,19 +1,21 @@
 import {Builder} from 'xeerpe'
 import classes from './chainSteps.module.css'
 import Code from '@cmp/codeBlock/highlightedCode.tsx'
-import {chainSteps} from "@/src/data/home.ts";
+import ChainTabs from '@cmp/home/chainSteps/chainTabs.tsx'
+import {chains} from "@/src/data/home.ts";
+import {ChainStep} from "@/src/models/home.ts";
 
-const ChainSteps = () => {
-    const fullChain = ['new Builder()', ...chainSteps.map((step) => step.code), '.toStyle()']
+const ChainPanel = ({steps}: { steps: ChainStep[] }) => {
+    const fullChain = ['new Builder()', ...steps.map((step) => step.code), '.toStyle()']
         .join('\n')
         .replace(/\n\./g, '\n  .')
 
     return (
         <div className={classes.chain}>
             <ol className={classes.steps}>
-                {chainSteps.map((step, index) => {
+                {steps.map((step, index) => {
                     const builder = new Builder()
-                    chainSteps.slice(0, index + 1).forEach((previous) => previous.apply(builder))
+                    steps.slice(0, index + 1).forEach((previous) => previous.apply(builder))
 
                     return (
                         <li key={step.title} className={classes.step}>
@@ -36,5 +38,15 @@ const ChainSteps = () => {
         </div>
     )
 }
+
+const ChainSteps = () => (
+    <ChainTabs
+        tabs={chains.map((chain) => ({
+            id: chain.id,
+            label: chain.name,
+            panel: <ChainPanel steps={chain.steps} />,
+        }))}
+    />
+)
 
 export default ChainSteps
