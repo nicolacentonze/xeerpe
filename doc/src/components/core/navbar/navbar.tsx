@@ -4,6 +4,7 @@ import Image from "next/image";
 import xeerpeTextLogo from "@assets/xeerpeTextLogo.png";
 import { Builder } from "xeerpe";
 import SidebarToggle from "@cmp/core/sidebar/sidebarToggle.tsx";
+import HomeLink from "@cmp/core/navbar/homeLink.tsx";
 
 const Navbar = () => {
     const navbarBackground = new Builder()
@@ -15,13 +16,13 @@ const Navbar = () => {
         <header className={classes.header} style={navbarBackground}>
             <div className={classes.left}>
                 <SidebarToggle />
-                <Link href="/" className={classes.headerLogo}>
+                <HomeLink className={classes.headerLogo}>
                     <Image
                         className={classes.headerLogoImage}
                         src={xeerpeTextLogo}
                         alt="xeerpe logo"
                     />
-                </Link>
+                </HomeLink>
             </div>
 
             <nav aria-label="xeerpe main navigation" className={classes.navbar}>

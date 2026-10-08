@@ -50,10 +50,10 @@ figure {
 }
 
 .skip-link {
-    position: absolute;
+    position: fixed;
     top: 0.5rem;
     left: 0.5rem;
-    z-index: 100;
+    z-index: 10000;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     background: #0a0f0a;
@@ -79,6 +79,40 @@ figure {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+@media print {
+    html,
+    body {
+        height: auto;
+        background: #fff !important;
+    }
+
+    html {
+        display: block;
+    }
+
+    header,
+    aside,
+    .skip-link,
+    nav[aria-label="Guide pagination"] {
+        display: none !important;
+    }
+
+    main {
+        height: auto;
+    }
+
+    * {
+        color: #000 !important;
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        border: 1px solid #999;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

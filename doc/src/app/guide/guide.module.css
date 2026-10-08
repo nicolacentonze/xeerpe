@@ -41,6 +41,20 @@
     }
 }
 
+@media print {
+    .guideContainer,
+    .guideContainer .guideContents,
+    .guideContainer .guideContents .guideLayout,
+    .guideContainer .guideContents .guideLayout .guideArticle {
+        display: block;
+        height: auto;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+}
+
 @media (max-width: 768px) {
     .guideContainer {
         .guideContents {
