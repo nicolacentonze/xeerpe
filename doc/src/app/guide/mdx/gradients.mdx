@@ -47,7 +47,7 @@ Every generator extends the same base options.
 
 ---
 
-## linearGradient
+## Linear gradient
 
 Blends colors along a straight line. Set the direction with an angle or with a keyword. Without either, the gradient runs at `135deg`.
 
@@ -171,7 +171,7 @@ new Builder()
 
 ---
 
-## radialGradient
+## Radial gradient
 
 Colors radiate outward from a center point. Unless you set `shape`, the gradient is a circle.
 
@@ -288,7 +288,7 @@ new Builder()
 
 ---
 
-## conicGradient
+## Conic gradient
 
 Colors sweep around a center point, like the hands of a clock.
 
@@ -359,7 +359,7 @@ new Builder()
 
 ---
 
-## meshGradient
+## Mesh gradient
 
 Composes several radial layers over a solid background to create soft, organic color fields.
 
@@ -373,7 +373,7 @@ Composes several radial layers over a solid background to create soft, organic c
 
 <Prop name="layers" type="RadialGradientOptions[]" required>
 
-    The gradient layers drawn over `background`. Each layer accepts all the [radialGradient options](#radialgradient). Layers are stacked in order, so give each one a transparent `to` color to keep the layers below visible. Unlike a standalone `radialGradient`, a layer without `shape` has no shape keyword, so the browser default (an ellipse) applies.
+    The gradient layers drawn over `background`. Each layer accepts all the [radialGradient options](#radial-gradient). Layers are stacked in order, so give each one a transparent `to` color to keep the layers below visible. Unlike a standalone `radialGradient`, a layer without `shape` has no shape keyword, so the browser default (an ellipse) applies.
 
 </Prop>
 
