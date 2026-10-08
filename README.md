@@ -16,9 +16,21 @@
 
 ---
 
-Gradients, patterns, effects and animations, all in one chain.
+xeerpe is a TypeScript library for building CSS backgrounds and gradient text with a chainable API. It stacks gradients (linear, radial, conic and mesh), patterns, effects, filters and animations into a single style object that works anywhere inline styles do: React, Vue, Angular or plain JavaScript.
 
-Zero dependencies, any framework.
+Zero dependencies, fully typed, MIT licensed.
+
+## When to use xeerpe
+
+Use it when you want to:
+
+- **Layer a background**: a mesh gradient with grain, a dotted grid over a glow, or a vignette on top, written as one readable chain instead of a long `background` declaration.
+- **Animate a background** without writing keyframes by hand: pulse, aurora, shimmer, drift and more, from one method.
+- **Compute a background in JavaScript**: colors, angles and sizes that come from props, state or a theme.
+- **Start from a preset**: more than 200 ready-made backgrounds (metals, gems, sky, neon and more), in one line.
+- **Fill text with a gradient** using the same chain.
+
+A single static `linear-gradient` is usually simpler as plain CSS, and xeerpe returns inline styles, so it is not a replacement for a hand-written stylesheet.
 
 ## Installation
 
@@ -52,6 +64,27 @@ The result is a plain object, so it works anywhere that accepts inline styles:
 ```
 
 It also works in Angular and plain JavaScript. See the [guide](https://www.xeerpe.io/guide/installation#installation) for each framework.
+
+### Animated background
+
+Animations ship with a small stylesheet that you import once:
+
+```ts
+import 'xeerpe/animations.css'
+```
+
+```ts
+const style = new Builder()
+    .meshGradient({
+        background: '#04121c',
+        layers: [
+            { position: '15% 25%', from: 'rgba(16,185,129,0.8)', to: 'transparent', colorToPosition: '60%' },
+            { position: '85% 30%', from: 'rgba(56,189,248,0.65)', to: 'transparent', colorToPosition: '55%' },
+        ],
+    })
+    .aurora({ duration: '8s' })
+    .toStyle()
+```
 
 ### Gradient text
 

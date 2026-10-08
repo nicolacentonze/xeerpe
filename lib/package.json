@@ -43,12 +43,17 @@
     "vignette",
     "glow",
     "pattern",
+    "typescript",
+    "gradient-generator",
+    "background-generator",
+    "gradient-text",
+    "zero-dependencies",
     "react",
     "vue",
     "angular"
   ],
   "homepage": "https://xeerpe.io",
-  "description": "xeerpe",
+  "description": "A chainable TypeScript builder for CSS gradients, patterns, effects and animations. Zero dependencies, works with any framework: React, Vue, Angular or plain JavaScript.",
   "author": "Nicola Centonze",
   "license": "MIT",
   "repository": {
