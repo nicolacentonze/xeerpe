@@ -1,3 +1,27 @@
+:root {
+    --accent: #5EB847;
+    --accent-rgb: 94, 184, 71;
+
+    --text-strong: #ffffff;
+    --text: #e5e5e5;
+    --text-secondary: #c3c3c3;
+    --text-soft: rgba(255, 255, 255, 0.8);
+    --text-muted: rgba(255, 255, 255, 0.65);
+    --text-subtle: rgba(255, 255, 255, 0.5);
+
+    --surface-tint: rgba(255, 255, 255, 0.03);
+    --surface-raised: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.12);
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 28px;
+    --radius-pill: 999px;
+}
+
 html, body {
     margin: 0;
     height: 100dvh;
@@ -45,7 +69,7 @@ figure {
 }
 
 :focus-visible {
-    outline: 2px solid #5EB847;
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
 
@@ -57,7 +81,7 @@ figure {
     padding: 0.5rem 1rem;
     border-radius: 6px;
     background: #0a0f0a;
-    border: 1px solid #5EB847;
+    border: 1px solid var(--accent);
     transform: translateY(-200%);
 }
 

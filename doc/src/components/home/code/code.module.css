@@ -1,13 +1,13 @@
 .code {
     margin: 0;
     padding: 0.9rem 1rem;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.78rem;
     line-height: 1.65;
-    color: rgba(255, 255, 255, 0.78);
+    color: var(--text-soft);
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }

@@ -1,10 +1,10 @@
 .prop {
     margin: 1.25rem 0;
     padding: 1rem 1.25rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 3px solid #5EB847;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-md);
+    background: var(--surface-tint);
 }
 
 .header {
@@ -18,13 +18,13 @@
     background: none;
     font-size: 1.05rem;
     font-weight: 700;
-    color: #5EB847;
+    color: var(--accent);
 }
 
 .required {
     padding: 0.1rem 0.55rem;
     border: 1px solid rgba(255, 179, 71, 0.5);
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     font-size: 0.7rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -55,8 +55,8 @@
 
 .type {
     padding: 0.1rem 0.45rem;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-sm);
+    background: var(--border);
     font-size: 0.82rem;
     overflow-wrap: anywhere;
 }

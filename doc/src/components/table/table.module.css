@@ -9,13 +9,13 @@
 .table td {
     padding: 0.6rem 1rem;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--border);
     overflow-wrap: anywhere;
     white-space: wrap;
 }
 
 .table th {
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--surface-raised);
     font-weight: 600;
     color: #e2e8f0;
 }

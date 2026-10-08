@@ -7,11 +7,11 @@
 .changelog small {
     display: inline-block;
     padding: 0.1rem 0.6rem;
-    border: 1px solid rgba(94, 184, 71, 0.4);
-    border-radius: 999px;
+    border: 1px solid rgba(var(--accent-rgb), 0.4);
+    border-radius: var(--radius-pill);
     font-size: 0.75rem;
     letter-spacing: 0.02em;
-    color: #5EB847;
+    color: var(--accent);
 }
 
 .changelog h3 {
@@ -19,5 +19,5 @@
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-muted);
 }

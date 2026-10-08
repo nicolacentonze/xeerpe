@@ -10,16 +10,16 @@
     flex-direction: column;
     gap: 0.35rem;
     padding: 0.6rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-tint);
 }
 
 .color {
     display: block;
     height: 44px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 5px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
 }
 
 .name {

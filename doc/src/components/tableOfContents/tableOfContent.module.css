@@ -18,7 +18,7 @@
             border-left: 2px solid transparent;
 
             &.active {
-                border-left-color: #5EB847;
+                border-left-color: var(--accent);
                 font-weight: 600;
             }
         }

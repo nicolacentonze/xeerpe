@@ -31,11 +31,6 @@
                 overflow-y: auto;
                 padding-top: 2rem;
                 box-sizing: border-box;
-
-                h1 {
-                    color: #c3c3c3 !important;
-                    font-size: 24px;
-                }
             }
         }
     }

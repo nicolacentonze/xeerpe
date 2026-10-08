@@ -9,7 +9,7 @@
 .link {
     display: inline-flex;
     padding: 0.5rem;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     opacity: 0.75;
     text-decoration: none;
     transition: opacity 0.15s ease, background 0.15s ease;
