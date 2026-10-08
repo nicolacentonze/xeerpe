@@ -5,7 +5,6 @@ import { SITE_URL } from "@/src/config/site.ts";
 const sitemap = (): MetadataRoute.Sitemap => {
     const staticPages: MetadataRoute.Sitemap = [
         { url: SITE_URL,                priority: 1.0 },
-        { url: `${SITE_URL}/guide`,     priority: 0.9 },
         { url: `${SITE_URL}/changelog`, priority: 0.5 },
         { url: `${SITE_URL}/about`,     priority: 0.3 },
     ]
