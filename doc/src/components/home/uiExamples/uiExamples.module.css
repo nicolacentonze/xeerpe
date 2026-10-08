@@ -36,9 +36,9 @@
     color: var(--text-muted);
 }
 
-.code {
-    margin-top: 0.4rem;
-    font-size: 0.7rem;
+.code pre {
+    margin: 0.4rem 0 0;
+    font-size: 0.75rem;
 }
 
 /* Gradient text */

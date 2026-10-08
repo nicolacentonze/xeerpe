@@ -1,11 +1,6 @@
 import {ReactNode} from "react";
 import {Builder} from "xeerpe";
 
-export interface CodeProps {
-    code: string
-    className?: string
-}
-
 export interface ChainStep {
     title: string
     description: string

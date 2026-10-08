@@ -5,6 +5,7 @@ import {socialMetadata} from '@/src/config/site.ts'
 import {compileMDX} from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
 import rehypePrettyCode from 'rehype-pretty-code'
+import {codeTheme} from '@/src/config/codeTheme.ts'
 import CodeBlock from '@cmp/codeBlock/codeBlock.tsx'
 import classes from './about.module.css'
 import SocialLinks from "@/src/app/about/sociallinks/socialLinks.tsx";
@@ -33,7 +34,7 @@ const AboutPage = async () => {
             mdxOptions: {
                 rehypePlugins: [
                     rehypeSlug,
-                    [rehypePrettyCode, {theme: 'github-dark', keepBackground: true}],
+                    [rehypePrettyCode, {theme: codeTheme, keepBackground: true}],
                 ],
             },
         },

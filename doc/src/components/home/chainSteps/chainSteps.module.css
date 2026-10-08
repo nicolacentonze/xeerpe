@@ -68,6 +68,10 @@
     gap: 0.5rem;
 }
 
+.result pre {
+    margin: 0;
+}
+
 .resultLabel {
     font-size: 0.75rem;
     letter-spacing: 0.08em;

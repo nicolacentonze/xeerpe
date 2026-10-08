@@ -7,7 +7,10 @@
         max-width: 100%;
         margin: 1rem 0;
         padding: 1rem;
+        border: 1px solid var(--border);
         border-radius: var(--radius-md);
+        background-color: var(--code-bg) !important;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;

@@ -1,6 +1,6 @@
 import {Builder} from 'xeerpe'
 import classes from './uiExamples.module.css'
-import Code from '@cmp/home/code/code.tsx'
+import Code from '@cmp/codeBlock/highlightedCode.tsx'
 import {UiExample} from "@/src/models/home.ts";
 
 const gradientText = new Builder()

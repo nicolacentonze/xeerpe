@@ -9,6 +9,8 @@
     --text-muted: rgba(255, 255, 255, 0.65);
     --text-subtle: rgba(255, 255, 255, 0.5);
 
+    --code-bg: rgba(0, 0, 0, 0.35);
+
     --surface-tint: rgba(255, 255, 255, 0.03);
     --surface-raised: rgba(255, 255, 255, 0.05);
     --border: rgba(255, 255, 255, 0.08);

@@ -1,6 +1,6 @@
 import {Builder} from 'xeerpe'
 import classes from './chainSteps.module.css'
-import Code from '@cmp/home/code/code.tsx'
+import Code from '@cmp/codeBlock/highlightedCode.tsx'
 import {chainSteps} from "@/src/data/home.ts";
 
 const ChainSteps = () => {

@@ -6,6 +6,7 @@ import {compileMDX} from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
 import {XeerpeDemo} from '@cmp/xeerpe/demos.tsx'
 import rehypePrettyCode from "rehype-pretty-code";
+import {codeTheme} from '@/src/config/codeTheme.ts'
 import classes from '../guide.module.css'
 import CodeBlock from "@cmp/codeBlock/codeBlock.tsx";
 import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
@@ -84,7 +85,7 @@ const GuidePage = async ({params}: {
             mdxOptions: {
                 rehypePlugins: [
                     rehypeSlug,
-                    [rehypePrettyCode, {theme: 'github-dark', keepBackground: true}],
+                    [rehypePrettyCode, {theme: codeTheme, keepBackground: true}],
                 ],
             }
         },
