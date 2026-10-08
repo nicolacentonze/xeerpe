@@ -24,7 +24,8 @@ const CodeBlock = (props: React.ComponentProps<'pre'>) => {
             >
                 {copied ? '✓ Copied' : 'Copy'}
             </button>
-            <pre ref={preRef} {...props} />
+            <span role="status" className="sr-only">{copied ? 'Code copied to clipboard' : ''}</span>
+            <pre ref={preRef} tabIndex={0} {...props} />
         </div>
     )
 }

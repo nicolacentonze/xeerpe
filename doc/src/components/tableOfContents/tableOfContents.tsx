@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react'
 import classes from './tableOfContent.module.css'
 import { TocItem } from '@/src/models/tocItem.ts'
 
+const scrollBehavior = (): ScrollBehavior =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+
 const TableOfContents = ({ items }: { items: TocItem[] }) => {
     const [activeId, setActiveId] = useState(items[0]?.id ?? '')
 
@@ -54,7 +57,7 @@ const TableOfContents = ({ items }: { items: TocItem[] }) => {
             if (!element) return
 
             element.scrollIntoView({
-                behavior: 'smooth',
+                behavior: scrollBehavior(),
                 block: 'start',
             })
 
@@ -88,7 +91,7 @@ const TableOfContents = ({ items }: { items: TocItem[] }) => {
         if (!element) return
 
         element.scrollIntoView({
-            behavior: 'smooth',
+            behavior: scrollBehavior(),
             block: 'start',
         })
 

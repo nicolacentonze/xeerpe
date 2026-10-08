@@ -39,7 +39,11 @@ const AboutPage = async () => {
         },
     })
 
-    return <article className={`${classes.about} mdx`}>{content}</article>
+    return (
+        <main id="main-content" tabIndex={-1}>
+            <article className={`${classes.about} mdx`}>{content}</article>
+        </main>
+    )
 }
 
 export default AboutPage

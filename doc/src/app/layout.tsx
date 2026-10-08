@@ -76,6 +76,7 @@ const RootLayout = ({children}: { children: React.ReactNode }) => {
     return (
         <html lang="en" style={xeerpeBackground} className={roboto.className}>
         <body>
+        <a href="#main-content" className="skip-link">Skip to content</a>
 
         <script
             type="application/ld+json"

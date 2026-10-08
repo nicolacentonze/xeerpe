@@ -4,9 +4,16 @@ import classes from './sidebar.module.css'
 import {useSidebar} from "@/src/context/sidebarContext.tsx";
 
 const SidebarToggle = () => {
-    const { toggle } = useSidebar();
+    const { open, toggle } = useSidebar();
     return (
-        <button onClick={toggle} aria-label="open/close menu" className={classes.sidebarToggle}>
+        <button
+            type="button"
+            onClick={toggle}
+            aria-label="Toggle navigation menu"
+            aria-expanded={open}
+            aria-controls="sidebar"
+            className={classes.sidebarToggle}
+        >
             ☰
         </button>
     );

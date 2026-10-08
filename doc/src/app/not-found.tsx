@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const NotFound = () => {
     return (
-        <main className={classes.about}>
+        <main id="main-content" tabIndex={-1} className={classes.about}>
             <h1>Page not found</h1>
             <p>The page you are looking for doesn&apos;t exist or has been moved.</p>
             <LinkButton href="/guide">Read the guide</LinkButton>

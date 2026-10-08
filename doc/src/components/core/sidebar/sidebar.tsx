@@ -15,6 +15,9 @@ const Sidebar = () => {
     const pathname = usePathname();
     const { open } = useSidebar();
     const isGuideRoute = pathname.startsWith("/guide");
+    const links: NavbarLink[] = pathname === "/"
+        ? navbarLinks
+        : [{title: "Home", href: "/"}, ...navbarLinks];
 
     const sidebarBackground = new Builder()
         .linearGradient({from: 'transparent', to: '#0a0f0a', angle: '135deg'})
@@ -22,10 +25,10 @@ const Sidebar = () => {
         .toStyle()
 
     return (
-        <aside className={classes.sidebar} style={sidebarBackground} data-guide-route={isGuideRoute} data-open={open}>
+        <aside id="sidebar" className={classes.sidebar} style={sidebarBackground} data-guide-route={isGuideRoute} data-open={open}>
             <nav aria-label="Sidebar navigation">
                 <ul className={classes.navbarLinksGroup}>
-                    {navbarLinks.map((link: NavbarLink) => (
+                    {links.map((link: NavbarLink) => (
                         <li key={link.href}>
                             <SidebarLink href={link.href} external={link.external}>
                                 {link.title}
