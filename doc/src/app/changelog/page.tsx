@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import type {Metadata} from 'next'
+import {socialMetadata} from '@/src/config/site.ts'
 import {compileMDX} from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
 import rehypePrettyCode from 'rehype-pretty-code'
@@ -15,12 +16,7 @@ export const metadata: Metadata = {
     title,
     description,
     alternates: {canonical: '/changelog'},
-    openGraph: {
-        type: 'website',
-        url: '/changelog',
-        title: `${title} — xeerpe`,
-        description: description,
-    },
+    ...socialMetadata({title: `${title} — xeerpe`, description, path: '/changelog'}),
 }
 
 const ChangelogPage = async () => {

@@ -12,7 +12,7 @@ import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
 import getToc from "@/src/utils/getToc.ts";
 import GuideNav from "@cmp/guideNavPages/guideNav.tsx";
 import { getGuidePage } from "@/src/data/sidebarItems.ts";
-import { articleJsonLd, serializeJsonLd } from "@/src/config/site.ts";
+import { articleJsonLd, serializeJsonLd, socialMetadata } from "@/src/config/site.ts";
 import {TocItem} from "@/src/models/tocItem.ts";
 import Table from "@cmp/table/table.tsx";
 import Prop from "@cmp/prop/prop.tsx";
@@ -33,12 +33,12 @@ export const generateMetadata = async (
         title: {absolute: `${page.title} — xeerpe CSS builder guide`},
         description: page.description,
         alternates: { canonical: page.href },
-        openGraph: {
-            type: 'article',
-            url: page.href,
-            title: `${page.title} — xeerpe`,
+        ...socialMetadata({
+            title: `${page.title} — xeerpe CSS builder guide`,
             description: page.description,
-        },
+            path: page.href,
+            type: 'article',
+        }),
         robots: page.draft ? { index: false, follow: true } : undefined,
     }
 }

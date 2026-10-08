@@ -65,3 +65,30 @@ export const articleJsonLd = (
     isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
     author: { '@type': 'Person', name: AUTHOR_NAME, url: AUTHOR_URL },
 })
+export const websiteJsonLd = () => ({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    inLanguage: 'en',
+    publisher: { '@type': 'Person', name: AUTHOR_NAME, url: AUTHOR_URL },
+})
+
+export const socialMetadata = (
+    page: { title: string; description?: string; path: string; type?: 'website' | 'article' }
+) => ({
+    openGraph: {
+        type: page.type ?? 'website',
+        siteName: SITE_NAME,
+        locale: SITE_LOCALE,
+        url: page.path,
+        title: page.title,
+        description: page.description,
+    },
+    twitter: {
+        card: 'summary_large_image' as const,
+        title: page.title,
+        description: page.description,
+    },
+})

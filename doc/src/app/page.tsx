@@ -7,6 +7,7 @@ import PresetBento from "@cmp/home/presetBento/presetBento.tsx";
 import UiExamples from "@cmp/home/uiExamples/uiExamples.tsx";
 import {Builder, presetNames} from "xeerpe";
 import Link from "next/link";
+import {serializeJsonLd, websiteJsonLd} from "@/src/config/site.ts";
 
 const Page = () => {
 
@@ -22,6 +23,10 @@ const Page = () => {
 
     return (
         <main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{__html: serializeJsonLd(websiteJsonLd())}}
+            />
             <div className={classes.mainContainer}>
 
                 <section className={classes.hero}>
