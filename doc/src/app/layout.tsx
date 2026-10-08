@@ -74,7 +74,15 @@ const RootLayout = ({children}: { children: React.ReactNode }) => {
         .toStyle()
 
     return (
-        <html lang="en" style={xeerpeBackground} className={roboto.className}>
+        <html
+            lang="en"
+            style={{
+                ...xeerpeBackground,
+                backgroundAttachment: 'fixed',
+                backgroundRepeat: 'repeat, no-repeat, no-repeat',
+            }}
+            className={roboto.className}
+        >
         <body>
         <a href="#main-content" className="skip-link">Skip to content</a>
 
