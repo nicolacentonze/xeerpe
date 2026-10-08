@@ -55,8 +55,9 @@ export const metadata: Metadata = {
 
 const roboto = Roboto({
     subsets: ['latin'],
-    weight: ['100', '300', '400', '500', '700', '900'],
-    style: ['normal', 'italic'],
+    weight: ['400', '500', '700', '900'],
+    style: ['normal'],
+    display: 'swap',
 })
 
 export const viewport: Viewport = {
