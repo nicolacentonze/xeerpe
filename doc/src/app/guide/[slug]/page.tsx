@@ -12,6 +12,7 @@ import TableOfContents from "@cmp/tableOfContents/tableOfContents.tsx";
 import getToc from "@/src/utils/getToc.ts";
 import GuideNav from "@cmp/guideNavPages/guideNav.tsx";
 import { getGuidePage } from "@/src/data/sidebarItems.ts";
+import { articleJsonLd, serializeJsonLd } from "@/src/config/site.ts";
 import {TocItem} from "@/src/models/tocItem.ts";
 import Table from "@cmp/table/table.tsx";
 import Prop from "@cmp/prop/prop.tsx";
@@ -29,7 +30,7 @@ export const generateMetadata = async (
     if (!page) return {}
 
     return {
-        title: page.title,
+        title: {absolute: `${page.title} — xeerpe CSS builder guide`},
         description: page.description,
         alternates: { canonical: page.href },
         openGraph: {
@@ -93,9 +94,20 @@ const GuidePage = async ({params}: {
 
     toc.unshift({id: page.slug, text: page.title, depth: 1} as TocItem)
 
+    const jsonLd = articleJsonLd({
+        title: page.title,
+        description: page.description,
+        path: page.href,
+        updatedAt: page.updatedAt,
+    })
+
     return (
         <div className={classes.guideLayout}>
             <div className={classes.guideArticle}>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{__html: serializeJsonLd(jsonLd)}}
+                />
                 <article className="mdx">
                     <h1 id={page.slug}>{page.title}</h1>
                     {content}

@@ -51,3 +51,17 @@ export const softwareJsonLd = () => ({
         url: AUTHOR_URL,
     },
 })
+
+export const articleJsonLd = (
+    page: { title: string; description?: string; path: string; updatedAt?: string }
+) => ({
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: page.title,
+    description: page.description,
+    url: `${SITE_URL}${page.path}`,
+    inLanguage: 'en',
+    dateModified: page.updatedAt,
+    isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+    author: { '@type': 'Person', name: AUTHOR_NAME, url: AUTHOR_URL },
+})
