@@ -14,7 +14,7 @@
 
     .toc {
         ul {
-            border-left: 1px solid var(--border);
+            border-left: 1px solid var(--rail);
         }
 
         li {
@@ -33,7 +33,7 @@
 
             &:hover {
                 color: var(--text-strong) !important;
-                border-left-color: var(--border-strong);
+                border-left-color: var(--rail-hover);
             }
 
             &.active {

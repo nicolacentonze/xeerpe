@@ -16,7 +16,7 @@
 
     .navbarLinksGroup, .sidebarLinksGroup {
         margin-left: 0.25rem;
-        border-left: 1px solid var(--border);
+        border-left: 1px solid var(--rail);
 
         li {
             list-style: none;
@@ -33,7 +33,7 @@
 
             a:hover {
                 color: var(--text-strong) !important;
-                border-left-color: var(--border-strong);
+                border-left-color: var(--rail-hover);
             }
 
             a.active {

@@ -16,6 +16,8 @@
     --surface-raised: rgba(255, 255, 255, 0.05);
     --border: rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.12);
+    --rail: rgba(255, 255, 255, 0.22);
+    --rail-hover: rgba(255, 255, 255, 0.45);
 
     --radius-sm: 6px;
     --radius-md: 8px;
