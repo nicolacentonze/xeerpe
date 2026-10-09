@@ -1,10 +1,10 @@
-import Link from "next/link";
 import classes from "./navbar.module.css";
 import Image from "next/image";
 import xeerpeTextLogo from "@assets/xeerpeTextLogo.png";
 import { Builder } from "xeerpe";
 import SidebarToggle from "@cmp/core/sidebar/sidebarToggle.tsx";
 import HomeLink from "@cmp/core/navbar/homeLink.tsx";
+import NavLink from "@cmp/core/navbar/navLink.tsx";
 
 const Navbar = () => {
     const navbarBackground = new Builder()
@@ -26,9 +26,9 @@ const Navbar = () => {
             </div>
 
             <nav aria-label="xeerpe main navigation" className={classes.navbar}>
-                <Link href="/guide">Guide</Link>
-                <Link href="/changelog">Changelog</Link>
-                <Link href="/about">About</Link>
+                <NavLink href="/guide">Guide</NavLink>
+                <NavLink href="/changelog">Changelog</NavLink>
+                <NavLink href="/about">About</NavLink>
                 <a
                     href="https://github.com/nicolacentonze/xeerpe"
                     target="_blank"

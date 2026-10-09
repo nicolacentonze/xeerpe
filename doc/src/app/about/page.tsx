@@ -10,15 +10,15 @@ import CodeBlock from '@cmp/codeBlock/codeBlock.tsx'
 import classes from './about.module.css'
 import SocialLinks from "@/src/app/about/sociallinks/socialLinks.tsx";
 
-const title = 'About'
+const title = 'About xeerpe, a CSS background and style builder'
 const description =
-    'xeerpe is an open source TypeScript library for building CSS gradients, patterns, filters and animations with a chainable API.'
+    'xeerpe is an open source TypeScript library for building CSS backgrounds and styles, with gradients, patterns, filters and animations, through a chainable API.'
 
 export const metadata: Metadata = {
-    title,
+    title: {absolute: title},
     description,
     alternates: {canonical: '/about'},
-    ...socialMetadata({title: `${title} — xeerpe`, description, path: '/about'}),
+    ...socialMetadata({title, description, path: '/about'}),
 }
 
 const AboutPage = async () => {

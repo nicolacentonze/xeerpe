@@ -40,6 +40,15 @@
 
         a {
             color: var(--text-secondary) !important;
+            transition: color 0.15s ease;
+        }
+
+        a:hover {
+            color: var(--text-strong) !important;
+        }
+
+        a.active {
+            color: var(--accent) !important;
         }
     }
 }

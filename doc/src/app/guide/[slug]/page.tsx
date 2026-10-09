@@ -31,11 +31,11 @@ export const generateMetadata = async (
     if (!page) return {}
 
     return {
-        title: {absolute: `${page.title} — xeerpe CSS builder guide`},
+        title: {absolute: `${page.title} — xeerpe CSS background and style guide`},
         description: page.description,
         alternates: { canonical: page.href },
         ...socialMetadata({
-            title: `${page.title} — xeerpe CSS builder guide`,
+            title: `${page.title} — xeerpe CSS background and style guide`,
             description: page.description,
             path: page.href,
             type: 'article',

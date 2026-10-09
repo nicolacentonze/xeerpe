@@ -1,10 +1,12 @@
 import Image from "next/image";
+import xeerpeIcon from '@assets/xeerpeIconLarge.png'
 import xeerpeLogo from '@assets/xeerpeLogo.png'
 import classes from "./page.module.css"
 import LinkButton from "@cmp/buttons/linkButton.tsx";
 import ChainSteps from "@cmp/home/chainSteps/chainSteps.tsx";
 import PresetBento from "@cmp/home/presetBento/presetBento.tsx";
 import UiExamples from "@cmp/home/uiExamples/uiExamples.tsx";
+import DotDivider from "@cmp/home/dotDivider/dotDivider.tsx";
 import {Builder, presetNames} from "xeerpe";
 import Link from "next/link";
 import {serializeJsonLd, websiteJsonLd} from "@/src/config/site.ts";
@@ -30,32 +32,44 @@ const Page = () => {
             <div className={classes.mainContainer}>
 
                 <section className={classes.hero}>
-                    <div className={classes.xeerpeLogoContainer}>
-                        <Image className={classes.xeerpeLogo} src={xeerpeLogo} alt="xeerpe logo" priority/>
+                    <div className={classes.logoStage}>
+                        <div
+                            className={classes.logo}
+                            style={{'--logo-mask': `url(${xeerpeIcon.src})`} as React.CSSProperties}
+                        >
+                            <Image className={classes.logoImage} src={xeerpeIcon} alt="xeerpe logo" priority/>
+                        </div>
                     </div>
-                    <h1 style={textStyle} className={classes.mainDescription}>
-                        Chain properties and effects to customize your backgrounds and text
-                    </h1>
-                    <p className={classes.lead}>
-                        Gradients, patterns, effects and animations, all in one chain.
-                        <br/>
-                        Zero dependencies, any framework.
-                    </p>
-                    <div className={classes.actions}>
-                        <LinkButton href={'/guide'}>Get Started →</LinkButton>
+                    <div className={classes.heroText}>
+                        <p className={classes.slogan}>craft().chain().done()</p>
+                        <h1 style={textStyle} className={classes.mainDescription}>
+                            Style CSS backgrounds and text by chaining properties and effects
+                        </h1>
+                        <ul className={classes.traits}>
+                            <li>Zero dependencies</li>
+                            <li>Fully typed</li>
+                            <li>Any framework</li>
+                        </ul>
+                        <div className={classes.actions}>
+                            <LinkButton href={'/guide'}>Get Started →</LinkButton>
+                        </div>
                     </div>
                 </section>
 
+                <DotDivider />
+
                 <section className={classes.section}>
                     <header className={classes.sectionHeader}>
-                        <h2 className={classes.sectionTitle}>Build your own, one method at a time</h2>
+                        <h2 className={classes.sectionTitle}>Build any CSS background, one method at a time</h2>
                         <p className={classes.sectionText}>
-                            Describe the background the way you would say it out loud. Each method adds a layer,
-                            and toStyle() turns the whole chain into a style object.
+                            Describe it the way you would say it out loud. Each method adds a layer,
+                            and toStyle() turns the chain into a style object.
                         </p>
                     </header>
                     <ChainSteps />
                 </section>
+
+                <DotDivider />
 
                 <section className={classes.section}>
                     <header className={classes.sectionHeader}>
@@ -72,6 +86,8 @@ const Page = () => {
                     </div>
                 </section>
 
+                <DotDivider />
+
                 <section className={classes.section}>
                     <header className={classes.sectionHeader}>
                         <h2 className={classes.sectionTitle}>Real interface pieces, no presets needed</h2>
@@ -83,14 +99,19 @@ const Page = () => {
                 </section>
 
                 <section className={classes.cta} style={ctaBackground}>
-                    <h2 style={textStyle} className={classes.ctaTitle}>Craft. Chain. Done.</h2>
-                    <p className={classes.ctaText}>
-                        Zero dependencies, any framework.
-                        <br/>
-                        Install it and write your first chain in a minute.
-                    </p>
-                    <div className={classes.actions}>
-                        <LinkButton href={'/guide/usage'} >Read the usage guide</LinkButton>
+                    <div className={classes.ctaLogoStage}>
+                        <Image className={classes.ctaLogo} src={xeerpeLogo} alt="" aria-hidden="true"/>
+                    </div>
+                    <div className={classes.ctaContent}>
+                        <h2 className={classes.ctaTitle}>craft().chain().done()</h2>
+                        <p className={classes.ctaText}>
+                            Zero dependencies, any framework.
+                            <br/>
+                            Install it and write your first chain in a minute.
+                        </p>
+                        <div className={classes.actions}>
+                            <LinkButton href={'/guide/usage'} >Read the usage guide</LinkButton>
+                        </div>
                     </div>
                     <div className={classes.joke}>
                         Yes, this background is made with xeerpe too :)

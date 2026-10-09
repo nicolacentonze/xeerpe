@@ -1,0 +1,12 @@
+.divider {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: var(--accent);
+    opacity: 0.55;
+}
+
+.divider svg {
+    max-width: 60%;
+    height: auto;
+}

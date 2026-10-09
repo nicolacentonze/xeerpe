@@ -1,16 +1,12 @@
-// PUBLIC site configuration
-
-// Everything here is public! This file gets bundled client-side, so it's readable from devtools
-
 export const SITE_URL = 'https://www.xeerpe.io'
 
 export const SITE_NAME = 'xeerpe'
 
 export const SITE_TITLE =
-    'xeerpe — CSS gradient, pattern, filters and animation builder'
+    'xeerpe — CSS background and style builder: gradients, effects'
 
 export const SITE_DESCRIPTION =
-    'Chain gradients, filters, effects, patterns and animations into a single CSS style object. Zero dependencies, works with any frameworks'
+    'Build CSS backgrounds and styles with a chainable API: gradients, patterns, effects, filters and animations in one style object. Zero dependencies, any framework.'
 
 export const BACKGROUND_COLOR = '#050705'
 
@@ -43,7 +39,7 @@ export const softwareJsonLd = () => ({
     sameAs: [GITHUB_URL, NPM_URL],
     programmingLanguage: ['TypeScript', 'JavaScript'],
     runtimePlatform: ['Node.js', 'Web Browser'],
-    keywords: 'xeerpe, css, gradient, mesh gradient, background, background-effects , text-effects, animation, css-in-js, TypeScript, JavaScript',
+    keywords: 'xeerpe, css background, css style, style builder, css gradient, gradient generator, mesh gradient, background effects, text effects, animation, css-in-js, TypeScript, JavaScript',
     license: LICENSE_URL,
     author: {
         '@type': 'Person',

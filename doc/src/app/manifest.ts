@@ -4,7 +4,7 @@ import {
 } from "@/src/config/site.ts";
 
 const manifest = (): MetadataRoute.Manifest => ({
-    name: 'xeerpe — CSS background builder',
+    name: 'xeerpe — CSS background and style builder',
     short_name: SITE_NAME,
     description: SITE_DESCRIPTION,
     start_url: '/',
@@ -12,7 +12,9 @@ const manifest = (): MetadataRoute.Manifest => ({
     background_color: BACKGROUND_COLOR,
     theme_color: THEME_COLOR,
     icons: [
-        {src: '/icon.png', sizes: '512x512', type: 'image/png'},
+        {src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any'},
+        {src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any'},
+        {src: '/icons/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable'},
     ],
 })
 

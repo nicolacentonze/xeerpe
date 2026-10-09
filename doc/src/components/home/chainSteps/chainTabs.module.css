@@ -6,12 +6,18 @@
 
 .list {
     display: flex;
-    align-self: center;
+    align-self: flex-start;
     gap: 0.25rem;
     padding: 0.25rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
     background: var(--surface-tint);
+}
+
+@media (max-width: 900px) {
+    .list {
+        align-self: center;
+    }
 }
 
 .tab {

@@ -41,14 +41,12 @@
     font-size: 0.75rem;
 }
 
-/* Gradient text */
 .gradientText {
     font-size: 3rem;
     font-weight: 800;
     letter-spacing: -0.02em;
 }
 
-/* Frosted glass */
 .glass {
     padding: 1.4rem 2rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -57,7 +55,6 @@
     font-weight: 600;
 }
 
-/* Neon button */
 .neon {
     padding: 0.8rem 1.6rem;
     border: 1px solid #22d3ee;
@@ -69,7 +66,6 @@
     cursor: pointer;
 }
 
-/* Avatar ring */
 .avatar {
     position: relative;
     width: 104px;
@@ -95,7 +91,6 @@
     font-weight: 700;
 }
 
-/* Loading skeleton */
 .skeleton {
     display: flex;
     align-items: center;
@@ -127,7 +122,6 @@
     width: 60%;
 }
 
-/* Spotlight card */
 .spotlight {
     display: flex;
     flex-direction: column;

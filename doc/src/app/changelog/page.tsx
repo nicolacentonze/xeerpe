@@ -9,15 +9,15 @@ import {codeTheme} from '@/src/config/codeTheme.ts'
 import CodeBlock from '@cmp/codeBlock/codeBlock.tsx'
 import classes from './changelog.module.css'
 
-const title = 'Changelog'
+const title = 'Changelog of xeerpe, the CSS background and style builder'
 const description =
-    'Release history of xeerpe, from the first gradients to presets, validation and new animations. Features and fixes for every version.'
+    'Release history of xeerpe, the CSS background and style library: from the first gradients to presets, validation and new animations. Features and fixes for every version.'
 
 export const metadata: Metadata = {
-    title,
+    title: {absolute: title},
     description,
     alternates: {canonical: '/changelog'},
-    ...socialMetadata({title: `${title} — xeerpe`, description, path: '/changelog'}),
+    ...socialMetadata({title, description, path: '/changelog'}),
 }
 
 const ChangelogPage = async () => {

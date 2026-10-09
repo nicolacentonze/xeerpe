@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6rem;
+    gap: 4.5rem;
     width: 100%;
     max-width: 1240px;
     margin: 0 auto;
@@ -12,39 +12,158 @@
 }
 
 .hero {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     align-items: center;
-    gap: 1.5rem;
+    gap: 4rem;
     width: 100%;
-    text-align: center;
-
-    .xeerpeLogoContainer {
-        display: flex;
-        justify-content: center;
-        padding: 1.5rem 1rem 0.5rem;
-        box-sizing: border-box;
-
-        img {
-            width: min(520px, 80vw);
-            height: auto;
-        }
-    }
+    padding-top: 2rem;
+    box-sizing: border-box;
 
     .mainDescription {
-        max-width: 800px;
-        margin: 0;
+        max-width: 640px;
+        margin: 1rem 0 0;
         font-size: clamp(1.8rem, 4vw, 2.6rem);
         line-height: 1.2;
     }
 }
 
-.lead {
-    max-width: 620px;
+.logoStage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    perspective: 1100px;
+}
+
+.logoStage::before {
+    content: "";
+    position: absolute;
+    inset: 12% 8%;
+    background: radial-gradient(closest-side, rgba(var(--accent-rgb), 0.35), transparent);
+    filter: blur(32px);
+}
+
+.logo {
+    position: relative;
+    width: min(320px, 100%);
+    height: auto;
+    transform: rotateY(-28deg) rotateX(10deg) rotateZ(2deg);
+    filter: drop-shadow(-24px 28px 28px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 0 rgba(var(--accent-rgb), 0));
+    transition: transform 0.6s ease, filter 0.6s ease;
+    animation: logoTurn 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s backwards;
+}
+
+@keyframes logoTurn {
+    from {
+        transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) scale(0.6);
+    }
+}
+
+.logoImage {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: filter 0.6s ease;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 22% 28%, rgba(202, 211, 40, 0.95), transparent 50%),
+        radial-gradient(circle at 88% 14%, rgba(255, 31, 90, 0.9), transparent 48%),
+        radial-gradient(circle at 80% 58%, rgba(34, 211, 238, 0.85), transparent 50%),
+        radial-gradient(circle at 40% 100%, rgba(168, 85, 247, 0.8), transparent 55%);
+    background-size: 220% 220%;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+    mix-blend-mode: color;
+    -webkit-mask-image: var(--logo-mask);
+    mask-image: var(--logo-mask);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    pointer-events: none;
+    animation: logoGradients 2.6s ease-in-out 1.5s both;
+}
+
+@keyframes logoGradients {
+    0% {
+        opacity: 0;
+        background-position: 0% 0%;
+    }
+    35%, 65% {
+        opacity: 0.85;
+    }
+    100% {
+        opacity: 0;
+        background-position: 100% 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .logo::after {
+        display: none;
+    }
+}
+
+.logoStage:hover .logo {
+    transform: rotateY(-12deg) rotateX(5deg) rotateZ(1deg);
+    filter: drop-shadow(-24px 28px 28px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 28px rgba(var(--accent-rgb), 0.55));
+}
+
+.logoStage:hover .logoImage {
+    filter: brightness(1.1) saturate(1.3);
+}
+
+.slogan {
     margin: 0;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem;
+    color: var(--accent);
+}
+
+.heroText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.traits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.25rem 0;
+    margin: 1.25rem 0 0;
+    font-size: 0.95rem;
     color: var(--text-muted);
+
+    li + li::before {
+        content: "·";
+        margin: 0 0.75rem;
+        color: var(--text-subtle);
+    }
+}
+
+@media (max-width: 480px) {
+    .traits {
+        font-size: 0.85rem;
+
+        li + li::before {
+            margin: 0 0.5rem;
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .traits {
+        gap: 0.25rem 1rem;
+
+        li + li::before {
+            display: none;
+        }
+    }
 }
 
 .actions {
@@ -53,6 +172,34 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
+}
+
+.hero .actions {
+    justify-content: flex-start;
+    margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .logo {
+        width: min(200px, 55vw);
+        transform: rotateY(-18deg) rotateX(6deg) rotateZ(1deg);
+    }
+
+    .heroText {
+        align-items: center;
+        text-align: center;
+    }
+
+    .traits,
+    .hero .actions {
+        justify-content: center;
+    }
 }
 
 .joke {
@@ -70,18 +217,26 @@
 .section {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
     width: 100%;
 }
 
 .sectionHeader {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.9rem;
     max-width: 720px;
-    align-self: center;
-    align-items: center;
-    text-align: center;
+    align-self: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+@media (max-width: 900px) {
+    .sectionHeader {
+        align-self: center;
+        align-items: center;
+        text-align: center;
+    }
 }
 
 .eyebrow {
@@ -109,22 +264,75 @@
 }
 
 .cta {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
-    gap: 1rem;
+    gap: 2rem 3rem;
     width: 100%;
-    padding: 4.5rem 2rem;
+    margin-top: 3rem;
+    padding: 4rem 3rem;
     border-radius: var(--radius-2xl);
     box-sizing: border-box;
-    text-align: center;
     box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), 0.25);
+
+    .joke {
+        grid-column: 1 / -1;
+    }
+}
+
+.ctaLogoStage {
+    display: flex;
+    justify-content: center;
+}
+
+.ctaLogo {
+    width: min(400px, 100%);
+    height: auto;
+}
+
+.ctaContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+
+    .actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 900px) {
+    .cta {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 2rem;
+        padding: 3rem 1.5rem;
+    }
+
+    .ctaLogoStage {
+        justify-content: center;
+    }
+
+    .ctaLogo {
+        width: min(300px, 80vw);
+    }
+
+    .ctaContent {
+        align-items: center;
+        text-align: center;
+
+        .actions {
+            justify-content: center;
+        }
+    }
 }
 
 .ctaTitle {
     margin: 0;
-    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
-    letter-spacing: -0.02em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--accent);
 }
 
 .ctaText {
@@ -135,6 +343,7 @@
 }
 
 .creditsSection {
+    margin-top: 2rem;
     padding: 0 1rem 2rem;
     text-align: center;
     color: #979696 !important;
@@ -164,7 +373,7 @@
 
 @media (max-width: 768px) {
     .mainContainer {
-        gap: 4rem;
+        gap: 3rem;
         padding: 1rem 1rem 0;
     }
 
