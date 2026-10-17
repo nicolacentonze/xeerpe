@@ -198,9 +198,13 @@ export class Builder {
                 [p.backgroundImage, p.background].filter(Boolean),
             )
 
-            const backgroundSizes = [...grouped.effect, ...grouped.pattern, ...grouped.gradient]
-                .map((p) => p.backgroundSize)
-                .filter(Boolean)
+            const slidingSize = this.slidingGradientSize()
+            // Size each CSS image, preserving animation sizing for unsized gradients.
+            const backgroundSizes = this.imageLayers(grouped).flatMap(({ type, size, count }) => {
+                const backgroundSize = slidingSize && type === 'gradient' && (!size || size === 'auto') ? slidingSize : (size ?? 'auto')
+
+                return Array<string>(count).fill(backgroundSize)
+            })
 
             const boxShadows = grouped.effect.map((p) => p.boxShadow).filter(Boolean)
 
@@ -208,18 +212,6 @@ export class Builder {
 
             if (backgroundImages.length) style.backgroundImage = backgroundImages.join(', ')
             if (backgroundSizes.length) style.backgroundSize = backgroundSizes.join(', ')
-
-            const slidingSize = this.slidingGradientSize()
-            const imageLayers = this.imageLayers(grouped)
-            const isUnsized = (size?: string) => !size || size === 'auto'
-
-            if (slidingSize && imageLayers.some(({ type, size }) => type === 'gradient' && isUnsized(size))) {
-                style.backgroundSize = imageLayers
-                    .flatMap(({ type, size, count }) =>
-                        Array<string>(count).fill(type === 'gradient' && isUnsized(size) ? slidingSize : (size ?? 'auto')),
-                    )
-                    .join(', ')
-            }
 
             if (backgroundColor) style.backgroundColor = backgroundColor
             if (boxShadows.length) style.boxShadow = boxShadows.join(', ')
