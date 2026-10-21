@@ -1,4 +1,4 @@
-# xeerpe API reference (v1.0.7)
+# xeerpe API reference (v1.0.8)
 
 > Generated file. Do not edit by hand.
 

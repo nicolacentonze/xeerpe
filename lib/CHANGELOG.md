@@ -1,5 +1,11 @@
 # xeerpe
 
+## 1.0.8
+
+### Patch Changes
+
+- [`fc34d21`](https://github.com/nicolacentonze/xeerpe/commit/fc34d21476d8c82e3fb84d3185df79a7761ca541) Thanks [@nicolacentonze](https://github.com/nicolacentonze)! - move Claude plugin to plugins/xeerpe with only the skill
+
 ## 1.0.7
 
 ### Patch Changes
