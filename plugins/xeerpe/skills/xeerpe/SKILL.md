@@ -60,4 +60,4 @@ const style = new Builder()
 - [references/animations.md](references/animations.md): the nine animations, defaults, targets.
 - [references/recipes.md](references/recipes.md): complete examples to adapt.
 
-Regenerate the generated files after a release with `npm run build:lib && node skills/xeerpe/scripts/generate-references.mjs`. Full docs: https://xeerpe.io (LLM index at https://xeerpe.io/llms.txt).
+Full docs: https://xeerpe.io (LLM index at https://xeerpe.io/llms.txt).

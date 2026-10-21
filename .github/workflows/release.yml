@@ -81,5 +81,5 @@ jobs:
           # Release notes = the CHANGELOG section of this version
           awk -v v="## $VERSION" '$0==v{f=1;next} /^## /{f=0} f' lib/CHANGELOG.md > notes.md
           # The skill, zipped for tools that install it from a file (e.g. Claude upload), attached to the release
-          (cd skills && zip -rq "../xeerpe-skill-$VERSION.zip" xeerpe -x "xeerpe/scripts/*")
+          (cd plugins/xeerpe/skills && zip -rq "$GITHUB_WORKSPACE/xeerpe-skill-$VERSION.zip" xeerpe)
           gh release create "$TAG" --title "$TAG" --notes-file notes.md "xeerpe-skill-$VERSION.zip"

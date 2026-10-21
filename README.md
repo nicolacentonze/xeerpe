@@ -118,14 +118,14 @@ xeerpe includes ready-made instructions that help AI assistants write correct xe
 
 ### Claude Code
 
-Install the skill ([`skills/xeerpe`](skills/xeerpe)) as a plugin:
+Install the skill ([`plugins/xeerpe`](plugins/xeerpe)) as a plugin:
 
 ```
 /plugin marketplace add nicolacentonze/xeerpe
 /plugin install xeerpe@xeerpe
 ```
 
-Or download `xeerpe-skill-<version>.zip` from the [latest release](https://github.com/nicolacentonze/xeerpe/releases/latest), or copy `skills/xeerpe` into your skills folder: `~/.claude/skills/` for all projects, `.claude/skills/` for one project.
+Or download `xeerpe-skill-<version>.zip` from the [latest release](https://github.com/nicolacentonze/xeerpe/releases/latest), or copy `plugins/xeerpe/skills/xeerpe` into your skills folder: `~/.claude/skills/` for all projects, `.claude/skills/` for one project.
 
 ### Other coding assistants
 

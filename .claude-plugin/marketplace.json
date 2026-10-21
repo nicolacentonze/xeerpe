@@ -4,7 +4,7 @@
   "plugins": [
     {
       "name": "xeerpe",
-      "source": "./",
+      "source": "./plugins/xeerpe",
       "description": "Skill for building CSS backgrounds and gradient text with the xeerpe library."
     }
   ]

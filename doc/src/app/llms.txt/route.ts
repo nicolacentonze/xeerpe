@@ -29,7 +29,7 @@ export const GET = () => {
             'A single static `linear-gradient` is usually simpler as plain CSS.',
         '## Install\n\n```bash\nnpm install xeerpe\n```',
         ...sections,
-        `## Optional\n\n- [Changelog](${SITE_URL}/changelog): release history\n- [About](${SITE_URL}/about): what xeerpe is and who builds it\n- [Full reference](${SITE_URL}/llms-full.txt): API, validation rules, recipes and all presets in one file\n- [Agent skill](${GITHUB_URL}/tree/main/skills/xeerpe): Claude Code skill for writing xeerpe code\n- [Source code](${GITHUB_URL}): GitHub repository\n- [npm package](${NPM_URL}): npm package`,
+        `## Optional\n\n- [Changelog](${SITE_URL}/changelog): release history\n- [About](${SITE_URL}/about): what xeerpe is and who builds it\n- [Full reference](${SITE_URL}/llms-full.txt): API, validation rules, recipes and all presets in one file\n- [Agent skill](${GITHUB_URL}/tree/main/plugins/xeerpe): Claude Code skill for writing xeerpe code\n- [Source code](${GITHUB_URL}): GitHub repository\n- [npm package](${NPM_URL}): npm package`,
     ].join('\n\n')
 
     return new Response(`${body}\n`, {

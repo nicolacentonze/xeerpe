@@ -13,7 +13,7 @@
     "format:check": "prettier --check .",
     "format:lib": "prettier --write lib",
     "format:doc": "prettier --write doc",
-    "skill:generate": "npm run build:lib && node skills/xeerpe/scripts/generate-references.mjs && prettier --write .claude-plugin/plugin.json",
+    "skill:generate": "npm run build:lib && node scripts/generate-ai-files.mjs && prettier --write plugins/xeerpe/.claude-plugin/plugin.json",
     "typecheck:lib": "npm run typecheck --workspace=lib",
     "changeset": "changeset",
     "version-packages": "changeset version && npm install --package-lock-only",
