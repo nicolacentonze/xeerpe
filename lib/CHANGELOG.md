@@ -1,5 +1,11 @@
 # xeerpe
 
+## 1.0.9
+
+### Patch Changes
+
+- [`46c2fb7`](https://github.com/nicolacentonze/xeerpe/commit/46c2fb7d886f5f537a8684b30fb6321374179e0a) Thanks [@nicolacentonze](https://github.com/nicolacentonze)! - Install and use xeerpe skill
+
 ## 1.0.8
 
 ### Patch Changes
