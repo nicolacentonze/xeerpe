@@ -17,7 +17,7 @@ const Navbar = () => {
             <div className={classes.left}>
                 <SidebarToggle />
                 <HomeLink className={classes.headerLogo}>
-                    <Image className={classes.headerLogoImage} src={xeerpeTextLogo} alt="xeerpe logo" />
+                    <Image className={classes.headerLogoImage} src={xeerpeTextLogo} alt="xeerpe home" />
                 </HomeLink>
             </div>
 
@@ -26,13 +26,8 @@ const Navbar = () => {
                 <NavLink href="/playground">Playground</NavLink>
                 <NavLink href="/changelog">Changelog</NavLink>
                 <NavLink href="/about">About</NavLink>
-                <a
-                    href="https://github.com/nicolacentonze/xeerpe"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="xeerpe GitHub Repo"
-                >
-                    GitHub
+                <a href="https://github.com/nicolacentonze/xeerpe" target="_blank" rel="noopener noreferrer">
+                    GitHub<span className="sr-only"> repository (opens in a new tab)</span>
                 </a>
             </nav>
         </header>

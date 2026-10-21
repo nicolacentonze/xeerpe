@@ -35,7 +35,7 @@ const Page = () => {
                 <section className={classes.hero}>
                     <div className={classes.logoStage}>
                         <div className={classes.logo} style={{ '--logo-mask': `url(${xeerpeIcon.src})` } as React.CSSProperties}>
-                            <Image className={classes.logoImage} src={xeerpeIcon} alt="xeerpe logo" priority />
+                            <Image className={classes.logoImage} src={xeerpeIcon} alt="" priority />
                         </div>
                     </div>
                     <div className={classes.heroText}>
@@ -127,9 +127,8 @@ const Page = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={classes.creditsLink}
-                        aria-label="Nicola Centonze"
                     >
-                        Nicola Centonze
+                        Nicola Centonze<span className="sr-only"> (opens in a new tab)</span>
                     </Link>
                 </div>
             </div>

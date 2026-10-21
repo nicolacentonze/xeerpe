@@ -4,8 +4,9 @@ import { sidebarElements } from '@/src/data/sidebarItems.ts'
 import classes from './sidebar.module.css'
 import SidebarLink from '@cmp/core/sidebar/sidebarLink.tsx'
 import { SidebarGroup, SidebarItem } from '@/src/models/sidebar.ts'
-import { useSidebar } from '@/src/context/sidebarContext.tsx'
+import { MOBILE_QUERY, useSidebar } from '@/src/context/sidebarContext.tsx'
 import { usePathname } from 'next/navigation'
+import { useEffect, useRef } from 'react'
 import { Builder } from 'xeerpe'
 import { NavbarLink } from '@/src/models/navbar.ts'
 import { navbarLinks } from '@/src/data/navbarItems.ts'
@@ -13,6 +14,7 @@ import { navbarLinks } from '@/src/data/navbarItems.ts'
 const Sidebar = () => {
     const pathname = usePathname()
     const { open } = useSidebar()
+    const sidebarRef = useRef<HTMLElement>(null)
     const isGuideRoute = pathname.startsWith('/guide')
     const links: NavbarLink[] = pathname === '/' ? navbarLinks : [{ title: 'Home', href: '/' }, ...navbarLinks]
 
@@ -21,8 +23,23 @@ const Sidebar = () => {
         .blur({ type: 'backdrop', amount: '60px' })
         .toStyle()
 
+    useEffect(() => {
+        if (!open || !window.matchMedia(MOBILE_QUERY).matches) return
+        const main = document.getElementById('main-content')
+        main?.setAttribute('inert', '')
+        sidebarRef.current?.querySelector<HTMLElement>('a')?.focus()
+        return () => main?.removeAttribute('inert')
+    }, [open])
+
     return (
-        <aside id="sidebar" className={classes.sidebar} style={sidebarBackground} data-guide-route={isGuideRoute} data-open={open}>
+        <aside
+            ref={sidebarRef}
+            id="sidebar"
+            className={classes.sidebar}
+            style={sidebarBackground}
+            data-guide-route={isGuideRoute}
+            data-open={open}
+        >
             <nav aria-label="Sidebar navigation">
                 <ul className={classes.navbarLinksGroup}>
                     {links.map((link: NavbarLink) => (
@@ -37,7 +54,7 @@ const Sidebar = () => {
                 {isGuideRoute &&
                     sidebarElements.map((group: SidebarGroup) => (
                         <div key={group.slug} className={classes.group}>
-                            <h3 className={classes.groupTitle}>{group.title}</h3>
+                            <h2 className={classes.groupTitle}>{group.title}</h2>
                             <ul className={classes.sidebarLinksGroup}>
                                 {group.items.map((item: SidebarItem) => (
                                     <li key={item.slug}>

@@ -11,6 +11,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Install xeerpe, the CSS background and style builder, with npm, yarn or pnpm ' +
                     'and import the animation stylesheet. Setup for CSS, SCSS and Angular.',
+                updatedAt: '2026-10-05',
             },
             {
                 title: 'Usage',
@@ -18,6 +19,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Build a CSS background style object with the chainable Builder API ' +
                     'and apply it in React, Vue, Angular or vanilla JavaScript.',
+                updatedAt: '2026-10-05',
             },
         ],
     },
@@ -31,6 +33,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Create linear, radial, conic and mesh CSS gradient backgrounds with xeerpe. ' +
                     'Every option, color stops and how to layer gradient styles.',
+                updatedAt: '2026-10-08',
             },
             {
                 title: 'Filters',
@@ -38,6 +41,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Blur a CSS background, an element or its backdrop with the xeerpe blur style. ' +
                     'Options, frosted glass examples and type reference.',
+                updatedAt: '2026-10-08',
             },
             {
                 title: 'Effects',
@@ -45,6 +49,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Add noise, film grain, vignette and glow styles to CSS backgrounds with xeerpe. ' +
                     'Every effect option, examples and how effects stack.',
+                updatedAt: '2026-10-08',
             },
             {
                 title: 'Patterns',
@@ -52,6 +57,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Add dots, grids, star fields and sunburst rays as pattern styles over your CSS backgrounds ' +
                     'with xeerpe. Pattern options, examples and layering.',
+                updatedAt: '2026-10-08',
             },
             {
                 title: 'Animations',
@@ -59,6 +65,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Animate CSS backgrounds with nine keyframe animation styles, from pulse to drift. ' +
                     'Setup, shared options, combinations and reduced motion.',
+                updatedAt: '2026-10-12',
             },
             {
                 title: 'Presets',
@@ -66,6 +73,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Ready-made CSS background styles in one line of code with xeerpe presets. How presets work, ' +
                     'how to extend or rebuild one, and the 100-color palette.',
+                updatedAt: '2026-10-08',
             },
         ],
     },
@@ -93,6 +101,7 @@ export const sidebarElements: SidebarGroup[] = [
                 description:
                     'Browse more than 200 ready-made CSS background styles, from gold and chocolate ' +
                     'to jungle and galaxy. Click a preset to copy its code.',
+                updatedAt: '2026-10-05',
             },
         ],
     },

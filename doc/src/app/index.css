@@ -135,6 +135,7 @@ figure {
 
     * {
         color: #000 !important;
+        -webkit-text-fill-color: currentColor !important;
         background-image: none !important;
         box-shadow: none !important;
     }

@@ -20,6 +20,7 @@ const SidebarLink = ({ href, children, external }: SidebarLinkProps) => {
             {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
             {children}
+            {external && <span className="sr-only"> (opens in a new tab)</span>}
         </Link>
     )
 }

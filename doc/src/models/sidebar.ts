@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, RefObject } from 'react'
 
 export interface SidebarLinkProps {
     href: string
@@ -22,6 +22,7 @@ export interface SidebarGroup {
 
 export interface SidebarContextValue {
     open: boolean
+    toggleRef: RefObject<HTMLButtonElement | null>
     toggle: () => void
     close: () => void
 }
