@@ -14,6 +14,14 @@
   <a href="https://xeerpe.io"><img src="https://img.shields.io/badge/docs-xeerpe.io-5EB847" alt="Documentation"></a>
 </p>
 
+<p align="center">
+  <a href="#claude-code"><img src="https://img.shields.io/badge/Claude-skill-D97757?logo=claude&logoColor=white" alt="Claude Code skill"></a>
+  <a href="#other-coding-assistants"><img src="https://img.shields.io/badge/Cursor-AGENTS.md-000000?logo=cursor&logoColor=white" alt="Cursor: AGENTS.md"></a>
+  <a href="#other-coding-assistants"><img src="https://img.shields.io/badge/Copilot-AGENTS.md-24292F?logo=githubcopilot&logoColor=white" alt="GitHub Copilot: AGENTS.md"></a>
+  <a href="#chat-assistants"><img src="https://img.shields.io/badge/ChatGPT-llms--full.txt-10A37F" alt="ChatGPT: llms-full.txt"></a>
+  <a href="#chat-assistants"><img src="https://img.shields.io/badge/Perplexity-llms--full.txt-20808D" alt="Perplexity: llms-full.txt"></a>
+</p>
+
 ---
 
 xeerpe is a TypeScript library for building CSS backgrounds and gradient text with a chainable API. It stacks gradients (linear, radial, conic and mesh), patterns, effects, filters and animations into a single style object that works anywhere inline styles do: React, Vue, Angular or plain JavaScript.
@@ -102,6 +110,36 @@ const textStyle = new Builder().linearGradient({ from: '#5EB847', to: '#BFD43F',
 - **Presets**: ready-made backgrounds
 - **Text fills**: `.toTextStyle()` for gradient text
 - **Typed and validated**: fully typed, with validation for colors, angles, sizes and positions
+- **AI-ready**: a Claude Code skill, an `AGENTS.md` for other coding assistants and an `llms-full.txt` for chat assistants
+
+## Use with AI agents
+
+xeerpe includes ready-made instructions that help AI assistants write correct xeerpe code: the chain API, valid option formats, presets and animations. Pick the one that matches your tool.
+
+### Claude Code
+
+Install the skill ([`skills/xeerpe`](skills/xeerpe)) as a plugin:
+
+```
+/plugin marketplace add nicolacentonze/xeerpe
+/plugin install xeerpe@xeerpe
+```
+
+Or download `xeerpe-skill-<version>.zip` from the [latest release](https://github.com/nicolacentonze/xeerpe/releases/latest), or copy `skills/xeerpe` into your skills folder: `~/.claude/skills/` for all projects, `.claude/skills/` for one project.
+
+### Other coding assistants
+
+The npm package ships an `AGENTS.md`, a plain markdown file that many coding assistants read from the project root (Codex, Cursor and GitHub Copilot, among others). Copy it into your project:
+
+```bash
+cp node_modules/xeerpe/AGENTS.md ./AGENTS.md
+```
+
+If your tool uses its own file, such as `.cursor/rules` or `.github/copilot-instructions.md`, paste the same content there.
+
+### Chat assistants
+
+For ChatGPT, Perplexity and similar, share the link [xeerpe.io/llms-full.txt](https://xeerpe.io/llms-full.txt) in the conversation, or attach the file. It holds the API, validation rules, recipes and every preset. A shorter index is at [xeerpe.io/llms.txt](https://xeerpe.io/llms.txt).
 
 ## Documentation
 

@@ -20,7 +20,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "AGENTS.md"
   ],
   "sideEffects": [
     "*.css"
@@ -50,7 +51,29 @@
     "zero-dependencies",
     "react",
     "vue",
-    "angular"
+    "angular",
+    "xeerpe",
+    "javascript",
+    "builder",
+    "chainable",
+    "fluent-api",
+    "style-builder",
+    "gradient-background",
+    "background-effects",
+    "text-gradient",
+    "gradient-animation",
+    "aurora",
+    "shimmer",
+    "dots",
+    "grid",
+    "stars",
+    "rays",
+    "blur",
+    "backdrop-filter",
+    "presets",
+    "gradient-presets",
+    "css-background",
+    "nextjs"
   ],
   "homepage": "https://xeerpe.io",
   "description": "A chainable TypeScript builder for CSS backgrounds and styles: gradients, patterns, effects and animations. Zero dependencies, works with any framework: React, Vue, Angular or plain JavaScript.",

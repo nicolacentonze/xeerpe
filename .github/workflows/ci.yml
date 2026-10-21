@@ -23,3 +23,8 @@ jobs:
       - run: npm run typecheck:lib
       - run: npm run build:lib
       - run: npm run build:doc
+      - name: Check generated AI files are up to date
+        run: |
+          node skills/xeerpe/scripts/generate-references.mjs
+          npx prettier --write .claude-plugin/plugin.json
+          git diff --exit-code -- skills .claude-plugin lib/AGENTS.md doc/public/llms-full.txt

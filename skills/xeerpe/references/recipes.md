@@ -53,10 +53,7 @@ const textStyle = new Builder().linearGradient({ from: '#5EB847', to: '#BFD43F',
 ## Preset plus film look
 
 ```ts
-new Preset('sunrise')
-  .grain({ intensity: 1.5 })
-  .vignette({ color: '#7c2d12', intensity: 0.2, spread: 0.5 })
-  .toStyle()
+new Preset('sunrise').grain({ intensity: 1.5 }).vignette({ color: '#7c2d12', intensity: 0.2, spread: 0.5 }).toStyle()
 ```
 
 ## Shimmering loading skeleton (needs animations.css)

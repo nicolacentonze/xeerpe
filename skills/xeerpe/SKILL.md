@@ -5,7 +5,9 @@ description: Build CSS backgrounds and gradient text with the xeerpe TypeScript 
 
 # xeerpe
 
-xeerpe turns a chain of layers into one inline-style object (`Record<string, string>`, camelCase CSS keys). Zero dependencies, works in React, Vue, Angular and plain JS. Package: `xeerpe`.
+xeerpe turns a chain of layers into one inline-style object.
+
+Zero dependencies, works in React, Vue, Angular and plain JS. Package: `xeerpe`.
 
 ## When to use / not use
 

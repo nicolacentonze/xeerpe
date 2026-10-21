@@ -48,6 +48,8 @@ jobs:
             exit 0
           fi
           npm run version-packages
+          # Regenerate the AI-agent files so they carry the new version (AGENTS.md ships in the npm package)
+          npm run skill:generate
           npx prettier --write lib/CHANGELOG.md lib/package.json
           VERSION=$(node -p "require('./lib/package.json').version")
           git config user.name "github-actions[bot]"
@@ -78,4 +80,6 @@ jobs:
           git push origin "refs/tags/$TAG"
           # Release notes = the CHANGELOG section of this version
           awk -v v="## $VERSION" '$0==v{f=1;next} /^## /{f=0} f' lib/CHANGELOG.md > notes.md
-          gh release create "$TAG" --title "$TAG" --notes-file notes.md
+          # The skill, zipped for tools that install it from a file (e.g. Claude upload), attached to the release
+          (cd skills && zip -rq "../xeerpe-skill-$VERSION.zip" xeerpe -x "xeerpe/scripts/*")
+          gh release create "$TAG" --title "$TAG" --notes-file notes.md "xeerpe-skill-$VERSION.zip"
