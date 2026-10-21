@@ -42,7 +42,7 @@ const api = [
         ['noise / vignette / grain / glow', 'NoiseOptions / VignetteOptions / GrainOptions / GlowOptions (optional)'],
         ['blur', 'BlurOptions (optional)'],
         ['pulse / rotate / breathe / aurora / shimmer / liquid / plasma / float / drift', 'AnimationOptions (optional)'],
-        ['pattern / effect / filter / animation (type, options)', 'generic forms, options required (pass {})'],
+        ['pattern / effect / filter / animation (type, options)', 'generic forms, options required (use {} for defaults)'],
         ['toStyle()', 'Record<string, string>, camelCase CSS properties'],
         ['toTextStyle()', 'Record<string, string>, gradient-filled text'],
     ].map(([m, o]) => `| \`${m}\` | ${o} |`),

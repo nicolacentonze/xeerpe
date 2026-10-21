@@ -77,7 +77,7 @@ Shared options (all optional): `duration` (`'4s'`), `easing`, `direction`, `iter
 Guidance:
 
 - `target` defaults to `'gradients'`: gradients move, patterns and effects (grain, vignette) stay put. Use `'all'` to move everything; `'patterns'` moves only patterns over a still gradient. Anything else throws.
-- With the default target, grain/vignette/glow stay still while the gradient moves; pass `target: 'all'` only if the effects should move too. For a "slow" animation, raise `duration` (defaults are listed above).
+- With the default target, grain/vignette/glow stay still while the gradient moves; set `target: 'all'` only if the effects should move too. For a "slow" animation, raise `duration` (defaults are listed above).
 - `pulse`, `rotate`, `float`, `plasma` act on the whole element, text included. `rotate` suits square or round elements.
 - Sliding animations (`shimmer`, `drift`) enlarge unsized gradients automatically; don't set `backgroundSize` on the gradient you animate.
 - Generic form: `.animation('pulse', {})` (options required).
