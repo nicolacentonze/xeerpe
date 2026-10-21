@@ -118,14 +118,15 @@ xeerpe includes ready-made instructions that help AI assistants write correct xe
 
 ### Claude Code
 
-Install the skill as a plugin:
+Download `xeerpe-skill-<version>.zip` from the [latest release](https://github.com/nicolacentonze/xeerpe/releases/latest) and unzip it into your skills folder. To use it in every project:
 
-```
-/plugin marketplace add nicolacentonze/xeerpe
-/plugin install xeerpe@xeerpe
+```bash
+unzip xeerpe-skill-<version>.zip -d ~/.claude/skills/
 ```
 
-More options (zip download, manual copy) are in the [repository README](https://github.com/nicolacentonze/xeerpe#use-with-ai-agents).
+To use it in a single project, unzip it into that project's `.claude/skills/` folder instead.
+
+Then start a new Claude Code session and use the skill as `/xeerpe`. Claude also loads it on its own when you ask for backgrounds, gradients or gradient text.
 
 ### Other coding assistants
 
