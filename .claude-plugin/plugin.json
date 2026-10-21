@@ -1,0 +1,12 @@
+{
+  "name": "xeerpe",
+  "description": "Skill for building CSS backgrounds and gradient text with the xeerpe library: chainable Builder API, presets, animations and recipes.",
+  "version": "1.0.6",
+  "author": {
+    "name": "Nicola Centonze"
+  },
+  "homepage": "https://xeerpe.io",
+  "repository": "https://github.com/nicolacentonze/xeerpe",
+  "license": "MIT",
+  "keywords": ["xeerpe", "css", "gradient", "background", "skill", "mesh-gradient", "animation", "presets", "gradient-text", "typescript"]
+}
