@@ -1,5 +1,11 @@
 # xeerpe
 
+## 1.0.7
+
+### Patch Changes
+
+- [`4359d8d`](https://github.com/nicolacentonze/xeerpe/commit/4359d8db0f883079666bf0b4c593ae1c6861ee30) Thanks [@nicolacentonze](https://github.com/nicolacentonze)! - Add AI assistant support: ship an AGENTS.md in the package and add AI-related keywords and README sections
+
 ## 1.0.6
 
 ### Patch Changes
