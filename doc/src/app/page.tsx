@@ -130,6 +130,10 @@ const Page = () => {
                     >
                         Nicola Centonze<span className="sr-only"> (opens in a new tab)</span>
                     </Link>
+                    {' · '}
+                    <Link href="/privacy" className={classes.creditsLink}>
+                        Privacy
+                    </Link>
                 </div>
             </div>
         </main>

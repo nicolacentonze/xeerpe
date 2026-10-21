@@ -8,6 +8,7 @@ const sitemap = (): MetadataRoute.Sitemap => {
         { url: `${SITE_URL}/playground`, priority: 0.8 },
         { url: `${SITE_URL}/changelog`, priority: 0.5 },
         { url: `${SITE_URL}/about`, priority: 0.3 },
+        { url: `${SITE_URL}/privacy`, priority: 0.2 },
     ]
 
     const published: MetadataRoute.Sitemap = guidePages
